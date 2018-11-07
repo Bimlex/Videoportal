@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:fmt="http://java.sun.com/jsp/jstl/fmt">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link href="./css/main.css" rel= "stylesheet" type="text/css" />
+	<title>Projekt &auml;ndern</title>	
+</h:head>
+    
+<h:body>
+	<center>
+		<h3>Projekt &auml;ndern</h3>
+		<h:form>
+			<h:panelGrid columns="2"
+				styleClass="panelGrid"
+				rowClasses="panelFirstLine, panelNextLine">
+				
+				<h:outputLabel value="Id: " />
+				<h:outputLabel value="#{projektMB.projekt.projektId}"/>
+				
+				<h:outputLabel value="MB Id: " />
+				<h:outputLabel value="#{projektMB.projektId}"/>
+					
+	
+					
+			</h:panelGrid>
+			<br/>
+			
+			<h:panelGrid columns="1"
+			styleClass="panelGrid"
+			rowClasses="panelFirstLine, panelNextLine">
+				
+				<h:commandButton value="Projekt ausw&auml;hlen" style="width:400px;height:30px">
+					<f:actionListener binding="#{ userMB.userClicked() }"/>
+				</h:commandButton>
+				
+				<h:commandButton immediate="true" action="prb" value="Zur&uuml;ck" style="width:400px;height:30px">
+					<f:actionListener binding="#{ userMB.userClicked() }"/>
+				</h:commandButton>				
+				
+			</h:panelGrid>			
+		</h:form>
+	</center>
+</h:body>
+</html>

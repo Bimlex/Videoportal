@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      >
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link href="./css/main.css" rel= "stylesheet" type="text/css" />
+	<title>Neues Projekt Anlegen</title>	
+</h:head>
+    
+<h:body>
+	<center>
+		<h3>Projekt anlegen</h3>
+		<h:form>
+			<h:panelGrid columns="3"
+				styleClass="panelGrid"
+				rowClasses="panelFirstLine, panelNextLine">
+				
+				<h:outputLabel value="Titel: " />
+				<h:inputText id="titel" value="#{projektMB.titel}" required="true" />
+				<h:outputLabel value="" />
+				
+				<h:outputLabel value="Beschreibung: " />
+				<h:inputText id="beschreibung" value="#{projektMB.beschreibung}" required="true" />
+				<h:outputLabel value="" />	
+				
+				<h:outputLabel value="Startdatum: " />
+				<h:inputText id="projektStart" value="#{projektMB.projektStart}" required="true">
+					<f:convertDateTime pattern="dd.MM.yyyy"/>
+				</h:inputText>
+				<h:outputLabel value="(Format: bspw. 01.01.2010) Muss in der Zukunft liegen" />	
+				
+				<h:outputLabel value="Enddatum: " />
+				<h:inputText id="projektEnde" value="#{projektMB.projektEnde}" required="true">
+					<f:convertDateTime pattern="dd.MM.yyyy"/>
+				</h:inputText>
+				<h:outputLabel value="(Format: bspw. 01.01.2010) Muss in der Zukunft liegen" />		
+	
+				<h:outputLabel value="Projektleiter: " />
+				<h:inputText id="projektleiter" value="#{projektMB.projektleiter}" required="true" />
+				<h:outputLabel value="" />
+				
+				<h:outputLabel value="Projektauftraggeber: " />
+				<h:inputText id="projektauftraggeber" value="#{projektMB.projektauftraggeber}" required="true" />
+				<h:outputLabel value="" />				
+	
+					
+			</h:panelGrid>
+			<br/>
+			
+			<h:panelGrid columns="1"
+			styleClass="panelGrid"
+			rowClasses="panelFirstLine, panelNextLine">
+			
+				<h:commandButton action="#{projektMB.neuesProjektAnlegen()}" value="Projekt speichern" style="width:400px;height:30px">
+					<f:actionListener binding="#{ userMB.userClicked() }"/>
+				</h:commandButton>
+				
+				<h:commandButton immediate="true" action="projektMenue" value="Zur&uuml;ck" style="width:400px;height:30px">
+					<f:actionListener binding="#{ userMB.userClicked() }"/>
+				</h:commandButton>	
+				
+			</h:panelGrid>
+		</h:form>
+	</center>
+</h:body>
+</html>

@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PROCESS model-entity="JSFProcess">
+ <PROCESS-ITEM NAME="rules:#protected#public#startseite.xhtml"
+  PATH="/protected/public/startseite.xhtml" SHAPE="32,17,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#protected#public#startseite.xhtml:0"
+   NAME="item" PATH="/protected/public/startseite.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="projektMenue::#protected#user#projektMenue.xhtml" NAME="output"
+    PATH="/protected/user/projektMenue.xhtml"
+    TARGET="rules:#protected#user#projektMenue.xhtml"
+    TITLE="projektMenue" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="ressourcenMenue::#protected#admin#ressourcenMenue.xhtml"
+    NAME="output1" PATH="/protected/admin/ressourcenMenue.xhtml"
+    TARGET="rules:#protected#admin#ressourcenMenue.xhtml"
+    TITLE="ressourcenMenue" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="logout::#logout.xhtml" NAME="output2"
+    PATH="/logout.xhtml" TARGET="rules:#logout.xhtml" TITLE="logout" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#protected#user#projektMenue.xhtml"
+  PATH="/protected/user/projektMenue.xhtml" SHAPE="288,417,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#protected#user#projektMenue.xhtml:0"
+   NAME="item" PATH="/protected/user/projektMenue.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="startseite::#protected#public#startseite.xhtml" NAME="output"
+    PATH="/protected/public/startseite.xhtml"
+    TARGET="rules:#protected#public#startseite.xhtml" TITLE="startseite" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="projektAnlegen::#protected#user#projektAnlegen.xhtml"
+    NAME="output1" PATH="/protected/user/projektAnlegen.xhtml"
+    TARGET="rules:#protected#user#projektAnlegen.xhtml"
+    TITLE="projektAnlegen" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="projektAendernUebersicht::#protected#user#projektAendernUebersicht.xhtml"
+    NAME="output2" PATH="/protected/user/projektAendernUebersicht.xhtml"
+    TARGET="rules:#protected#user#projektAendernUebersicht.xhtml"
+    TITLE="projektAendernUebersicht" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="projektLoeschen::#protected#user#projektLoeschen.xhtml"
+    NAME="output3" PATH="/protected/user/projektLoeschen.xhtml"
+    TARGET="rules:#protected#user#projektLoeschen.xhtml"
+    TITLE="projektLoeschen" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="projResBuchMenue::#protected#user#projResBuchMenue.xhtml"
+    NAME="output4" PATH="/protected/user/projResBuchMenue.xhtml"
+    TARGET="rules:#protected#user#projResBuchMenue.xhtml"
+    TITLE="projResBuchMenue" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#protected#user#projektAnlegen.xhtml"
+  PATH="/protected/user/projektAnlegen.xhtml" SHAPE="304,769,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#protected#user#projektAnlegen.xhtml:0"
+   NAME="item" PATH="/protected/user/projektAnlegen.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="projektMenue::#protected#user#projektMenue.xhtml" NAME="output"
+    PATH="/protected/user/projektMenue.xhtml"
+    TARGET="rules:#protected#user#projektMenue.xhtml"
+    TITLE="projektMenue" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM
+  NAME="rules:#protected#user#projektAendernUebersicht.xhtml"
+  PATH="/protected/user/projektAendernUebersicht.xhtml"
+  SHAPE="304,385,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM
+   ID="rules:#protected#user#projektAendernUebersicht.xhtml:0"
+   NAME="item" PATH="/protected/user/projektAendernUebersicht.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="projektMenue::#protected#user#projektMenue.xhtml" NAME="output"
+    PATH="/protected/user/projektMenue.xhtml"
+    TARGET="rules:#protected#user#projektMenue.xhtml"
+    TITLE="projektMenue" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="projektAendern::#protected#user#projektAendern.xhtml"
+    NAME="output1" PATH="/protected/user/projektAendern.xhtml"
+    TARGET="rules:#protected#user#projektAendern.xhtml"
+    TITLE="projektAendern" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#protected#user#projektAendern.xhtml"
+  PATH="/protected/user/projektAendern.xhtml" SHAPE="48,369,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#protected#user#projektAendern.xhtml:0"
+   NAME="item" PATH="/protected/user/projektAendern.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="projektAendernUebersicht::#protected#user#projektAendernUebersicht.xhtml"
+    NAME="output" PATH="/protected/user/projektAendernUebersicht.xhtml"
+    TARGET="rules:#protected#user#projektAendernUebersicht.xhtml"
+    TITLE="projektAendernUebersicht" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#protected#user#projektLoeschen.xhtml"
+  PATH="/protected/user/projektLoeschen.xhtml" SHAPE="304,881,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#protected#user#projektLoeschen.xhtml:0"
+   NAME="item" PATH="/protected/user/projektLoeschen.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="projektMenue::#protected#user#projektMenue.xhtml" NAME="output"
+    PATH="/protected/user/projektMenue.xhtml"
+    TARGET="rules:#protected#user#projektMenue.xhtml"
+    TITLE="projektMenue" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#protected#user#projResBuchMenue.xhtml"
+  PATH="/protected/user/projResBuchMenue.xhtml" SHAPE="592,577,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#protected#user#projResBuchMenue.xhtml:0"
+   NAME="item" PATH="/protected/user/projResBuchMenue.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="projektMenue::#protected#user#projektMenue.xhtml" NAME="output"
+    PATH="/protected/user/projektMenue.xhtml"
+    TARGET="rules:#protected#user#projektMenue.xhtml"
+    TITLE="projektMenue" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="projResBuchHinzufuegen::#protected#user#projResBuchHinzufuegen.xhtml"
+    NAME="output1" PATH="/protected/user/projResBuchHinzufuegen.xhtml"
+    TARGET="rules:#protected#user#projResBuchHinzufuegen.xhtml"
+    TITLE="projResBuchHinzufuegen" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="projResBuchAnzeigenUndLoeschen::#protected#user#projResBuchAnzeigenUndLoeschen.xhtml"
+    NAME="output2"
+    PATH="/protected/user/projResBuchAnzeigenUndLoeschen.xhtml"
+    TARGET="rules:#protected#user#projResBuchAnzeigenUndLoeschen.xhtml"
+    TITLE="projResBuchAnzeigenUndLoeschen" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="projResBuchKosten::#protected#user#projResBuchKosten.xhtml"
+    NAME="output3" PATH="/protected/user/projResBuchKosten.xhtml"
+    TARGET="rules:#protected#user#projResBuchKosten.xhtml"
+    TITLE="projResBuchKosten" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#protected#user#projResBuchHinzufuegen.xhtml"
+  PATH="/protected/user/projResBuchHinzufuegen.xhtml"
+  SHAPE="848,1009,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM
+   ID="rules:#protected#user#projResBuchHinzufuegen.xhtml:0" NAME="item"
+   PATH="/protected/user/projResBuchHinzufuegen.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="projResBuchMenue::#protected#user#projResBuchMenue.xhtml"
+    NAME="output" PATH="/protected/user/projResBuchMenue.xhtml"
+    TARGET="rules:#protected#user#projResBuchMenue.xhtml"
+    TITLE="projResBuchMenue" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM
+  NAME="rules:#protected#user#projResBuchAnzeigenUndLoeschen.xhtml"
+  PATH="/protected/user/projResBuchAnzeigenUndLoeschen.xhtml"
+  SHAPE="848,1009,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM
+   ID="rules:#protected#user#projResBuchAnzeigenUndLoeschen.xhtml:0"
+   NAME="item"
+   PATH="/protected/user/projResBuchAnzeigenUndLoeschen.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="projResBuchMenue::#protected#user#projResBuchMenue.xhtml"
+    NAME="output" PATH="/protected/user/projResBuchMenue.xhtml"
+    TARGET="rules:#protected#user#projResBuchMenue.xhtml"
+    TITLE="projResBuchMenue" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#protected#user#projResBuchKosten.xhtml"
+  PATH="/protected/user/projResBuchKosten.xhtml" SHAPE="848,833,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#protected#user#projResBuchKosten.xhtml:0"
+   NAME="item" PATH="/protected/user/projResBuchKosten.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="projResBuchMenue::#protected#user#projResBuchMenue.xhtml"
+    NAME="output" PATH="/protected/user/projResBuchMenue.xhtml"
+    TARGET="rules:#protected#user#projResBuchMenue.xhtml"
+    TITLE="projResBuchMenue" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#protected#admin#ressourcenMenue.xhtml"
+  PATH="/protected/admin/ressourcenMenue.xhtml" SHAPE="256,177,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#protected#admin#ressourcenMenue.xhtml:0"
+   NAME="item" PATH="/protected/admin/ressourcenMenue.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="startseite::#protected#public#startseite.xhtml" NAME="output"
+    PATH="/protected/public/startseite.xhtml"
+    TARGET="rules:#protected#public#startseite.xhtml" TITLE="startseite" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="mitarbeiterInMenue::#protected#admin#mitarbeiterInMenue.xhtml"
+    NAME="output1" PATH="/protected/admin/mitarbeiterInMenue.xhtml"
+    TARGET="rules:#protected#admin#mitarbeiterInMenue.xhtml"
+    TITLE="mitarbeiterInMenue" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="maschineMenue::#protected#admin#maschineMenue.xhtml"
+    NAME="output2" PATH="/protected/admin/maschineMenue.xhtml"
+    TARGET="rules:#protected#admin#maschineMenue.xhtml"
+    TITLE="maschineMenue" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#protected#admin#mitarbeiterInMenue.xhtml"
+  PATH="/protected/admin/mitarbeiterInMenue.xhtml" SHAPE="560,225,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#protected#admin#mitarbeiterInMenue.xhtml:0"
+   NAME="item" PATH="/protected/admin/mitarbeiterInMenue.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="ressourcenMenue::#protected#admin#ressourcenMenue.xhtml"
+    NAME="output" PATH="/protected/admin/ressourcenMenue.xhtml"
+    TARGET="rules:#protected#admin#ressourcenMenue.xhtml"
+    TITLE="ressourcenMenue" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="mitarbeiterInAnlegen::#protected#admin#mitarbeiterInAnlegen.xhtml"
+    NAME="output1" PATH="/protected/admin/mitarbeiterInAnlegen.xhtml"
+    TARGET="rules:#protected#admin#mitarbeiterInAnlegen.xhtml"
+    TITLE="mitarbeiterInAnlegen" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="mitarbeiterInAendernUebersicht::#protected#admin#mitarbeiterInAendernUebersicht.xhtml"
+    NAME="output2"
+    PATH="/protected/admin/mitarbeiterInAendernUebersicht.xhtml"
+    TARGET="rules:#protected#admin#mitarbeiterInAendernUebersicht.xhtml"
+    TITLE="mitarbeiterInAendernUebersicht" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="mitarbeiterInLoeschen::#protected#admin#mitarbeiterInLoeschen.xhtml"
+    NAME="output3" PATH="/protected/admin/mitarbeiterInLoeschen.xhtml"
+    TARGET="rules:#protected#admin#mitarbeiterInLoeschen.xhtml"
+    TITLE="mitarbeiterInLoeschen" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#protected#admin#mitarbeiterInAnlegen.xhtml"
+  PATH="/protected/admin/mitarbeiterInAnlegen.xhtml" SHAPE="304,417,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#protected#admin#mitarbeiterInAnlegen.xhtml:0"
+   NAME="item" PATH="/protected/admin/mitarbeiterInAnlegen.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="mitarbeiterInMenue::#protected#admin#mitarbeiterInMenue.xhtml"
+    NAME="output" PATH="/protected/admin/mitarbeiterInMenue.xhtml"
+    TARGET="rules:#protected#admin#mitarbeiterInMenue.xhtml"
+    TITLE="mitarbeiterInMenue" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM
+  NAME="rules:#protected#admin#mitarbeiterInAendernUebersicht.xhtml"
+  PATH="/protected/admin/mitarbeiterInAendernUebersicht.xhtml"
+  SHAPE="800,417,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM
+   ID="rules:#protected#admin#mitarbeiterInAendernUebersicht.xhtml:0"
+   NAME="item"
+   PATH="/protected/admin/mitarbeiterInAendernUebersicht.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="mitarbeiterInMenue::#protected#admin#mitarbeiterInMenue.xhtml"
+    NAME="output" PATH="/protected/admin/mitarbeiterInMenue.xhtml"
+    TARGET="rules:#protected#admin#mitarbeiterInMenue.xhtml"
+    TITLE="mitarbeiterInMenue" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="mitarbeiterInAendern::#protected#admin#mitarbeiterInAendern.xhtml"
+    NAME="output1" PATH="/protected/admin/mitarbeiterInAendern.xhtml"
+    TARGET="rules:#protected#admin#mitarbeiterInAendern.xhtml"
+    TITLE="mitarbeiterInAendern" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#protected#admin#mitarbeiterInAendern.xhtml"
+  PATH="/protected/admin/mitarbeiterInAendern.xhtml"
+  SHAPE="1024,577,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#protected#admin#mitarbeiterInAendern.xhtml:0"
+   NAME="item" PATH="/protected/admin/mitarbeiterInAendern.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="mitarbeiterInAendernUebersicht::#protected#admin#mitarbeiterInAendernUebersicht.xhtml"
+    NAME="output"
+    PATH="/protected/admin/mitarbeiterInAendernUebersicht.xhtml"
+    TARGET="rules:#protected#admin#mitarbeiterInAendernUebersicht.xhtml"
+    TITLE="mitarbeiterInAendernUebersicht" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#protected#admin#mitarbeiterInLoeschen.xhtml"
+  PATH="/protected/admin/mitarbeiterInLoeschen.xhtml"
+  SHAPE="816,385,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM
+   ID="rules:#protected#admin#mitarbeiterInLoeschen.xhtml:0" NAME="item"
+   PATH="/protected/admin/mitarbeiterInLoeschen.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="mitarbeiterInMenue::#protected#admin#mitarbeiterInMenue.xhtml"
+    NAME="output" PATH="/protected/admin/mitarbeiterInMenue.xhtml"
+    TARGET="rules:#protected#admin#mitarbeiterInMenue.xhtml"
+    TITLE="mitarbeiterInMenue" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#protected#admin#maschineMenue.xhtml"
+  PATH="/protected/admin/maschineMenue.xhtml" SHAPE="560,545,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#protected#admin#maschineMenue.xhtml:0"
+   NAME="item" PATH="/protected/admin/maschineMenue.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="ressourcenMenue::#protected#admin#ressourcenMenue.xhtml"
+    NAME="output" PATH="/protected/admin/ressourcenMenue.xhtml"
+    TARGET="rules:#protected#admin#ressourcenMenue.xhtml"
+    TITLE="ressourcenMenue" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="maschineAnlegen::#protected#admin#maschineAnlegen.xhtml"
+    NAME="output1" PATH="/protected/admin/maschineAnlegen.xhtml"
+    TARGET="rules:#protected#admin#maschineAnlegen.xhtml"
+    TITLE="maschineAnlegen" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="maschineLoeschen::#protected#admin#maschineLoeschen.xhtml"
+    NAME="output2" PATH="/protected/admin/maschineLoeschen.xhtml"
+    TARGET="rules:#protected#admin#maschineLoeschen.xhtml"
+    TITLE="maschineLoeschen" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#protected#admin#maschineAnlegen.xhtml"
+  PATH="/protected/admin/maschineAnlegen.xhtml" SHAPE="800,769,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#protected#admin#maschineAnlegen.xhtml:0"
+   NAME="item" PATH="/protected/admin/maschineAnlegen.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="mitarbeiterInMenue::#protected#admin#mitarbeiterInMenue.xhtml"
+    NAME="output" PATH="/protected/admin/mitarbeiterInMenue.xhtml"
+    TARGET="rules:#protected#admin#mitarbeiterInMenue.xhtml"
+    TITLE="mitarbeiterInMenue" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM
+  NAME="rules:#protected#admin#maschineAendernUebersicht.xhtml"
+  PATH="/protected/admin/maschineAendernUebersicht.xhtml"
+  SHAPE="304,801,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM
+   ID="rules:#protected#admin#maschineAendernUebersicht.xhtml:0"
+   NAME="item" PATH="/protected/admin/maschineAendernUebersicht.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="maschineMenue::#protected#admin#maschineMenue.xhtml"
+    NAME="output" PATH="/protected/admin/maschineMenue.xhtml"
+    TARGET="rules:#protected#admin#maschineMenue.xhtml"
+    TITLE="maschineMenue" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="maschineAendern::#protected#admin#maschineAendern.xhtml"
+    NAME="output1" PATH="/protected/admin/maschineAendern.xhtml"
+    TARGET="rules:#protected#admin#maschineAendern.xhtml"
+    TITLE="maschineAendern" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#protected#admin#maschineAendern.xhtml"
+  PATH="/protected/admin/maschineAendern.xhtml" SHAPE="576,961,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#protected#admin#maschineAendern.xhtml:0"
+   NAME="item" PATH="/protected/admin/maschineAendern.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="maschineAendernUebersicht::#protected#admin#maschineAendernUebersicht.xhtml"
+    NAME="output"
+    PATH="/protected/admin/maschineAendernUebersicht.xhtml"
+    TARGET="rules:#protected#admin#maschineAendernUebersicht.xhtml"
+    TITLE="maschineAendernUebersicht" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#protected#admin#maschineLoeschen.xhtml"
+  PATH="/protected/admin/maschineLoeschen.xhtml" SHAPE="304,385,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#protected#admin#maschineLoeschen.xhtml:0"
+   NAME="item" PATH="/protected/admin/maschineLoeschen.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="mitarbeiterInMenue::#protected#admin#mitarbeiterInMenue.xhtml"
+    NAME="output" PATH="/protected/admin/mitarbeiterInMenue.xhtml"
+    TARGET="rules:#protected#admin#mitarbeiterInMenue.xhtml"
+    TITLE="mitarbeiterInMenue" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#logout.xhtml" PATH="/logout.xhtml"
+  SHAPE="304,417,0,0" model-entity="JSFProcessGroup"/>
+</PROCESS>

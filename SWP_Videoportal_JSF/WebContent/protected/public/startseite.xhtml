@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      >
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link href="./css/main.css" rel= "stylesheet" type="text/css" />
+	<title>Startseite</title>	
+</h:head>
+    
+<h:body>
+	<center>
+		<h3>Willkommen #{userMB.user.vorname} #{userMB.user.nachname} (Username: #{userMB.user.username}).</h3>
+		<h:form>
+			<h:outputLabel rendered="#{userMB.isUserUser()}" value="Anzahl der Buttonklicks: #{userMB.timesClicked}, Dauer der Session: #{userMB.minutesLoggedIn} Minuten"/>
+			<br/>
+			<h:outputLabel value="(Die Klicks und die Zeit werden, wie in der Aufgabenstellung gefordert, nur f&uuml;r den normalen User gez&auml;hlt)"/>
+			<h:panelGrid columns="1"
+			styleClass="panelGrid"
+			rowClasses="panelFirstLine, panelNextLine">
+				<h:commandButton value="Ressourcen" action="ressourcenMenue" rendered="#{userMB.isUserAdmin()}" style="width:400px;height:30px" >
+				</h:commandButton>
+				
+				<h:commandButton value="Projekte" action="projektMenue" rendered="#{userMB.isUserUser()}" style="width:400px;height:30px" >
+					<f:actionListener binding="#{ userMB.userClicked() }"/>
+				</h:commandButton>
+				
+				<h:commandButton action="#{ userMB.logOut() }" value="Abmelden" style="width:400px;height:30px">
+					<f:actionListener binding="#{ userMB.userClicked() }"/>
+				</h:commandButton>	
+			</h:panelGrid>
+		</h:form>
+	</center>
+</h:body>
+</html>

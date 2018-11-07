@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:fmt="http://java.sun.com/jsp/jstl/fmt">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<h:outputStylesheet library="css" name="/css/main.css" />
+	<title>Projektressourcenbuchungen</title>	
+</h:head>
+    
+<h:body>
+	<center>
+		<h3>Projektressourcenbuchungen</h3>
+		<h:messages />
+		
+		<h:form>	
+			<h:message />
+			
+			<h:panelGrid 
+				columns="3" 
+				styleClass="panelGrid" 
+				rowClasses="panelFirstLine, panelNextLine">		
+
+			<h:outputLabel value="Projekt: "/>
+			<h:selectOneMenu id="projekt" value="#{projektMB.projekt}" converter="de.converter.TextToProjektConverter">
+				<f:selectItems value = "#{projektMB.alleProjekte}" 
+					var = "projekt" 		
+		  			itemLabel="#{projekt.titel}, #{projekt.beschreibung}, #{projekt.projektId}"  
+		  			itemValue="#{projekt}"/>
+		  	</h:selectOneMenu>
+			<h:outputLabel value=""/>	
+	
+	
+			<h:outputLabel value="Nr. im Projekt: "/>	
+			<h:inputText 
+				id="nr" 
+				value="#{projResBuchMB.projektRessourcenBuchung.nrImProjekt}"  
+				required="true"> 
+			</h:inputText>
+			<h:outputLabel value=""/>		
+			
+
+			
+			<h:outputLabel value="Ressource: "/>		
+		   	<h:selectOneMenu id="ressource" value="#{ressourceMB.ressource}" converter="de.converter.TextToRessourceConverter">
+				<f:selectItems value = "#{ressourceMB.alleRessourcen}" 
+					var = "ressource" 		
+		  			itemLabel="#{ressource.ressourcenId}, #{ressource.art}: #{ressource.name}"  
+		  			itemValue="#{ressource}"/>
+		  	</h:selectOneMenu>
+	 		<h:outputLabel value=""/>	
+			
+				
+			
+			<h:outputLabel value="Datum der Buchung: "/>	
+			<h:inputText 
+				id="buchungsdatum" 
+				value="#{projResBuchMB.projektRessourcenBuchung.buchungsdatum}"  
+				required="true">
+				<f:convertDateTime pattern="dd.MM.yyyy"/>
+			</h:inputText>
+			<h:outputLabel value="(Format: bspw. 01.01.2010)"/>			
+			
+			<h:outputLabel value="Zu buchende Stunden: "/>	
+			<h:inputText 
+				id="gebuchteStunden" 
+				value="#{projResBuchMB.projektRessourcenBuchung.gebuchteStunden}"  
+				required="true">
+			</h:inputText>	
+			<h:outputLabel value=""/>	
+
+	 	</h:panelGrid>
+
+	 	 <h:commandButton value="Ressourcenbuchung anlegen" 
+	 		action="#{projektMB.aProjResBuchEintragen(projektMB.projekt.projektId,ressourceMB.ressource.ressourcenId,projResBuchMB.projektRessourcenBuchung)}" 
+	 		style="width:400px;height:30px">
+	 		<f:actionListener binding="#{ userMB.userClicked() }"/>
+	 	</h:commandButton>
+			
+
+		  			
+			
+			<h:panelGrid columns="1"
+			styleClass="panelGrid"
+			rowClasses="panelFirstLine, panelNextLine">
+					
+				<h:commandButton immediate="true" action="projResBuchMenue" value="Zur&uuml;ck" style="width:400px;height:30px">
+					<f:actionListener binding="#{ userMB.userClicked() }"/>
+				</h:commandButton>	
+				
+			</h:panelGrid>
+			
+		</h:form>
+	</center>
+</h:body>
+</html>
