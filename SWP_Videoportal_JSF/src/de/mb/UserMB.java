@@ -22,6 +22,7 @@ public class UserMB {
 	LocalDateTime startTime = LocalDateTime.now();
 	int clicks = 0;
 	
+	//Änderung  13:32
 	//Test für GitHub
 
 	@EJB
