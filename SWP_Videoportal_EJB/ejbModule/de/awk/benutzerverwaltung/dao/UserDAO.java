@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.ejb.Stateless;
 
 import de.awk.benutzerverwaltung.model.User;
+import de.awk.projektverwaltung.model.Projekt;
 
 @Stateless
 public class UserDAO extends GenericDAO<User> {
@@ -23,4 +24,8 @@ public class UserDAO extends GenericDAO<User> {
 
 	return super.findOneResult(User.FIND_BY_USERNAME, parameters);
     }
+    
+	public void delete(User aUser){
+		super.delete(aUser.getUserId(), User.class);
+	}
 }
