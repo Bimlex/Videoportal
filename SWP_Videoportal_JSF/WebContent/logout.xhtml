@@ -8,9 +8,15 @@
 	<h:outputStylesheet library="css" name="main.css" />
 </h:head>	
 <h:body>
-	Der User #{userMB.user.username} wurde abgemeldet <br/>
-	<h:outputLabel rendered="#{userMB.isUserUser()}" value="Klicks: #{userMB.user.timesClicked}"/> <br/>
-	<h:outputLabel rendered="#{userMB.isUserUser()}" value="Dauer der Anmeldung: #{userMB.user.minutesLoggedIn} Minute(n)"/> <br/>
-	#{userMB.reset()}
+	<center>
+		<h2>Der User #{userMB.user.username} wurde abgemeldet </h2>
+		<h:panelGrid columns="1">
+			<h:outputLabel rendered="#{userMB.isUserUser()}" value="Klicks: #{userMB.user.timesClicked}"/>
+			<h:outputLabel rendered="#{userMB.isUserUser()}" value="Dauer der Anmeldung: #{userMB.user.minutesLoggedIn} Minute(n)"/>
+		</h:panelGrid>
+		#{userMB.reset()}
+		<br/>
+		<h:button value="Zur&uuml;ck zum Login" outcome="backToLogin" style="width:200px;height:30px" />
+	</center>
 </h:body>
 </html>

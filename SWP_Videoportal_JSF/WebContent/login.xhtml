@@ -12,18 +12,25 @@
 </h:head>
     
 <h:body>
+	<center>
+	<h2>Videoportal der Hochschule Osnabr&uuml;ck</h2>
+	Bitte geben Sie Ihren Benutzernamen und ihr Kennwort ein und best&auml;tigen Sie die Eingabe.
+	<br/> <br/>
 	<form method="post" action="j_security_check">
 		<h:messages layout="table" errorStyle="background: #AFEEEE;"
 			infoStyle="background: #AFEEEE;" globalOnly="true" />
-		<h:panelGrid columns="2">
+		<h:panelGrid columns="1">
 			<h:outputLabel value="Username: " />
 			<input type="text" id="j_username" name="j_username" />
 			<h:outputLabel value="Password: " />
 			<input type="password" id="j_password" name="j_password" />
-			<h:panelGrid columns="1">
-				<input type="submit" name="submit" value="Login" />
-			</h:panelGrid>
-		</h:panelGrid>		
+
+				
+
+		</h:panelGrid>
+		<br/>
+		<input type="submit" name="submit" value="Eingabe best&auml;tigen" />	
 	</form>
+	</center>
 </h:body>
 </html>

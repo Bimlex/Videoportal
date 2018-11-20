@@ -346,4 +346,22 @@
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#logout.xhtml" PATH="/logout.xhtml"
   SHAPE="304,417,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:loginError.xhtml" PATH="loginError.xhtml"
+  SHAPE="32,1681,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:loginError.xhtml:0" NAME="item"
+   PATH="loginError.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="backToLogin::login.xhtml" NAME="output"
+    PATH="login.xhtml" TARGET="rules:login.xhtml" TITLE="backToLogin" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:login.xhtml" PATH="login.xhtml"
+  SHAPE="240,1697,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:logout.xhtml" PATH="logout.xhtml"
+  SHAPE="32,2353,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:logout.xhtml:0" NAME="item"
+   PATH="logout.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="backToLogin::login.xhtml" NAME="output"
+    PATH="login.xhtml" TARGET="rules:login.xhtml" TITLE="backToLogin" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
 </PROCESS>

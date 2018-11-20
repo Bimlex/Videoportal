@@ -13,6 +13,14 @@
 </h:head>
     
 <h:body>
-	Fehler beim Login!
+	<center>
+		<h2>Sie konnten nicht angemeldet werden!</h2>
+		<h:panelGrid columns="1">
+			Bitte kehren Sie zum Login zur&uuml;ck und versuchen Sie es noch einmal.
+		</h:panelGrid>
+		#{userMB.reset()}
+		<br/>
+		<h:button value="Zur&uuml;ck zum Login" outcome="backToLogin" style="width:200px;height:30px" />
+	</center>
 </h:body>
 </html>
