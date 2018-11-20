@@ -6,7 +6,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="h2_user")
+@Table(name="swp_user")
 @NamedQuery(name="User.findUserByUsername", query="SELECT u from User u where u.username = :username")
 public class User {
 
