@@ -10,8 +10,8 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 
-import de.awk.facade.IUserFacade;
-import de.awk.model.User;
+import de.awk.benutzerverwaltung.facade.IUserFacade;
+import de.awk.benutzerverwaltung.model.User;
 
 @SessionScoped
 @ManagedBean(name="userMB")

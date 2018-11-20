@@ -2,7 +2,7 @@ package de.awk.ressourcenverwaltung.dao;
 
 import javax.ejb.Stateless;
 
-import de.awk.dao.GenericDAO;
+import de.awk.ressourcenverwaltung.dao.GenericDAO;
 import de.awk.ressourcenverwaltung.model.MitarbeiterIn;
 @Stateless
 public class MitarbeiterInDAO extends GenericDAO<MitarbeiterIn> {

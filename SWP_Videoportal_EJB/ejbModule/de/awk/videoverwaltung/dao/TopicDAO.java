@@ -2,7 +2,7 @@ package de.awk.videoverwaltung.dao;
 
 import javax.ejb.Stateless;
 
-import de.awk.dao.GenericDAO;
+import de.awk.videoverwaltung.dao.GenericDAO;
 import de.awk.videoverwaltung.model.Topic;
 
 @Stateless

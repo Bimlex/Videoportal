@@ -2,7 +2,7 @@ package de.awk.projektverwaltung.dao;
 
 import javax.ejb.Stateless;
 
-import de.awk.dao.GenericDAO;
+import de.awk.benutzerverwaltung.dao.GenericDAO;
 import de.awk.projektverwaltung.model.Projekt;
 
 @Stateless
