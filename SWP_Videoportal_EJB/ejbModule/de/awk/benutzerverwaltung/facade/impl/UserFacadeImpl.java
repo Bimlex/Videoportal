@@ -45,9 +45,9 @@ public class UserFacadeImpl implements IUserFacade {
 	}
 	
 	@Override
-	public void updateUser(int aId, String aUsername, String aPassword, String aVorname, 
+	public void updateUser(String aUsername, String aPassword, String aVorname, 
 			String aNachname) {
-		User aUser = this.getUserById(aId);
+		User aUser = this.findUserByName(aUsername);
 		aUser.setUsername(aUsername);
 		aUser.setPassword(aPassword);
 		aUser.setVorname(aVorname);
@@ -60,20 +60,20 @@ public class UserFacadeImpl implements IUserFacade {
 		return userDAO.findAll();
 	}
 	
-	@Override
-	public User getUserById(int id) {
-		User aUser = null;
-		try{
-			aUser = userDAO.find(id);
-		} catch (Exception e) {
-			
-		}
-		return aUser;
-	}
+//	@Override
+//	public User getUserById(int id) {
+//		User aUser = null;
+//		try{
+//			aUser = userDAO.find(id);
+//		} catch (Exception e) {
+//			
+//		}
+//		return aUser;
+//	}
 	
 	@Override
-	public void deleteUser(int aId){
-		User aUser = this.getUserById(aId);
+	public void deleteUser(String aUsername){
+		User aUser = this.findUserByName(aUsername);
 		try{
 			userDAO.delete(aUser);
 		} catch (Exception e) {

@@ -15,11 +15,9 @@ public class User {
 
 	public static final String FIND_BY_USERNAME = "User.findUserByUsername";
 	
-	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="SEQ_USER_ID")
-	@SequenceGenerator(name="SEQ_USER_ID", sequenceName="SEQ_USER_ID", allocationSize = 1)
-	private Integer userId;
 	
+
+	@Id
 	private String username;
 	private String password;
 	private String vorname;
@@ -30,7 +28,7 @@ public class User {
 
 	public User(String aUsername, String aPassword, String aVorname, 
 			String aNachname){
-		
+		// TODO
 	}
 	
 	public User() {
@@ -85,18 +83,6 @@ public class User {
 		this.minutesLoggedIn = minutesLoggedIn;
 	}
 	
-	
-
-	public Integer getUserId() {
-		return userId;
-	}
-	
-	@Override
-	public int hashCode(){
-		return this.getUserId();
-	}
-
-
 	@Override
 	public boolean equals(Object obj) {
 		if(obj instanceof User){

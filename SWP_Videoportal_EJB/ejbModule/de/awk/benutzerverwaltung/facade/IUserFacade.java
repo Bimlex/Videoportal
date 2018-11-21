@@ -11,9 +11,9 @@ public interface IUserFacade {
 	public User findUserByName(String name);
 	public abstract void setTimesClickedForLastLogin(String aUsername,int aTimesClicked);
 	public abstract void setMinutesLoggedIn(String aUsername, int aMinutesLoggedIn);
-	void saveUser(String aUsername, String aPassword, String aVorname, String aNachname);
-	List<User> getAllUser();
-	User getUserById(int id);
-	void deleteUser(int aId);
-	void updateUser(int aId, String aUsername, String aPassword, String aVorname, String aNachname);
+	public abstract void saveUser(String aUsername, String aPassword, String aVorname, String aNachname);
+	public abstract List<User> getAllUser();
+//	public abstract User getUserById(int id);
+	public abstract void deleteUser(String aUsername);
+	public abstract void updateUser(String aUsername, String aPassword, String aVorname, String aNachname);
 }
