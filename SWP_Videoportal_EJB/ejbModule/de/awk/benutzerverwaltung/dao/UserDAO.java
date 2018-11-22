@@ -26,6 +26,6 @@ public class UserDAO extends GenericDAO<User> {
     }
     
 	public void delete(User aUser){
-		super.delete(aUser.getUserId(), User.class);
+		super.delete(aUser.getUsername(), User.class);
 	}
 }

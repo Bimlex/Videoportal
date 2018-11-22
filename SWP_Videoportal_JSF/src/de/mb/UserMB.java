@@ -38,11 +38,11 @@ public class UserMB {
 	}
 	
 	public boolean isUserAdmin(){
-		return getRequest().isUserInRole("ADMIN_ROLE");
+		return getRequest().isUserInRole("Administrator");
 	}
 	
 	public boolean isUserUser(){
-		return getRequest().isUserInRole("USER_ROLE");
+		return getRequest().isUserInRole("Benutzer");
 	}
 	
 	public int getTimesClicked(){

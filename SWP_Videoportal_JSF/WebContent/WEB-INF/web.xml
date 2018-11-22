@@ -30,7 +30,7 @@
    <url-pattern>/protected/admin/*</url-pattern>
   </web-resource-collection>
   <auth-constraint>
-   <role-name>ADMIN_ROLE</role-name>
+   <role-name>Administrator</role-name>
   </auth-constraint>
   <user-data-constraint>
    <transport-guarantee>NONE</transport-guarantee>
@@ -44,8 +44,8 @@
    <url-pattern>/protected/public/*</url-pattern>
   </web-resource-collection>
   <auth-constraint>
-   <role-name>ADMIN_ROLE</role-name>
-   <role-name>USER_ROLE</role-name>
+   <role-name>Administrator</role-name>
+   <role-name>Benutzer</role-name>
   </auth-constraint>
   <user-data-constraint>
    <transport-guarantee>NONE</transport-guarantee>
@@ -59,7 +59,7 @@
    <url-pattern>/protected/user/*</url-pattern>
   </web-resource-collection>
   <auth-constraint>
-   <role-name>USER_ROLE</role-name>
+   <role-name>Benutzer</role-name>
   </auth-constraint>
   <user-data-constraint>
    <transport-guarantee>NONE</transport-guarantee>
@@ -74,9 +74,9 @@
   </form-login-config>
  </login-config>
  <security-role>
-  <role-name>ADMIN_ROLE</role-name>
+  <role-name>Administrator</role-name>
  </security-role>
  <security-role>
-  <role-name>USER_ROLE</role-name>
+  <role-name>Benutzer</role-name>
  </security-role>
 </web-app>
