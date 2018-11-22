@@ -24,10 +24,11 @@ public class User {
 	private String nachname;
 	private int timesClicked;
 	private int minutesLoggedIn;
+	private String rolename;
 
 
 	public User(String aUsername, String aPassword, String aVorname, 
-			String aNachname){
+			String aNachname, String rolename){
 		// TODO
 	}
 	
@@ -83,6 +84,14 @@ public class User {
 		this.minutesLoggedIn = minutesLoggedIn;
 	}
 	
+	public String getRolename() {
+		return rolename;
+	}
+
+	public void setRolename(String rolename) {
+		this.rolename = rolename;
+	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if(obj instanceof User){

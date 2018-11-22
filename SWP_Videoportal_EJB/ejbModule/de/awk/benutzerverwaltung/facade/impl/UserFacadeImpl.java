@@ -38,20 +38,21 @@ public class UserFacadeImpl implements IUserFacade {
 	
 	@Override
 	public void saveUser(String aUsername, String aPassword, String aVorname, 
-			String aNachname) {
+			String aNachname, String aRolename) {
 		User aUser = new User(aUsername, aPassword, aVorname, 
-			aNachname);
+			aNachname, aRolename);
 		userDAO.save(aUser);
 	}
 	
 	@Override
 	public void updateUser(String aUsername, String aPassword, String aVorname, 
-			String aNachname) {
+			String aNachname, String aRolename) {
 		User aUser = this.findUserByName(aUsername);
 		aUser.setUsername(aUsername);
 		aUser.setPassword(aPassword);
 		aUser.setVorname(aVorname);
 		aUser.setNachname(aNachname);
+		aUser.setRolename(aRolename);
 		userDAO.save(aUser);
 	}
 	
