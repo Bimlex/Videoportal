@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -24,8 +25,13 @@ import de.awk.benutzerverwaltung.model.User;
 
 
 @ManagedBean(name="userDataMB")
-@RequestScoped
+@ViewScoped
 public class UserDataMB implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7502137075266135502L;
 
 	private User user;
 	
@@ -56,7 +62,10 @@ public class UserDataMB implements Serializable {
 	@Size(min=1, max=250)
 	private String rolename;
 	
+	private List<User> userList = null;	
 	private HtmlDataTable dataTableUser;
+	
+	
 	
 	public HtmlDataTable getDataTableUser() {
 		return dataTableUser;
@@ -66,20 +75,42 @@ public class UserDataMB implements Serializable {
 		this.dataTableUser = dataTableUser;
 	}
 
-	public void editUser() throws IOException{
+	public void getUserInfo() throws IOException{
 	    int index = dataTableUser.getRowIndex(); // Actually not interesting info.
 	    User user = (User) dataTableUser.getRowData(); // This is what you want.
-	    System.out.println(user.getUsername());
+	    
+	    System.out.println(user.getUsername());	  
+	    System.out.println(user.getVorname());
 	}
 	
+	
+	
+	public String editUser(User user){
+		System.out.println(user.getNachname());
+		System.out.println(user.isCanEdit());
+		user.setCanEdit(true);
+		System.out.println(user.isCanEdit());
+		return null;
+	}	
+	
+//	public String saveUsers() {
+//		for
+//	}
+	
 	public List<User> getAlleUser(){
-		return userFacade.getAllUser();
+		userList = userFacade.getAllUser();
+		return userList;
 	}
+	
 	
 
 	public User getUser() {
 		return user;
 	}
+
+//	public List<User> getUserList() {
+//		return userList;
+//	}
 
 	public void setUser(User user) {
 		this.user = user;

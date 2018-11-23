@@ -1,5 +1,6 @@
 package de.awk.benutzerverwaltung.model;
 
+import javax.el.ArrayELResolver;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,13 +26,30 @@ public class User {
 	private int timesClicked;
 	private int minutesLoggedIn;
 	private String rolename;
+	private boolean canEdit;
 
 
 	public User(String aUsername, String aPassword, String aVorname, 
-			String aNachname, String rolename){
-		// TODO
+			String aNachname, String aRolename){
+		this.username = aUsername;
+		this.password = aPassword;
+		this.vorname = aVorname;
+		this.nachname = aNachname;
+		this.rolename = aRolename;
+		canEdit = false;
+				
 	}
 	
+	public boolean isCanEdit() {
+		return canEdit;
+	}
+
+	public void setCanEdit(boolean canEdit) {
+		this.canEdit = canEdit;
+	}
+
+
+
 	public User() {
 		
 	}

@@ -8,7 +8,7 @@
       xmlns:fmt="http://java.sun.com/jsp/jstl/fmt">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<link href="./css/main.css" rel= "stylesheet" type="text/css" />
+	<link href="../../css/main.css" rel= "stylesheet" type="text/css" />
 	<title>Benutzerverwaltung</title>	
 </h:head>
     
@@ -20,40 +20,54 @@
 			<h:outputLabel value="#{userMB.user.vorname} #{userMB.user.nachname} (Username: #{userMB.user.username})"/>
 			
 			<h:dataTable value="#{userDataMB.getAlleUser()}"
-				var="ud"
+				var="user"
 				styleClass="table"
 				headerClass="table-header"
 				rowClasses="table-odd-row, table-even-row"				
-				binding="#{userDataMB.dataTableUser}">
+				binding="#{userDataMB.dataTableUser}"
+				columnClasses="userColumn,userColumn,userColumn,userColumn,userColumn">
 				
 				<h:column>
-					<f:facet name="header">Username</f:facet>
-					#{ud.username}
+					<f:facet name="header">Username</f:facet>					
+					<h:inputText value="#{user.username}" rendered="#{user.canEdit}"/>
+					<h:outputText value="#{user.username}" rendered="#{not user.canEdit}"/>
 				</h:column>
 				
 				<h:column>
 					<f:facet name="header">Passwort</f:facet>
-					************
+					<h:inputText value="#{user.password}" rendered="#{user.canEdit}"/>
+					<h:outputText value="#{user.password}" rendered="#{not user.canEdit}"/>
 				</h:column>	
 				
 				<h:column>
 					<f:facet name="header">Vorname</f:facet>
-					#{ud.vorname}
+					<h:inputText value="#{user.vorname}" rendered="#{user.canEdit}"/>
+					<h:outputText value="#{user.vorname}" rendered="#{not user.canEdit}"/>
 				</h:column>	
 				
 				<h:column>
 					<f:facet name="header">Nachname</f:facet>
-					#{ud.nachname}
+					<h:inputText value="#{user.nachname}" rendered="#{user.canEdit}"/>
+					<h:outputText value="#{user.nachname}" rendered="#{not user.canEdit}"/>
 				</h:column>	
 				
 				<h:column>
 					<f:facet name="header">Rollenname</f:facet>
-					#{ud.rolename}
+					<h:inputText value="#{user.rolename}" rendered="#{user.canEdit}"/>
+					<h:outputText value="#{user.rolename}" rendered="#{not user.canEdit}"/>
 				</h:column>		
 				
 				<h:column>
-				    <h:commandButton value="Anpassen" actionListener="#{userDataMB.editUser}" />
-				</h:column>																																									
+				    <h:commandButton value="Edit" 
+				    	action="#{userDataMB.editUser(user)}">
+	                  <f:setPropertyActionListener 
+	                  target = "#{userDataMB.user}" value = "#{user}" />
+	                </h:commandButton>				    
+				</h:column>		
+
+				<h:column>
+				    <h:commandButton value="L&ouml;schen" actionListener="#{userDataMB.getUserInfo}" />
+				</h:column>																																													
 						
 			</h:dataTable>
 			<br/>

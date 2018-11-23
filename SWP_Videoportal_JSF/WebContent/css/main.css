@@ -3,20 +3,30 @@
 }
 
 .table-header {
-	text-align: center;
-	background: non repeat scroll 0 0 #E5E5E5;
+	text-align: left;
 	border-bottom: 1px solid #BBBBBB;
-	padding: 16px
+	padding: 16px;
+	max-width: 120px;
+	overflow: hidden;
+	padding-left: 20px;
 }
 
 .table-odd-row {
 	text-align: center;
-	background: non repeat scroll 0 0 #FFFFFF;
+	background-color: #f2f2f2;
 	border-bottom: 1px solid #BBBBBB;
 }
 
 .table-even-row {
 	text-align: center;
-	background: non repeat scroll 0 0 #F9F9F9;
+	background-color: #ffffff;
 	border-bottom: 1px solid #BBBBBB;
 }
+
+.userColumn {
+	max-width: 120px;
+	overflow: hidden;
+	text-align:left;
+	padding-left: 20px;
+}
+
