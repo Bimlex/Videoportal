@@ -58,8 +58,7 @@ public class UserDataMB implements Serializable {
 			
 	@PostConstruct
 	public void init() {
-		roleSelection.add("Administrator");
-		roleSelection.add("Benutzer");
+		roleSelection = this.userFacade.getRoleSelection();
 	}
 
 	public HtmlDataTable getDataTableUser() {
@@ -100,35 +99,19 @@ public class UserDataMB implements Serializable {
 		return "neuenUserAnlegen";
 	}
 
+	public void deleteUser(User aUser) {
+		this.userFacade.deleteUser(aUser.getUsername());
+	}
+	
 	public List<User> getAlleUser() {
 		// Eventuell umschreiben umschieben in UserFacadeImpl
 		userList = userFacade.getAllUser();
-		for (User aUser : userList) {
-			aUser.setPassword("*********");
-		}
+//		for (User aUser : userList) {
+//			aUser.setPassword("*********");
+//		}
 		return userList;
 	}
-
-	public String updateUser() {
-		// Bestehenden User anpassen
-
-		String aPassword = "";
-
-		if (!this.password.isEmpty()) {
-			aPassword = get_SHA_512_SecurePassword(this.password, "");
-		}
-
-		userFacade.updateUser(
-				this.username, 
-				aPassword, 
-				this.vorname, 
-				this.nachname, 
-				this.rolename);
-
-		return "zuUserMenue";
-
-	}
-
+	
 	public String saveUser() {
 		// Neuen User speichern
 
@@ -161,6 +144,35 @@ public class UserDataMB implements Serializable {
 			sendInfoMessageToUser("User " + this.username + " existiert bereits.");
 			return "";
 		}
+
+	}	
+
+	public String updateUser() {
+		// Bestehenden User anpassen
+
+		if (this.username.isEmpty()) {
+			sendInfoMessageToUser("Es wurde kein Username vergeben");
+			return "";
+		}
+
+		if (this.rolename.isEmpty()) {
+			sendInfoMessageToUser("Es wurde keine Rolle vergeben");
+			return "";
+		}
+		
+		String aPassword = "";
+		if (!this.password.isEmpty()) {
+			aPassword = get_SHA_512_SecurePassword(this.password, "");
+		}
+
+		userFacade.updateUser(
+				this.username, 
+				aPassword, 
+				this.vorname, 
+				this.nachname, 
+				this.rolename);
+
+		return "zuUserMenue";
 
 	}
 

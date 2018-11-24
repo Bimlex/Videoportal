@@ -1,5 +1,6 @@
  package de.awk.benutzerverwaltung.facade.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -71,20 +72,14 @@ public class UserFacadeImpl implements IUserFacade {
 	
 	@Override
 	public List<User> getAllUser() {
-		return userDAO.findAll();
+		List<User> userList = null;
+		userList = userDAO.findAll();
+		for (User aUser : userList) {
+			aUser.setPassword("*********");
+		}
+		return userList;
 	}
-	
-//	@Override
-//	public User getUserById(int id) {
-//		User aUser = null;
-//		try{
-//			aUser = userDAO.find(id);
-//		} catch (Exception e) {
-//			
-//		}
-//		return aUser;
-//	}
-	
+		
 	@Override
 	public void deleteUser(String aUsername){
 		User aUser = this.findUserByName(aUsername);
@@ -94,6 +89,14 @@ public class UserFacadeImpl implements IUserFacade {
 			
 		}
 		
+	}
+	
+	@Override
+	public List<String> getRoleSelection(){
+		List<String> roleSelection = new ArrayList<String>();
+		roleSelection.add("Benutzer");
+		roleSelection.add("Administrator");
+		return roleSelection;
 	}
 	
 

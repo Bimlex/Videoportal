@@ -16,4 +16,5 @@ public interface IUserFacade {
 //	public abstract User getUserById(int id);
 	public abstract void deleteUser(String aUsername);
 	public abstract void updateUser(String aUsername, String aPassword, String aVorname, String aNachname, String aRolename);
+	public abstract List<String> getRoleSelection();
 }
