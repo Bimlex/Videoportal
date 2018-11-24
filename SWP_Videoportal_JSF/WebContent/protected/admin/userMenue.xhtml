@@ -29,32 +29,27 @@
 				
 				<h:column>
 					<f:facet name="header">Username</f:facet>					
-					<h:inputText value="#{user.username}" rendered="#{user.canEdit}"/>
-					<h:outputText value="#{user.username}" rendered="#{not user.canEdit}"/>
+					<h:outputText value="#{user.username}"/>
 				</h:column>
 				
 				<h:column>
 					<f:facet name="header">Passwort</f:facet>
-					<h:inputText value="#{user.password}" rendered="#{user.canEdit}"/>
-					<h:outputText value="#{user.password}" rendered="#{not user.canEdit}"/>
+					<h:outputText value="#{user.password}"/>
 				</h:column>	
 				
 				<h:column>
 					<f:facet name="header">Vorname</f:facet>
-					<h:inputText value="#{user.vorname}" rendered="#{user.canEdit}"/>
-					<h:outputText value="#{user.vorname}" rendered="#{not user.canEdit}"/>
+					<h:outputText value="#{user.vorname}"/>
 				</h:column>	
 				
 				<h:column>
 					<f:facet name="header">Nachname</f:facet>
-					<h:inputText value="#{user.nachname}" rendered="#{user.canEdit}"/>
-					<h:outputText value="#{user.nachname}" rendered="#{not user.canEdit}"/>
+					<h:outputText value="#{user.nachname}"/>
 				</h:column>	
 				
 				<h:column>
 					<f:facet name="header">Rollenname</f:facet>
-					<h:inputText value="#{user.rolename}" rendered="#{user.canEdit}"/>
-					<h:outputText value="#{user.rolename}" rendered="#{not user.canEdit}"/>
+					<h:outputText value="#{user.rolename}"/>
 				</h:column>		
 				
 				<h:column>

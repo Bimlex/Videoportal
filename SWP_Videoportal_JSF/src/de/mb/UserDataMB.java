@@ -106,9 +106,9 @@ public class UserDataMB implements Serializable {
 	public List<User> getAlleUser() {
 		// Eventuell umschreiben umschieben in UserFacadeImpl
 		userList = userFacade.getAllUser();
-//		for (User aUser : userList) {
-//			aUser.setPassword("*********");
-//		}
+		for (User aUser : userList) {
+			aUser.setPassword("*********");
+		}
 		return userList;
 	}
 	
@@ -172,7 +172,7 @@ public class UserDataMB implements Serializable {
 				this.nachname, 
 				this.rolename);
 
-		return "zuUserMenue";
+		return "zurueckZumUserMenue";
 
 	}
 

@@ -72,12 +72,12 @@ public class UserFacadeImpl implements IUserFacade {
 	
 	@Override
 	public List<User> getAllUser() {
-		List<User> userList = null;
-		userList = userDAO.findAll();
-		for (User aUser : userList) {
-			aUser.setPassword("*********");
-		}
-		return userList;
+//		List<User> userList = null;
+//		userList = userDAO.findAll();
+//		for (User aUser : userList) {
+//			aUser.setPassword("*********");
+//		}
+		return userDAO.findAll();
 	}
 		
 	@Override

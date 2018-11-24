@@ -30,7 +30,6 @@ public class User {
 	private int timesClicked;
 	private int minutesLoggedIn;
 	private String rolename;
-	private boolean canEdit;
 
 
 	public User(String aUsername, String aPassword, String aVorname, 
@@ -40,19 +39,7 @@ public class User {
 		this.vorname = aVorname;
 		this.nachname = aNachname;
 		this.rolename = aRolename;
-		canEdit = false;
-				
 	}
-	
-	public boolean isCanEdit() {
-		return canEdit;
-	}
-
-	public void setCanEdit(boolean canEdit) {
-		this.canEdit = canEdit;
-	}
-
-
 
 	public User() {
 		
