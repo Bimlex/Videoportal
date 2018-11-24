@@ -1,5 +1,9 @@
 package de.awk.benutzerverwaltung.model;
 
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 import javax.el.ArrayELResolver;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -58,7 +62,7 @@ public class User {
 		return password;
 	}
 
-	public void setPassword(String password) {
+	public void setPassword(String password) {        		
 		this.password = password;
 	}
 

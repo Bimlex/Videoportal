@@ -58,7 +58,7 @@
 				</h:column>		
 				
 				<h:column>
-				    <h:commandButton value="Edit" 
+				    <h:commandButton value="Anpassen" 
 				    	action="#{userDataMB.editUser(user)}">
 	                  <f:setPropertyActionListener 
 	                  target = "#{userDataMB.user}" value = "#{user}" />
@@ -75,6 +75,9 @@
 			<h:panelGrid columns="1"
 			styleClass="panelGrid"
 			rowClasses="panelFirstLine, panelNextLine">
+								
+				<h:commandButton immediate="true" action="#{userDataMB.createUser()}" value="Neuer User" style="width:400px;height:30px">
+				</h:commandButton>	
 				
 				<h:commandButton immediate="true" action="zurueckZurStartseite" value="Zur&uuml;ck" style="width:400px;height:30px">
 				</h:commandButton>	

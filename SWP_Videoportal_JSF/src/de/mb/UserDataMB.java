@@ -2,12 +2,17 @@ package de.mb;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
@@ -23,8 +28,7 @@ import javax.validation.constraints.Size;
 import de.awk.benutzerverwaltung.facade.IUserFacade;
 import de.awk.benutzerverwaltung.model.User;
 
-
-@ManagedBean(name="userDataMB")
+@ManagedBean(name = "userDataMB")
 @ViewScoped
 public class UserDataMB implements Serializable {
 
@@ -34,39 +38,30 @@ public class UserDataMB implements Serializable {
 	private static final long serialVersionUID = -7502137075266135502L;
 
 	private User user;
-	
+
 	LocalDateTime startTime = LocalDateTime.now();
 	int clicks = 0;
-	
 
 	@EJB
 	private IUserFacade userFacade;
-	
-	@NotNull
-	@Size(min=1, max=250)
+
 	private String username;
-	
-	@NotNull
-	@Size(min=1, max=250)
 	private String password;
-	
-	@NotNull
-	@Size(min=1, max=250)
 	private String vorname;
-	
-	@NotNull
-	@Size(min=1, max=250)
-	private String nachname;			
-	
-	@NotNull
-	@Size(min=1, max=250)
+	private String nachname;
 	private String rolename;
-	
-	private List<User> userList = null;	
+
+	private List<User> userList = null;
 	private HtmlDataTable dataTableUser;
 	
-	
-	
+	private List<String> roleSelection = new ArrayList<String>();
+			
+	@PostConstruct
+	public void init() {
+		roleSelection.add("Administrator");
+		roleSelection.add("Benutzer");
+	}
+
 	public HtmlDataTable getDataTableUser() {
 		return dataTableUser;
 	}
@@ -75,42 +70,117 @@ public class UserDataMB implements Serializable {
 		this.dataTableUser = dataTableUser;
 	}
 
-	public void getUserInfo() throws IOException{
-	    int index = dataTableUser.getRowIndex(); // Actually not interesting info.
-	    User user = (User) dataTableUser.getRowData(); // This is what you want.
-	    
-	    System.out.println(user.getUsername());	  
-	    System.out.println(user.getVorname());
+	public void getUserInfo() throws IOException {
+		int index = dataTableUser.getRowIndex(); // Actually not interesting info.
+		User user = (User) dataTableUser.getRowData(); // This is what you want.
+
+		System.out.println(user.getUsername());
+		System.out.println(user.getVorname());
 	}
-	
-	
-	
-	public String editUser(User user){
-		System.out.println(user.getNachname());
-		System.out.println(user.isCanEdit());
-		user.setCanEdit(true);
-		System.out.println(user.isCanEdit());
-		return null;
-	}	
-	
-//	public String saveUsers() {
-//		for
-//	}
-	
-	public List<User> getAlleUser(){
+
+	public String editUser(User aUser) {
+		// Wechsel zur User aendern Sicht
+		this.username = aUser.getUsername();
+		this.password = "";
+		this.vorname = aUser.getVorname();
+		this.nachname = aUser.getNachname();
+		this.rolename = aUser.getRolename();
+
+		return "bestehendenUserAendern";
+	}
+
+	public String createUser() {
+		// Wechsel zur User anlegen Sicht
+		this.username = "";
+		this.password = "";
+		this.vorname = "";
+		this.nachname = "";
+		this.rolename = "";
+
+		return "neuenUserAnlegen";
+	}
+
+	public List<User> getAlleUser() {
+		// Eventuell umschreiben umschieben in UserFacadeImpl
 		userList = userFacade.getAllUser();
+		for (User aUser : userList) {
+			aUser.setPassword("*********");
+		}
 		return userList;
 	}
-	
-	
+
+	public String updateUser() {
+		// Bestehenden User anpassen
+
+		String aPassword = "";
+
+		if (!this.password.isEmpty()) {
+			aPassword = get_SHA_512_SecurePassword(this.password, "");
+		}
+
+		userFacade.updateUser(
+				this.username, 
+				aPassword, 
+				this.vorname, 
+				this.nachname, 
+				this.rolename);
+
+		return "zuUserMenue";
+
+	}
+
+	public String saveUser() {
+		// Neuen User speichern
+
+		if (this.username.isEmpty()) {
+			sendInfoMessageToUser("Es wurde kein Username vergeben");
+			return "";
+		}
+
+		if (this.password.isEmpty()) {
+			sendInfoMessageToUser("Es wurde kein Passwort vergeben");
+			return "";
+		}
+
+		if (this.rolename.isEmpty()) {
+			sendInfoMessageToUser("Es wurde keine Rolle vergeben");
+			return "";
+		}
+
+		String aPassword = "";
+		if (!this.password.isEmpty()) {
+			aPassword = get_SHA_512_SecurePassword(this.password, "");
+		}
+
+		User aUser = this.userFacade.findUserByName(this.username);
+		if (aUser == null) {
+			this.userFacade.saveUser(this.username, aPassword, this.vorname, this.nachname, this.rolename);
+
+			return "zurueckZumUserMenue";
+		} else {
+			sendInfoMessageToUser("User " + this.username + " existiert bereits.");
+			return "";
+		}
+
+	}
+
+	private void sendInfoMessageToUser(String message) {
+		FacesContext context = getContext();
+		context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, message, message));
+	}
+
+	private FacesContext getContext() {
+		FacesContext context = FacesContext.getCurrentInstance();
+		return context;
+	}
 
 	public User getUser() {
 		return user;
 	}
 
-//	public List<User> getUserList() {
-//		return userList;
-//	}
+	// public List<User> getUserList() {
+	// return userList;
+	// }
 
 	public void setUser(User user) {
 		this.user = user;
@@ -124,56 +194,69 @@ public class UserDataMB implements Serializable {
 		this.userFacade = userFacade;
 	}
 
-
 	public String getUsername() {
 		return username;
 	}
-
 
 	public void setUsername(String username) {
 		this.username = username;
 	}
 
-
 	public String getPassword() {
 		return password;
 	}
-
 
 	public void setPassword(String password) {
 		this.password = password;
 	}
 
-
 	public String getVorname() {
 		return vorname;
 	}
-
 
 	public void setVorname(String vorname) {
 		this.vorname = vorname;
 	}
 
-
 	public String getNachname() {
 		return nachname;
 	}
-
 
 	public void setNachname(String nachname) {
 		this.nachname = nachname;
 	}
 
-
 	public String getRolename() {
 		return rolename;
 	}
 
-
 	public void setRolename(String rolename) {
 		this.rolename = rolename;
 	}
-	
-	
-	
+
+	public List<String> getRoleSelection() {
+		return roleSelection;
+	}
+
+	public void setRoleSelection(List<String> roleSelection) {
+		this.roleSelection = roleSelection;
+	}
+
+	public static String get_SHA_512_SecurePassword(String passwordToHash, String salt) {
+		String generatedPassword = null;
+		try {
+			MessageDigest md = MessageDigest.getInstance("SHA-512");
+			md.update(salt.getBytes(StandardCharsets.UTF_8));
+			byte[] bytes = md.digest(passwordToHash.getBytes(StandardCharsets.UTF_8));
+			StringBuilder sb = new StringBuilder();
+			for (int i = 0; i < bytes.length; i++) {
+				sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+			}
+			generatedPassword = sb.toString();
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+		return generatedPassword;
+	}
+
 }

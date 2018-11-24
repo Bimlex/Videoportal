@@ -18,6 +18,8 @@
     ID="benutzerverw::#protected#admin#userMenue.xhtml" NAME="output2"
     PATH="/protected/admin/userMenue.xhtml"
     TARGET="rules:#protected#admin#userMenue.xhtml" TITLE="benutzerverw" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="logout::#logout.xhtml" NAME="output3"
+    PATH="/logout.xhtml" TARGET="rules:#logout.xhtml" TITLE="logout" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#protected#user#projektMenue.xhtml"
@@ -375,6 +377,38 @@
     NAME="output" PATH="/protected/public/startseite.xhtml"
     TARGET="rules:#protected#public#startseite.xhtml"
     TITLE="zurueckZurStartseite" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="neuenUserAnlegen::#protected#admin#userAnlegen.xhtml"
+    NAME="output1" PATH="/protected/admin/userAnlegen.xhtml"
+    TARGET="rules:#protected#admin#userAnlegen.xhtml"
+    TITLE="neuenUserAnlegen" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="bestehendenUserAendern::#protected#admin#userAendern.xhtml"
+    NAME="output2" PATH="/protected/admin/userAendern.xhtml"
+    TARGET="rules:#protected#admin#userAendern.xhtml"
+    TITLE="bestehendenUserAendern" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#protected#admin#userAnlegen.xhtml"
+  PATH="/protected/admin/userAnlegen.xhtml" SHAPE="608,609,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#protected#admin#userAnlegen.xhtml:0"
+   NAME="item" PATH="/protected/admin/userAnlegen.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="zurueckZumUserMenue::#protected#admin#userMenue.xhtml"
+    NAME="output" PATH="/protected/admin/userMenue.xhtml"
+    TARGET="rules:#protected#admin#userMenue.xhtml"
+    TITLE="zurueckZumUserMenue" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#protected#admin#userAendern.xhtml"
+  PATH="/protected/admin/userAendern.xhtml" SHAPE="608,609,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#protected#admin#userAendern.xhtml:0"
+   NAME="item" PATH="/protected/admin/userAendern.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="zurueckZumUserMenue::#protected#admin#userMenue.xhtml"
+    NAME="output" PATH="/protected/admin/userMenue.xhtml"
+    TARGET="rules:#protected#admin#userMenue.xhtml"
+    TITLE="zurueckZumUserMenue" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
 </PROCESS>

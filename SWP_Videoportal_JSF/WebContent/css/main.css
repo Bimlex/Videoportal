@@ -1,5 +1,9 @@
+* {
+    font-family: times;
+  }
+
 .table {
-	border-collapse:collapse;		
+	border-collapse: collapse;
 }
 
 .table-header {
@@ -26,7 +30,44 @@
 .userColumn {
 	max-width: 120px;
 	overflow: hidden;
-	text-align:left;
+	text-align: left;
 	padding-left: 20px;
 }
 
+.messageStyleClassVP {
+	text-align: center;
+	list-style: none;
+	list-style-type: none;
+	width: 70%;
+	margin: auto;
+	padding-left: 0;
+	margin-bottom: 20px;
+}
+
+.infoMessageVP {
+	text-align: center;
+	list-style-type: none;
+	display: inline-block;
+	*display: inline; /*IE7*/
+	*zoom: 1; /*IE7*/
+	background: #990000;
+	color: white;
+	font-weight: bold;
+	margin-right: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.errorMessageVP {
+	text-align: center;
+	list-style-type: none;
+	display: inline-block;
+	*display: inline; /*IE7*/
+	*zoom: 1; /*IE7*/
+	background: #3366cc;
+	color: white;
+	font-weight: bold;
+	margin-right: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+}

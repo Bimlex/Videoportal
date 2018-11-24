@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      >
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link href="../../css/main.css" rel= "stylesheet" type="text/css" />
+	<title>User &auml;ndern</title>	
+</h:head>
+    
+<h:body>
+	<center>
+		<h3>User &auml;ndern</h3>
+		<h:messages  layout="list" styleClass="messageStyleClassVP" errorClass="errorMessageVP"  infoClass="infoMessageVP"/>
+		
+		<h:form id="User-Formular">
+		
+			<h:outputLabel value="#{userMB.user.vorname} #{userMB.user.nachname} (Username: #{userMB.user.username})"/>
+			<br/> <br/>
+			<h:panelGrid columns="3"
+				id="User-Grid"
+				styleClass="panelGrid"
+				rowClasses="panelFirstLine, panelNextLine">
+				
+				<h:outputLabel value="Username: " />
+				<h:outputText value="#{userDataMB.username}"/>
+				<h:inputHidden id="Username" value="#{userDataMB.username}"/>
+				
+				<h:outputLabel value="Passwort: " />
+				<h:inputText id="Passwort" value="#{userDataMB.password}"/>
+				<h:outputLabel value="" />
+				
+				<h:outputLabel value="" />
+				<h:outputLabel style="font-size:9px; display: inline-block; width: 150px" value="(Wenn kein Passwort eingeben wird, wird das alte Passwort beibehalten.)" />
+				<h:outputLabel value="" />
+				
+				<h:outputLabel value="Rollenname: " />			
+				<h:selectOneMenu id="Rollenname" value="#{userDataMB.rolename}">
+				    <f:selectItems value="#{userDataMB.roleSelection}" />
+				</h:selectOneMenu>				
+				<h:outputLabel value="" />
+
+				<h:outputLabel value="Vorname: " />
+				<h:inputText id="Vorname" value="#{userDataMB.vorname}"/>
+				<h:outputLabel value="" />		
+				
+				<h:outputLabel value="Nachname: " />
+				<h:inputText id="Nachname" value="#{userDataMB.nachname}"/>
+				<h:outputLabel value="" />	
+
+					
+			</h:panelGrid>
+			<br/>
+			
+			<h:panelGrid columns="1"
+			styleClass="panelGrid"
+			rowClasses="panelFirstLine, panelNextLine">
+				<h:commandButton action="#{userDataMB.updateUser()}" value="User anpassen"
+					style="width:400px;height:30px" />
+				<h:button value="Zur&uuml;ck" outcome="zurueckZumUserMenue" style="width:400px;height:30px" />	
+			</h:panelGrid>
+	
+		</h:form>
+	</center>
+</h:body>
+</html>
