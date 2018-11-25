@@ -49,10 +49,63 @@
 			<to-view-id>/protected/admin/userMenue.xhtml</to-view-id>
 		</navigation-case>
 		<navigation-case>
+			<from-outcome>videoVerwaltung</from-outcome>
+			<to-view-id>/protected/admin/videoVerwaltung.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
 			<from-outcome>logout</from-outcome>
 			<to-view-id>/logout.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
+	
+	
+	<navigation-rule>
+		<from-view-id>/protected/admin/videoVerwaltung.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>videoAdministration</from-outcome>
+			<to-view-id>/protected/admin/videoAdministration.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>videoSuche</from-outcome>
+			<to-view-id>/protected/admin/videoSuche.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>zurueckZurStartseite</from-outcome>
+			<to-view-id>/protected/public/startseite.xhtml</to-view-id>
+		</navigation-case>		
+	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>/protected/admin/videoSuche.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>videoSuche</from-outcome>
+			<to-view-id>/protected/admin/videoSicht.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>zurueckZurVideoverwaltung</from-outcome>
+			<to-view-id>/protected/admin/videoVerwaltung.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	
+	<navigation-rule>
+		<from-view-id>/protected/admin/videoAdministration.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>zurueckZurVideoverwaltung</from-outcome>
+			<to-view-id>/protected/admin/videoVerwaltung.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+		<navigation-rule>
+		<from-view-id>/protected/admin/videoSicht.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>zurueckZurVideoverwaltung</from-outcome>
+			<to-view-id>/protected/admin/videoVerwaltung.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	
+	
 
 	<navigation-rule>
 		<from-view-id>/protected/user/projektMenue.xhtml</from-view-id>

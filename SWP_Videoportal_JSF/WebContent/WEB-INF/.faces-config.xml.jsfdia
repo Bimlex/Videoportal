@@ -18,7 +18,12 @@
     ID="benutzerverw::#protected#admin#userMenue.xhtml" NAME="output2"
     PATH="/protected/admin/userMenue.xhtml"
     TARGET="rules:#protected#admin#userMenue.xhtml" TITLE="benutzerverw" model-entity="JSFProcessItemOutput"/>
-   <PROCESS-ITEM-OUTPUT ID="logout::#logout.xhtml" NAME="output3"
+   <PROCESS-ITEM-OUTPUT
+    ID="videoVerwaltung::#protected#admin#videoVerwaltung.xhtml"
+    NAME="output3" PATH="/protected/admin/videoVerwaltung.xhtml"
+    TARGET="rules:#protected#admin#videoVerwaltung.xhtml"
+    TITLE="videoVerwaltung" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="logout::#logout.xhtml" NAME="output4"
     PATH="/logout.xhtml" TARGET="rules:#logout.xhtml" TITLE="logout" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
@@ -409,6 +414,63 @@
     NAME="output" PATH="/protected/admin/userMenue.xhtml"
     TARGET="rules:#protected#admin#userMenue.xhtml"
     TITLE="zurueckZumUserMenue" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#protected#admin#videoVerwaltung.xhtml"
+  PATH="/protected/admin/videoVerwaltung.xhtml" SHAPE="336,33,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#protected#admin#videoVerwaltung.xhtml:0"
+   NAME="item" PATH="/protected/admin/videoVerwaltung.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="videoAdministration::#protected#admin#videoAdministration.xhtml"
+    NAME="output1" PATH="/protected/admin/videoAdministration.xhtml"
+    TARGET="rules:#protected#admin#videoAdministration.xhtml"
+    TITLE="videoAdministration" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="videoSuche::#protected#admin#videoSuche.xhtml" NAME="output2"
+    PATH="/protected/admin/videoSuche.xhtml"
+    TARGET="rules:#protected#admin#videoSuche.xhtml" TITLE="videoSuche" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="zurueckZurStartseite::#protected#public#startseite.xhtml"
+    NAME="output3" PATH="/protected/public/startseite.xhtml"
+    TARGET="rules:#protected#public#startseite.xhtml"
+    TITLE="zurueckZurStartseite" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#protected#admin#videoAdministration.xhtml"
+  PATH="/protected/admin/videoAdministration.xhtml" SHAPE="888,24,50,41" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#protected#admin#videoAdministration.xhtml:0"
+   NAME="item" PATH="/protected/admin/videoAdministration.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="zurueckZurVideoverwaltung::#protected#admin#videoVerwaltung.xhtml"
+    NAME="output" PATH="/protected/admin/videoVerwaltung.xhtml"
+    TARGET="rules:#protected#admin#videoVerwaltung.xhtml"
+    TITLE="zurueckZurVideoverwaltung" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#protected#admin#videoSuche.xhtml"
+  PATH="/protected/admin/videoSuche.xhtml" SHAPE="648,64,50,41" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#protected#admin#videoSuche.xhtml:0"
+   NAME="item" PATH="/protected/admin/videoSuche.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="videoSuche::#protected#admin#videoSicht.xhtml" NAME="output"
+    PATH="/protected/admin/videoSicht.xhtml"
+    TARGET="rules:#protected#admin#videoSicht.xhtml" TITLE="videoSuche" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="zurueckZurVideoverwaltung::#protected#admin#videoVerwaltung.xhtml"
+    NAME="output1" PATH="/protected/admin/videoVerwaltung.xhtml"
+    TARGET="rules:#protected#admin#videoVerwaltung.xhtml"
+    TITLE="zurueckZurVideoverwaltung" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#protected#admin#videoSicht.xhtml"
+  PATH="/protected/admin/videoSicht.xhtml" SHAPE="96,257,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#protected#admin#videoSicht.xhtml:0"
+   NAME="item" PATH="/protected/admin/videoSicht.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="zurueckZurVideoverwaltung::#protected#admin#videoVerwaltung.xhtml"
+    NAME="output1" PATH="/protected/admin/videoVerwaltung.xhtml"
+    TARGET="rules:#protected#admin#videoVerwaltung.xhtml"
+    TITLE="zurueckZurVideoverwaltung" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
 </PROCESS>

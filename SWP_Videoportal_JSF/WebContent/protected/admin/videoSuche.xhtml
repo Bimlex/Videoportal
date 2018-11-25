@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:fmt="http://java.sun.com/jsp/jstl/fmt"
+      >
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link href="../../css/main.css" rel= "stylesheet" type="text/css" />
+	<title>Videos</title>	
+</h:head>
+ 
+
+	<h:body>
+
+	 
+	<h3>Videos</h3>
+	
+		<h:form>
+		<h:outputLabel value="Hier fehlt die Liste der Themenbereiche und Kategorien (evtl. multilevel list) " />
+		</h:form>
+				<h:form>
+					<h:panelGrid>	
+								<h:panelGrid columns="2"
+								styleClass="panelGrid"
+								rowClasses="panelFirstLine, panelNextLine">
+								<h:inputText id="Suchbegriff" value="Deine Suchbegriffe" required="true" color="b7b7b7" style="width:300px;height:30px" />
+								<h:commandButton action="videoSuche" value="Suchen" style="width:200px;height:30px" />
+								</h:panelGrid>
+					</h:panelGrid>
+			</h:form>		
+							
+		
+			<h:form>
+								
+					<h4>Suchergebnisse</h4>
+					<!-- 
+					<h:dataTable value="#{videoMB.getAllVideos()}"
+					var="m"
+					styleClass="table"
+					headerClass="table-header"
+					rowClasses="table-odd-row, table-even-row">
+					<h:column>
+						<f:facet name="header">Video</f:facet>
+						#{videoMB.videoName}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Beschreibung</f:facet>
+						#{videoMB.videoBeschreibung}
+					</h:column>	
+					
+				</h:dataTable>
+					-->
+		</h:form>
+			
+		<h:form>
+			<h:panelGrid columns="3"
+					styleClass="panelGrid"
+					rowClasses="panelFirstLine, panelNextLine">
+						<h:button value="Zur&uuml;ck zur Videoverwaltung" outcome="zurueckZurVideoverwaltung" style="width:250px;height:40px" />
+					
+			</h:panelGrid>
+		</h:form>
+	
+</h:body> 
+</html>	 
