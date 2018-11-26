@@ -6,6 +6,7 @@
 		<class>de.awk.ressourcenverwaltung.model.Maschine</class>
 		<class>de.awk.projektverwaltung.model.Projekt</class>
 		<class>de.awk.projektverwaltung.model.ProjektRessourcenBuchung</class>
+		<class>de.awk.videoverwaltung.model.Topic</class>
 		
 		<properties>
 			<property name="hibernate.show_sql" value="true"/>

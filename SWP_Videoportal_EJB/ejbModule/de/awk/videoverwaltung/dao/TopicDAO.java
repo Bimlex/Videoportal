@@ -12,4 +12,9 @@ public class TopicDAO extends GenericDAO<Topic>{
 		super(Topic.class);
 	}
 	
+	public void delete(Topic aTopic) {
+		super.delete(aTopic.getTopicId(), Topic.class);
+	}
+	
+	
 }

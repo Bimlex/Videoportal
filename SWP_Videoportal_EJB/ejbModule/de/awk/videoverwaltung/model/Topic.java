@@ -11,6 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import de.awk.ressourcenverwaltung.model.MitarbeiterIn;
+
+
 @Entity
 @Access(AccessType.FIELD)
 @Table(name="swp_topic")
@@ -37,6 +40,16 @@ public class Topic implements Serializable {
 	}
 
 	
+	//Getter & Setter-Methoden
+	public Integer getTopicId() {
+		return topicId;
+	}
+	
+//	public void setTopic(Integer topicId) {
+//		this.topicId = topicId;
+//	//Wird nicht implementiert, weil die ID generiert wird 
+//	}
+	
 	public String getName() {
 		return name;
 	}
@@ -53,5 +66,10 @@ public class Topic implements Serializable {
 		this.beschreibung = beschreibung;
 	}
 	
-
+	@Override
+	public int hashCode() {
+		return this.getTopicId();
+	}
+		
+		
 }

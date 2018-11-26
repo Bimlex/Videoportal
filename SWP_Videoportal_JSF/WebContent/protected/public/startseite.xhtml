@@ -31,7 +31,11 @@
 				
 				<h:commandButton value="Benutzerverwaltung" action="benutzerverw" rendered="#{userMB.isUserAdmin()}" style="width:400px;height:30px" >
 					<f:actionListener binding="#{ userMB.userClicked() }"/>
-				</h:commandButton>				
+				</h:commandButton>
+				
+				<h:commandButton value="Themenbereiche" action="topicMenue" rendered="#{userMB.isUserAdmin()}" style="width:400px;height:30px" >
+					<f:actionListener binding="#{ userMB.userClicked() }"/>
+				</h:commandButton>			
 				
 				<h:commandButton action="#{ userMB.logOut() }" value="Abmelden" style="width:400px;height:30px">
 					<f:actionListener binding="#{ userMB.userClicked() }"/>

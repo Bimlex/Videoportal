@@ -18,8 +18,10 @@
     ID="benutzerverw::#protected#admin#userMenue.xhtml" NAME="output2"
     PATH="/protected/admin/userMenue.xhtml"
     TARGET="rules:#protected#admin#userMenue.xhtml" TITLE="benutzerverw" model-entity="JSFProcessItemOutput"/>
-   <PROCESS-ITEM-OUTPUT ID="logout::#logout.xhtml" NAME="output3"
-    PATH="/logout.xhtml" TARGET="rules:#logout.xhtml" TITLE="logout" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="topicMenue::#protected#admin#topicMenue.xhtml" NAME="output3"
+    PATH="/protected/admin/topicMenue.xhtml"
+    TARGET="rules:#protected#admin#topicMenue.xhtml" TITLE="topicMenue" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#protected#user#projektMenue.xhtml"
@@ -409,6 +411,16 @@
     NAME="output" PATH="/protected/admin/userMenue.xhtml"
     TARGET="rules:#protected#admin#userMenue.xhtml"
     TITLE="zurueckZumUserMenue" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#protected#admin#topicMenue.xhtml"
+  PATH="/protected/admin/topicMenue.xhtml" SHAPE="336,33,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#protected#admin#topicMenue.xhtml:0"
+   NAME="item" PATH="/protected/admin/topicMenue.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="startseite::#protected#public#startseite.xhtml" NAME="output"
+    PATH="/protected/public/startseite.xhtml"
+    TARGET="rules:#protected#public#startseite.xhtml" TITLE="startseite" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
 </PROCESS>
