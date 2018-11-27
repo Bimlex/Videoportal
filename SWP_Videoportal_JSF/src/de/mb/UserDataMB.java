@@ -29,7 +29,7 @@ import de.awk.benutzerverwaltung.facade.IUserFacade;
 import de.awk.benutzerverwaltung.model.User;
 
 @ManagedBean(name = "userDataMB")
-@ViewScoped
+@SessionScoped
 public class UserDataMB implements Serializable {
 
 	/**
@@ -75,39 +75,56 @@ public class UserDataMB implements Serializable {
 		// Fuellt Dropdown-Auswahl-Menue (Benutzer, Administrator)
 		roleSelection = this.userFacade.getRoleSelection();
 
-		// Standardwert fuer Suchoption setzen
-		this.searchOption = "Username";
+		if (userList == null) {
+			// Standardwert fuer Suchoption setzen
+//			this.searchOption = "Username";
 
-		// initialisiert die Usertabelle
-		initialiseUserList();
+			
+			// TEST
+//			this.searchOption = "Nachname";
+//			this.searchField = "d";
+			
+			// initialisiert die Usertabelle
+//			initialiseUserList();
+		}
 
 	}
 
-	public void initialiseUserList() {
-		this.userList = null;
+	public List<User> initialiseUserList() {
+//		this.userList = null;
 
 		if (this.searchField == null) {
 			userList = userFacade.getAllUser();
 		} else if (this.searchField.equals("")) {
 			userList = userFacade.getAllUser();
 		} else {
+			if(searchOption == null) {
+				searchOption = "Username";
+			}
+			
+			if(searchOption.equals("")) {
+				searchOption = "Username";
+			}
+
 			switch (searchOption) {
 			case "Username":
-				userList = userFacade.getUsersByUsername(this.searchField);
+				userList = userFacade.findUsersByUsername(this.searchField);
 				break;
 			case "Vorname":
-				userList = userFacade.getUsersByPrename(this.searchField);
+				userList = userFacade.findUsersByPrename(this.searchField);
 				break;
 			case "Nachname":
-				userList = userFacade.getUsersBySurname(this.searchField);
+				userList = userFacade.findUsersBySurname(this.searchField);
 				break;
 			}
 
 		}
-
+		
 		for (User aUser : userList) {
 			aUser.setPassword("*********");
 		}
+		
+		return userList;
 	}
 
 	public HtmlDataTable getDataTableUser() {
@@ -126,8 +143,24 @@ public class UserDataMB implements Serializable {
 		System.out.println(user.getVorname());
 	}
 
-	public String editUser(User aUser) {
+//	public String editUser(User aUser) {
+//		// Wechsel zur User aendern Sicht
+//		this.username = aUser.getUsername();
+//		this.password = "";
+//		this.vorname = aUser.getVorname();
+//		this.nachname = aUser.getNachname();
+//		this.rolename = aUser.getRolename();
+//
+//		return "bestehendenUserAendern";
+//	}
+	
+	public String editUser(String aUsername) {
 		// Wechsel zur User aendern Sicht
+		
+		System.out.println("---------------------------" + aUsername);
+		System.out.println("-----------" + userList.size() + "----------------" + searchField);
+		User aUser = this.userFacade.findUserByName(aUsername);
+		
 		this.username = aUser.getUsername();
 		this.password = "";
 		this.vorname = aUser.getVorname();

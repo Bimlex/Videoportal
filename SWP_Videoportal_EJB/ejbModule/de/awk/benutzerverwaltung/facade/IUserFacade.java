@@ -20,4 +20,7 @@ public interface IUserFacade {
 	public abstract List<User> getUsersByUsername(String name);
 	public abstract List<User> getUsersByPrename(String name);
 	public abstract List<User> getUsersBySurname(String name);
+	public abstract List<User> findUsersByUsername(String name);
+	public abstract List<User> findUsersByPrename(String name);
+	public abstract List<User> findUsersBySurname(String name);	
 }

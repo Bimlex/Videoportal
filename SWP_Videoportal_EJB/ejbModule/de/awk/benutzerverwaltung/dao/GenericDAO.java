@@ -88,6 +88,22 @@ public abstract class GenericDAO<T> {
 		
 	}
 	
+	@SuppressWarnings("unchecked")
+	protected List<T> findAllResult(String namedQuery, Map<String, Object> parameters){
+		List<T> result = null;
+		try {
+			Query query = em.createNamedQuery(namedQuery);
+			if(parameters != null && !parameters.isEmpty()) {
+				populateQueryParameters(query, parameters);
+			}
+			result = (List<T>) query.getResultList();
+		} catch (Exception e) {
+			System.out.println("Query Error: " + e.getMessage());
+		}
+		
+		return result;
+	}
+	
 //	public List<User> getUserByName(String name) {
 //		TypedQuery<User> query = this.em.createQuery(
 //				"SELECT c FROM swp_user WHERE c.username = :name", User.class);

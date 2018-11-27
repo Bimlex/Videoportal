@@ -9,16 +9,25 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="swp_user")
-@NamedQuery(name="User.findUserByUsername", query="SELECT u from User u where u.username = :username")
+@NamedQueries({
+	@NamedQuery(name="User.findUserByUsername", query="SELECT u FROM User u WHERE u.username = :username"),
+	@NamedQuery(name="User.findUsersByUsername", query="SELECT u FROM User u WHERE u.username LIKE :username"),
+	@NamedQuery(name="User.findUsersByPrename", query="SELECT u FROM User u WHERE u.vorname LIKE :vorname"),
+	@NamedQuery(name="User.findUsersBySurname", query="SELECT u FROM User u WHERE u.nachname LIKE :nachname")
+})
 public class User {
 
 	public static final String FIND_BY_USERNAME = "User.findUserByUsername";
+	public static final String FIND_LIST_BY_USERNAME = "User.findUsersByUsername";
+	public static final String FIND_LIST_BY_PRENAME = "User.findUsersByPrename";
+	public static final String FIND_LIST_BY_SURNAME = "User.findUsersBySurname";
 	
 	
 

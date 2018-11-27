@@ -91,6 +91,21 @@ public class UserFacadeImpl implements IUserFacade {
 	public List<User> getUsersBySurname(String name) {
 		return userDAO.getUsersBySurname(name);
 	}
+	
+	@Override
+	public List<User> findUsersByUsername(String name) {
+		return userDAO.findUsersByUsername(name);
+	}
+	
+	@Override
+	public List<User> findUsersByPrename(String name) {
+		return userDAO.findUsersByPrename(name);
+	}
+	
+	@Override
+	public List<User> findUsersBySurname(String name) {
+		return userDAO.findUsersBySurname(name);
+	}
 		
 	@Override
 	public void deleteUser(String aUsername){

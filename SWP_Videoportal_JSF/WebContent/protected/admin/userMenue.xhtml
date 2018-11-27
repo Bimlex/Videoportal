@@ -15,27 +15,30 @@
 <h:body>
 	<center>
 		<h3>Benutzerverwaltung</h3>
-		<h:form>
+		<h:form id="userMenue">
 
 			<h:outputLabel
 				value="#{userMB.user.vorname} #{userMB.user.nachname} (Username: #{userMB.user.username})" />
 			<br />
 			<br />
 
-			<h:selectOneRadio value="#{userDataMB.searchOption}">
+			<h:selectOneRadio id="filterSelection" value="#{userDataMB.searchOption}">
 				<f:selectItem itemValue="Username" itemLabel="Username" />
 				<f:selectItem itemValue="Vorname" itemLabel="Vorname" />
 				<f:selectItem itemValue="Nachname" itemLabel="Nachname" />
 			</h:selectOneRadio>
 			
 			<h:inputText id="searchField" value="#{userDataMB.searchField}" />
-			<h:commandButton action="#{userDataMB.initialiseUserList()}"
+			<h:commandButton 
+				action="#{userDataMB.initialiseUserList()}"
+				update="userListView"
 				value="Suche" />
 
-			<h:dataTable value="#{userDataMB.getUserList()}" var="user"
+			<h:dataTable value="#{userDataMB.initialiseUserList()}" var="user"
+				id="userListView"
 				styleClass="table" headerClass="table-header"
 				rowClasses="table-odd-row, table-even-row"
-				binding="#{userDataMB.dataTableUser}"
+				
 				columnClasses="userColumn,userColumn,userColumn,userColumn,userColumn">
 
 				<h:column>
@@ -65,14 +68,17 @@
 
 				<h:column>
 					<h:commandButton value="Anpassen"
-						action="#{userDataMB.editUser(user)}">
-						<f:setPropertyActionListener target="#{userDataMB.user}"
-							value="#{user}" />
+						update="userListView"
+						name="Anpassen"
+						id="Anpassen"
+						action="#{userDataMB.editUser(user.username)}">
 					</h:commandButton>
 				</h:column>
 
 				<h:column>
 					<h:commandButton value="L&ouml;schen"
+						name="Loeschen"
+						id="Loeschen"
 						actionListener="#{userDataMB.deleteUser(user)}" />
 				</h:column>
 
