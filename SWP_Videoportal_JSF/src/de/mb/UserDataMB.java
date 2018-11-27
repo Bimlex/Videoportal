@@ -54,7 +54,10 @@ public class UserDataMB implements Serializable {
 	private List<User> userList = null;
 	private HtmlDataTable dataTableUser;
 	private String searchField;
-	
+	private String searchOption;
+
+	private List<String> roleSelection = new ArrayList<String>();
+
 	public String getSearchField() {
 		return searchField;
 	}
@@ -62,36 +65,46 @@ public class UserDataMB implements Serializable {
 	public void setSearchField(String searchField) {
 		this.searchField = searchField;
 	}
-	
-	public void searchUser() {
-		this.userList = this.userFacade.getUserByName(this.searchField);
-	}
 
-	private List<String> roleSelection = new ArrayList<String>();
-			
+	// public void searchUser() {
+	// this.userList = this.userFacade.getUserByName(this.searchField);
+	// }
+
 	@PostConstruct
 	public void init() {
 		// Fuellt Dropdown-Auswahl-Menue (Benutzer, Administrator)
 		roleSelection = this.userFacade.getRoleSelection();
-		
+
+		// Standardwert fuer Suchoption setzen
+		this.searchOption = "Username";
+
 		// initialisiert die Usertabelle
 		initialiseUserList();
-		
+
 	}
-	
+
 	public void initialiseUserList() {
 		this.userList = null;
-		
-		System.out.println("SearchField2: III" + this.searchField + "III");
-		
-		if(this.searchField == null) {
+
+		if (this.searchField == null) {
 			userList = userFacade.getAllUser();
-		} else if (this.searchField.equals("")) { 
+		} else if (this.searchField.equals("")) {
 			userList = userFacade.getAllUser();
 		} else {
-			userList = userFacade.getUserByName(this.searchField);
+			switch (searchOption) {
+			case "Username":
+				userList = userFacade.getUsersByUsername(this.searchField);
+				break;
+			case "Vorname":
+				userList = userFacade.getUsersByPrename(this.searchField);
+				break;
+			case "Nachname":
+				userList = userFacade.getUsersBySurname(this.searchField);
+				break;
+			}
+
 		}
-		
+
 		for (User aUser : userList) {
 			aUser.setPassword("*********");
 		}
@@ -138,16 +151,16 @@ public class UserDataMB implements Serializable {
 	public void deleteUser(User aUser) {
 		this.userFacade.deleteUser(aUser.getUsername());
 	}
-	
-//	public List<User> getAlleUser() {
-//		// Eventuell umschreiben umschieben in UserFacadeImpl
-//		userList = userFacade.getAllUser();
-//		for (User aUser : userList) {
-//			aUser.setPassword("*********");
-//		}
-//		return userList;
-//	}
-	
+
+	// public List<User> getAlleUser() {
+	// // Eventuell umschreiben umschieben in UserFacadeImpl
+	// userList = userFacade.getAllUser();
+	// for (User aUser : userList) {
+	// aUser.setPassword("*********");
+	// }
+	// return userList;
+	// }
+
 	public String saveUser() {
 		// Neuen User speichern
 
@@ -176,14 +189,14 @@ public class UserDataMB implements Serializable {
 			this.userFacade.saveUser(this.username, aPassword, this.vorname, this.nachname, this.rolename);
 
 			initialiseUserList();
-			
+
 			return "zurueckZumUserMenue";
 		} else {
 			sendInfoMessageToUser("User " + this.username + " existiert bereits.");
 			return "";
 		}
 
-	}	
+	}
 
 	public String updateUser() {
 		// Bestehenden User anpassen
@@ -197,19 +210,14 @@ public class UserDataMB implements Serializable {
 			sendInfoMessageToUser("Es wurde keine Rolle vergeben");
 			return "";
 		}
-		
+
 		String aPassword = "";
 		if (!this.password.isEmpty()) {
 			aPassword = get_SHA_512_SecurePassword(this.password, "");
 		}
 
-		userFacade.updateUser(
-				this.username, 
-				aPassword, 
-				this.vorname, 
-				this.nachname, 
-				this.rolename);
-		
+		userFacade.updateUser(this.username, aPassword, this.vorname, this.nachname, this.rolename);
+
 		initialiseUserList();
 
 		return "zurueckZumUserMenue";
@@ -226,10 +234,18 @@ public class UserDataMB implements Serializable {
 		return context;
 	}
 
+	public String getSearchOption() {
+		return searchOption;
+	}
+
+	public void setSearchOption(String searchOption) {
+		this.searchOption = searchOption;
+	}
+
 	public User getUser() {
 		return user;
 	}
-	
+
 	public List<User> getUserList() {
 		return userList;
 	}

@@ -17,5 +17,7 @@ public interface IUserFacade {
 	public abstract void deleteUser(String aUsername);
 	public abstract void updateUser(String aUsername, String aPassword, String aVorname, String aNachname, String aRolename);
 	public abstract List<String> getRoleSelection();
-	public abstract List<User> getUserByName(String name);
+	public abstract List<User> getUsersByUsername(String name);
+	public abstract List<User> getUsersByPrename(String name);
+	public abstract List<User> getUsersBySurname(String name);
 }
