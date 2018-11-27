@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 
 import de.awk.benutzerverwaltung.dao.UserDAO;
 import de.awk.benutzerverwaltung.facade.IUserFacade;
@@ -72,12 +74,12 @@ public class UserFacadeImpl implements IUserFacade {
 	
 	@Override
 	public List<User> getAllUser() {
-//		List<User> userList = null;
-//		userList = userDAO.findAll();
-//		for (User aUser : userList) {
-//			aUser.setPassword("*********");
-//		}
 		return userDAO.findAll();
+	}
+	
+	@Override
+	public List<User> getUserByName(String name) {
+		return userDAO.getUserByName(name);
 	}
 		
 	@Override

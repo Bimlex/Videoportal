@@ -18,8 +18,11 @@
 		<h:form>
 		
 			<h:outputLabel value="#{userMB.user.vorname} #{userMB.user.nachname} (Username: #{userMB.user.username})"/>
+			<br /> <br />
+			<h:inputText id="searchField" value="#{userDataMB.searchField}"/>
+			<h:commandButton action="#{userDataMB.initialiseUserList()}" value="Suche"/>
 			
-			<h:dataTable value="#{userDataMB.getAlleUser()}"
+			<h:dataTable value="#{userDataMB.getUserList()}"
 				var="user"
 				styleClass="table"
 				headerClass="table-header"

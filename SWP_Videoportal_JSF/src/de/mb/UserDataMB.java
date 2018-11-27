@@ -53,12 +53,48 @@ public class UserDataMB implements Serializable {
 
 	private List<User> userList = null;
 	private HtmlDataTable dataTableUser;
+	private String searchField;
 	
+	public String getSearchField() {
+		return searchField;
+	}
+
+	public void setSearchField(String searchField) {
+		this.searchField = searchField;
+	}
+	
+	public void searchUser() {
+		this.userList = this.userFacade.getUserByName(this.searchField);
+	}
+
 	private List<String> roleSelection = new ArrayList<String>();
 			
 	@PostConstruct
 	public void init() {
+		// Fuellt Dropdown-Auswahl-Menue (Benutzer, Administrator)
 		roleSelection = this.userFacade.getRoleSelection();
+		
+		// initialisiert die Usertabelle
+		initialiseUserList();
+		
+	}
+	
+	public void initialiseUserList() {
+		this.userList = null;
+		
+		System.out.println("SearchField2: III" + this.searchField + "III");
+		
+		if(this.searchField == null) {
+			userList = userFacade.getAllUser();
+		} else if (this.searchField.equals("")) { 
+			userList = userFacade.getAllUser();
+		} else {
+			userList = userFacade.getUserByName(this.searchField);
+		}
+		
+		for (User aUser : userList) {
+			aUser.setPassword("*********");
+		}
 	}
 
 	public HtmlDataTable getDataTableUser() {
@@ -103,14 +139,14 @@ public class UserDataMB implements Serializable {
 		this.userFacade.deleteUser(aUser.getUsername());
 	}
 	
-	public List<User> getAlleUser() {
-		// Eventuell umschreiben umschieben in UserFacadeImpl
-		userList = userFacade.getAllUser();
-		for (User aUser : userList) {
-			aUser.setPassword("*********");
-		}
-		return userList;
-	}
+//	public List<User> getAlleUser() {
+//		// Eventuell umschreiben umschieben in UserFacadeImpl
+//		userList = userFacade.getAllUser();
+//		for (User aUser : userList) {
+//			aUser.setPassword("*********");
+//		}
+//		return userList;
+//	}
 	
 	public String saveUser() {
 		// Neuen User speichern
@@ -139,6 +175,8 @@ public class UserDataMB implements Serializable {
 		if (aUser == null) {
 			this.userFacade.saveUser(this.username, aPassword, this.vorname, this.nachname, this.rolename);
 
+			initialiseUserList();
+			
 			return "zurueckZumUserMenue";
 		} else {
 			sendInfoMessageToUser("User " + this.username + " existiert bereits.");
@@ -171,6 +209,8 @@ public class UserDataMB implements Serializable {
 				this.vorname, 
 				this.nachname, 
 				this.rolename);
+		
+		initialiseUserList();
 
 		return "zurueckZumUserMenue";
 
@@ -189,10 +229,14 @@ public class UserDataMB implements Serializable {
 	public User getUser() {
 		return user;
 	}
+	
+	public List<User> getUserList() {
+		return userList;
+	}
 
-	// public List<User> getUserList() {
-	// return userList;
-	// }
+	public void setUserList(List<User> userList) {
+		this.userList = userList;
+	}
 
 	public void setUser(User user) {
 		this.user = user;
