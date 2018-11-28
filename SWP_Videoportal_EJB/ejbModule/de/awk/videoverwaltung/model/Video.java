@@ -16,21 +16,15 @@ import javax.persistence.Table;
 @Table(name="swp_video")
 public class Video implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 116145947726388767L;
-
 	/**
 	 * 
 	 */
-
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="SEQ_VIDEO_ID")
 	@SequenceGenerator(name="SEQ_VIDEO_ID", sequenceName="SEQ_VIDEO_ID", allocationSize = 1)
 	private Integer videoId;
-	
 	private String name;
 	private String topic;
 	private String subcategory;
@@ -47,6 +41,10 @@ public class Video implements Serializable {
 		this.setPath(path);
 	}
 
+
+	public Integer getVideoId() {
+		return videoId;
+	}
 
 	public String getName() {
 		return name;

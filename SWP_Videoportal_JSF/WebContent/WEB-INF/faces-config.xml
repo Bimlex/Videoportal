@@ -69,6 +69,10 @@
 	<navigation-rule>
 		<from-view-id>/protected/admin/videoVerwaltung.xhtml</from-view-id>
 		<navigation-case>
+			<from-outcome>topicMenue</from-outcome>
+			<to-view-id>/protected/admin/topicMenue.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
 			<from-outcome>videoAdministration</from-outcome>
 			<to-view-id>/protected/admin/videoAdministration.xhtml</to-view-id>
 		</navigation-case>

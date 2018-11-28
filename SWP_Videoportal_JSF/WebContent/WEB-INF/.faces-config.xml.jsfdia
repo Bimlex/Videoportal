@@ -23,8 +23,10 @@
     NAME="output3" PATH="/protected/admin/videoVerwaltung.xhtml"
     TARGET="rules:#protected#admin#videoVerwaltung.xhtml"
     TITLE="videoVerwaltung" model-entity="JSFProcessItemOutput"/>
-   <PROCESS-ITEM-OUTPUT ID="logout::#logout.xhtml" NAME="output4"
-    PATH="/logout.xhtml" TARGET="rules:#logout.xhtml" TITLE="logout" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="topicMenue::#protected#admin#topicMenue.xhtml" NAME="output4"
+    PATH="/protected/admin/topicMenue.xhtml"
+    TARGET="rules:#protected#admin#topicMenue.xhtml" TITLE="topicMenue" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#protected#user#projektMenue.xhtml"
@@ -431,10 +433,9 @@
   <PROCESS-ITEM ID="rules:#protected#admin#videoVerwaltung.xhtml:0"
    NAME="item" PATH="/protected/admin/videoVerwaltung.xhtml" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT
-    ID="videoAdministration::#protected#admin#videoAdministration.xhtml"
-    NAME="output" PATH="/protected/admin/videoAdministration.xhtml"
-    TARGET="rules:#protected#admin#videoAdministration.xhtml"
-    TITLE="videoAdministration" model-entity="JSFProcessItemOutput"/>
+    ID="topicMenue::#protected#admin#topicMenue.xhtml" NAME="output"
+    PATH="/protected/admin/topicMenue.xhtml"
+    TARGET="rules:#protected#admin#topicMenue.xhtml" TITLE="topicMenue" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
     ID="videoSuche::#protected#admin#videoSuche.xhtml" NAME="output1"
     PATH="/protected/admin/videoSuche.xhtml"
