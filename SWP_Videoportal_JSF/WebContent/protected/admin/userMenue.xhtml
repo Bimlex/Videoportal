@@ -8,6 +8,12 @@
 	xmlns:fmt="http://java.sun.com/jsp/jstl/fmt">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="shortcut icon" type="image/x-icon"
+		href="../../images/ico.png" />
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+		integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+		crossorigin="anonymous" />
 	<link href="../../css/main.css" rel="stylesheet" type="text/css" />
 	<title>Benutzerverwaltung</title>
 </h:head>
@@ -22,66 +28,68 @@
 			<br />
 			<br />
 
-			<h:selectOneRadio id="filterSelection" value="#{userDataMB.searchOption}">
-				<f:selectItem itemValue="Username" itemLabel="Username" />
-				<f:selectItem itemValue="Vorname" itemLabel="Vorname" />
-				<f:selectItem itemValue="Nachname" itemLabel="Nachname" />
-			</h:selectOneRadio>
-			
-			<h:inputText id="searchField" value="#{userDataMB.searchField}" />
-			<h:commandButton 
-				action="#{userDataMB.initialiseUserList()}"
-				update="userListView"
-				value="Suche" />
+			<div class="form-group" style="max-width: 400px;">
+				<h:selectOneRadio id="filterSelection"
+					value="#{userDataMB.searchOption}">
+					<f:selectItem itemValue="Username" itemLabel="Username"
+						style="margin-right:10px;" />
+					<f:selectItem itemValue="Vorname" itemLabel="Vorname" />
+					<f:selectItem itemValue="Nachname" itemLabel="Nachname" />
+				</h:selectOneRadio>
 
-			<h:dataTable value="#{userDataMB.initialiseUserList()}" var="user"
-				id="userListView"
-				styleClass="table" headerClass="table-header"
-				rowClasses="table-odd-row, table-even-row"
-				columnClasses="userColumn,userColumn,userColumn,userColumn,userColumn">
+				<h:inputText id="searchField" value="#{userDataMB.searchField}"
+					style="max-width: 220px; display:inline" class="form-control" />
+				<h:commandButton class="btn btn-primary"
+					action="#{userDataMB.initialiseUserList()}" update="userListView"
+					value="Suche" />
+			</div>
 
-				<h:column>
-					<f:facet name="header">Username</f:facet>
-					<h:outputText value="#{user.username}" />
-				</h:column>
+			<div style="max-width: 650px;">
+				<h:dataTable value="#{userDataMB.initialiseUserList()}" var="user"
+					id="userListView" styleClass="table" headerClass="table-header"
+					rowClasses="table-odd-row, table-even-row"
+					columnClasses="userColumn,userColumn,userColumn,userColumn,userColumn">
 
-				<h:column>
-					<f:facet name="header">Passwort</f:facet>
-					<h:outputText value="#{user.password}" />
-				</h:column>
+					<h:column>
+						<f:facet name="header">Username</f:facet>
+						<h:outputText value="#{user.username}" />
+					</h:column>
 
-				<h:column>
-					<f:facet name="header">Vorname</f:facet>
-					<h:outputText value="#{user.vorname}" />
-				</h:column>
+					<h:column>
+						<f:facet name="header">Passwort</f:facet>
+						<h:outputText value="#{user.password}" />
+					</h:column>
 
-				<h:column>
-					<f:facet name="header">Nachname</f:facet>
-					<h:outputText value="#{user.nachname}" />
-				</h:column>
+					<h:column>
+						<f:facet name="header">Vorname</f:facet>
+						<h:outputText value="#{user.vorname}" />
+					</h:column>
 
-				<h:column>
-					<f:facet name="header">Rollenname</f:facet>
-					<h:outputText value="#{user.rolename}" />
-				</h:column>
+					<h:column>
+						<f:facet name="header">Nachname</f:facet>
+						<h:outputText value="#{user.nachname}" />
+					</h:column>
 
-				<h:column>
-					<h:commandButton value="Anpassen"
-						update="userListView"
-						name="Anpassen"
-						id="Anpassen"
-						action="#{userDataMB.editUser(user.username)}">
-					</h:commandButton>
-				</h:column>
+					<h:column>
+						<f:facet name="header">Rollenname</f:facet>
+						<h:outputText value="#{user.rolename}" />
+					</h:column>
 
-				<h:column>
-					<h:commandButton value="L&ouml;schen"
-						name="Loeschen"
-						id="Loeschen"
-						actionListener="#{userDataMB.deleteUser(user)}" />
-				</h:column>
+					<h:column>
+						<h:commandButton value="Anpassen" class="btn btn-primary"
+							update="userListView" name="Anpassen" id="Anpassen"
+							action="#{userDataMB.editUser(user.username)}">
+						</h:commandButton>
+					</h:column>
 
-			</h:dataTable>
+					<h:column>
+						<h:commandButton value="L&ouml;schen" class="btn btn-primary"
+							name="Loeschen" id="Loeschen"
+							actionListener="#{userDataMB.deleteUser(user)}" />
+					</h:column>
+
+				</h:dataTable>
+			</div>
 			<br />
 
 			<h:panelGrid columns="1" styleClass="panelGrid"
@@ -89,11 +97,13 @@
 
 				<h:commandButton immediate="true"
 					action="#{userDataMB.createUser()}" value="Neuer User"
-					style="width:400px;height:30px">
+					class="btn btn-primary"
+					style="width:200px;height:40px; margin-bottom: 10px;">
 				</h:commandButton>
 
 				<h:commandButton immediate="true" action="zurueckZurStartseite"
-					value="Zur&uuml;ck" style="width:400px;height:30px">
+					class="btn btn-primary" value="Zur&uuml;ck"
+					style="width:200px;height:40px">
 				</h:commandButton>
 
 			</h:panelGrid>
