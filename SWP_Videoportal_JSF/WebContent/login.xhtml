@@ -1,38 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"   
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      >
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <link href="css/main.css" rel= "stylesheet" type="text/css" />
-        <title>Videoportal HS Osnabrueck</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="shortcut icon" type="image/x-icon" href="../../images/ico.png" />	
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+		integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+		crossorigin="anonymous" />
+	<title>Videoportal HS Osnabrueck</title>
 </h:head>
-    
+
 <h:body>
 	<center>
-	<h2>Videoportal der Hochschule Osnabr&uuml;ck</h2>
-	Bitte geben Sie Ihren Benutzernamen und ihr Kennwort ein und best&auml;tigen Sie die Eingabe.
-	<br/> <br/>
-	<form method="post" action="j_security_check">
-		<h:messages layout="table" errorStyle="background: #AFEEEE;"
-			infoStyle="background: #AFEEEE;" globalOnly="true" />
-		<h:panelGrid columns="1">
-			<h:outputLabel value="Username: " />
-			<input type="text" id="j_username" name="j_username" />
-			<h:outputLabel value="Password: " />
-			<input type="password" id="j_password" name="j_password" />
-
-				
-
-		</h:panelGrid>
-		<br/>
+		<img src="../../images/logo.svg" alt="LogoHS" 
+		style="width:300px;"/>
 		
-		<input type="submit" name="submit" value="Eingabe best&auml;tigen" />	
-	</form>
+		<h3>Videoportal</h3>
+		
+		<div style="width:300px; margin-bottom:20px">
+		Bitte geben Sie Ihren Benutzernamen und ihr Kennwort ein und
+		best&auml;tigen Sie die Eingabe.
+		</div>
+		
+		
+		<div style="background-color: #f2f2f2; padding:20px; width:250px; border-radius:5px">
+		<form class="border" method="post" action="j_security_check">
+			<h:messages layout="table" errorStyle="background: #AFEEEE;"
+				infoStyle="background: #AFEEEE;" globalOnly="true" />
+			<h:panelGrid columns="1">
+				<div class="form-group">
+					<label>Username: </label> 
+					<input type="text" class="form-control"
+						id="j_username" name="j_username" placeholder="Username"/>
+				</div>
+				<div class="form-group">
+					<label>Password: </label> 
+					<input type="password"
+						class="form-control" id="j_password" name="j_password" placeholder="Passwort"/>
+				</div>
+
+
+			</h:panelGrid>
+			<input type="submit" class="btn btn-primary" name="submit"
+				value="Eingabe best&auml;tigen" />
+		</form>
+		</div>
 	</center>
 </h:body>
 </html>
