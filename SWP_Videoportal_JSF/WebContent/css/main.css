@@ -58,6 +58,7 @@
 .parent {
 	overflow-y: hidden;
 	overflow-x: scroll;
+	max-width: 1000px;
 }	
 
 .child {
@@ -75,14 +76,21 @@
 	vertical-align: middle;
 }
 
+.userRow {
+	height:40px;
+}
+
 .userColumnButtons {
-	max-width: 300px;
-	min-width:180px;
+	min-width: 220px;
 	overflow: hidden;
-	text-align: left;
+	text-align: right;
 	padding-left: 10px;
 	vertical-align: middle;
 }
+
+.userColumnPlaceholder {
+	max-width:10px;
+}]
 
 .messageStyleClassVP {
 	text-align: center;

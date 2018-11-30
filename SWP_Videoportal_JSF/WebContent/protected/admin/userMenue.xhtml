@@ -66,9 +66,11 @@
 				<h:dataTable value="#{userDataMB.initialiseUserList()}" var="user"
 					id="userListView" styleClass="table" headerClass="table-header"
 					rowClasses="table-odd-row, table-even-row"
-					columnClasses="userColumn,userColumn,userColumn,userColumn,userColumn,userColumnButtons">
+					columnClasses="userColumnPlaceholder,userColumn,userColumn,userColumn,userColumn,userColumn,userColumnButtons">
 
-					<h:column>
+					<h:column style="margin-left:10px;"> </h:column>
+
+					<h:column style="margin-left:10px;">
 						<f:facet name="header">Username</f:facet>
 						<h:outputText value="#{user.username}" />
 					</h:column>
@@ -94,16 +96,14 @@
 					</h:column>
 
 					<h:column>
-						<h:commandButton value="Anpassen" class="btn btn-primary btn-sm"
-							update="userListView" name="Anpassen" id="Anpassen"
+						<h:commandButton value="Anpassen" class="btn btn-primary"
+							update="userListView" name="Anpassen" id="Anpassen" style="width: 90px"
 							action="#{userDataMB.editUser(user.username)}" />	
-						&nbsp;
+						&nbsp;	
 						<h:commandButton value="L&ouml;schen"
-							class="btn btn-primary btn-sm" name="Loeschen" id="Loeschen"
+							class="btn btn-danger" name="Loeschen" id="Loeschen" style="width: 90px"
 							actionListener="#{userDataMB.deleteUser(user)}" />						
 					</h:column>
-
-
 
 				</h:dataTable>
 			</div>
@@ -117,12 +117,12 @@
 					<h:commandButton immediate="true"
 						action="#{userDataMB.createUser()}" value="Neuer User"
 						class="btn btn-primary"
-						style="width:200px;height:40px; margin-bottom: 10px;">
+						style="width:200px;height:40px;margin-bottom: 10px">
 					</h:commandButton>
 
 					<h:commandButton immediate="true" action="zurueckZurStartseite"
 						class="btn btn-primary" value="Zur&uuml;ck"
-						style="width:200px;height:40px">
+						style="width:200px;height:40px;margin-bottom: 10px">
 					</h:commandButton>
 
 				</h:panelGrid>
