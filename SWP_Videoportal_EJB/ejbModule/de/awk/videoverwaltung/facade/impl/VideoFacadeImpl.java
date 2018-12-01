@@ -1,5 +1,4 @@
- package de.awk.videoverwaltung.facade.impl;
-
+package de.awk.videoverwaltung.facade.impl;
 
 import java.util.List;
 
@@ -11,11 +10,10 @@ import de.awk.videoverwaltung.facade.IVideoFacade;
 import de.awk.videoverwaltung.model.Topic;
 import de.awk.videoverwaltung.model.Video;
 
-
 @Stateless
 public class VideoFacadeImpl implements IVideoFacade {
 
-	@EJB 
+	@EJB
 	private VideoDAO videoDAO;
 
 	@Override
@@ -32,13 +30,14 @@ public class VideoFacadeImpl implements IVideoFacade {
 	@Override
 	public void updateVideo() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
+	// Paul
 	@Override
-	public void uploadVideo() {
-		// TODO Auto-generated method stub
-		
+	public void uploadVideo(String name, String description, String aPath) {
+		Video video = new Video(name, "topic", "subcategory", description, aPath);
+		videoDAO.save(video);
 	}
 
 	@Override
@@ -47,7 +46,7 @@ public class VideoFacadeImpl implements IVideoFacade {
 		try {
 			videoDAO.delete(aVideo);
 		} catch (Exception e) {
-			
+
 		}
 	}
 
@@ -56,8 +55,5 @@ public class VideoFacadeImpl implements IVideoFacade {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
-	
-
 
 }

@@ -6,9 +6,11 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.servlet.http.Part;
 
+
 @ManagedBean
 @SessionScoped
 public class ConverterMB {
+
 
 	private Part fileToUpload;
 	private File file;
@@ -28,6 +30,7 @@ public class ConverterMB {
 		String id = idGen.unique_id();
 		return id;
 	}
+
 
 	public String upload() throws IOException {
 		String buffering_folder = directory.buffering_folder();
@@ -50,7 +53,6 @@ public class ConverterMB {
 		String id = unique_id();
 		String output_folder = directory.output_folder(saveVideoFolder);
 		String full_path_of_output_video = output_folder + id;
-
 		String command = "cmd /c ffmpeg.exe -i \"" + path + "\" -y \"" + full_path_of_output_video + video_typ
 				+ "\" -loglevel quiet";
 		System.out.println(command);
@@ -99,6 +101,30 @@ public class ConverterMB {
 
 	public void setFile(File file) {
 		this.file = file;
+	}
+
+	public Directory getDirectory() {
+		return directory;
+	}
+
+	public void setDirectory(Directory directory) {
+		this.directory = directory;
+	}
+
+	public String getVideo_typ() {
+		return video_typ;
+	}
+
+	public void setVideo_typ(String video_typ) {
+		this.video_typ = video_typ;
+	}
+
+	public String getSaveVideoFolder() {
+		return saveVideoFolder;
+	}
+
+	public void setSaveVideoFolder(String saveVideoFolder) {
+		this.saveVideoFolder = saveVideoFolder;
 	}
 
 }

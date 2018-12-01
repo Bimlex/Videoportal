@@ -37,6 +37,12 @@
 				</h:column>
 
 			<h:column>
+				<f:facet name="header">Description</f:facet>
+					#{listAllVideos.description}
+				</h:column>
+
+
+			<h:column>
 				<f:facet name="header">Name</f:facet>
 					#{listAllVideos.getName()}
 				</h:column>
@@ -50,13 +56,20 @@
 		<h:form enctype="multipart/form-data">
 			<h:panelGrid columns="1" styleClass="panelGrid"
 				rowClasses="panelFirstLine, panelNextLine">
-				<h:inputFile value="#{converterMB.fileToUpload}"
+				<h:inputFile value="#{videoMB.fileToUpload}"
 					style="width:250px;height:40px" required="true" />
 			</h:panelGrid>
 			<br />
+			<h:outputLabel value="Titel " />
+			<h:inputText id="name" value="#{videoMB.name}" required="true" />
+			<br />
+			<h:outputLabel value="Beschreibung: " />
+			<h:inputText id="description" value="#{videoMB.description}"
+				required="true" />
+			<br />
 			<h:panelGrid columns="2" styleClass="panelGrid"
 				rowClasses="panelFirstLine, panelNextLine">
-				<h:commandButton value="Upload" action="#{converterMB.upload()}"
+				<h:commandButton value="Upload" action="#{videoMB.upload()}"
 					style="width:250px;height:40px" />
 				<h:commandButton action="loeschen" value="Loeschen"
 					style="width:250px;height:40px" />

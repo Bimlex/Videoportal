@@ -8,11 +8,17 @@ import de.awk.videoverwaltung.model.Video;
 
 @Local
 public interface IVideoFacade {
-	
+
 	public abstract List<Video> getAllVideos();
+
 	public abstract Video getVideoById(int videoId);
+
 	public abstract void updateVideo();
-	public abstract void uploadVideo();
+
+	// Paul
+	public abstract void uploadVideo(String name, String description, String aPath);
+
 	public abstract void deleteVideo(int id);
+
 	public abstract Video findVideoByName(String videoname);
 }
