@@ -7,9 +7,24 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:fmt="http://java.sun.com/jsp/jstl/fmt">
 <h:head>
+
+	<script>
+	  $("document").ready(function () {
+	      $('.wrapper').scroll(function () {
+	          if ($(this).scrollTop() > 0) {
+	              $('.custom-menu').addClass("custom-menu-bg");
+	          } else {
+	              $('.custom-menu').removeClass("custom-menu-bg");
+	          }
+	      });
+	  });
+	</script>
+
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<link rel="shortcut icon" type="image/x-icon"
 		href="../../images/ico.png" />
+
 	<link rel="stylesheet"
 		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
 		integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
@@ -20,37 +35,42 @@
 
 <h:body>
 	<center>
-		<h3>Benutzerverwaltung</h3>
 		<h:form id="userMenue">
+			<div class="centerPageElements">
+				<h3>Benutzerverwaltung</h3>
 
-			<h:outputLabel
-				value="#{userMB.user.vorname} #{userMB.user.nachname} (Username: #{userMB.user.username})" />
-			<br />
-			<br />
 
-			<div class="form-group" style="max-width: 400px;">
-				<h:selectOneRadio id="filterSelection"
-					value="#{userDataMB.searchOption}">
-					<f:selectItem itemValue="Username" itemLabel="Username"
-						style="margin-right:10px;" />
-					<f:selectItem itemValue="Vorname" itemLabel="Vorname" />
-					<f:selectItem itemValue="Nachname" itemLabel="Nachname" />
-				</h:selectOneRadio>
+				<h:outputLabel
+					value="#{userMB.user.vorname} #{userMB.user.nachname} (Username: #{userMB.user.username})" />
+				<br /> <br />
 
-				<h:inputText id="searchField" value="#{userDataMB.searchField}"
-					style="max-width: 220px; display:inline" class="form-control" />
-				<h:commandButton class="btn btn-primary"
-					action="#{userDataMB.initialiseUserList()}" update="userListView"
-					value="Suche" />
+
+				<div class="form-group" style="max-width: 400px;">
+					<h:selectOneRadio enabledClass="radio-inline" id="filterSelection"
+						value="#{userDataMB.searchOption}">
+						<f:selectItem itemValue="Username" itemLabel="Username"
+							style="margin-right:10px;" />
+						<f:selectItem itemValue="Vorname" itemLabel="Vorname" />
+						<f:selectItem itemValue="Nachname" itemLabel="Nachname" />
+					</h:selectOneRadio>
+
+					<h:inputText id="searchField" value="#{userDataMB.searchField}"
+						style="max-width: 150px; display:inline" class="form-control" />
+					<h:commandButton class="btn btn-primary"
+						action="#{userDataMB.initialiseUserList()}" update="userListView"
+						value="Suche" />
+				</div>
 			</div>
 
-			<div style="max-width: 650px;">
+			<div class="parent">
 				<h:dataTable value="#{userDataMB.initialiseUserList()}" var="user"
 					id="userListView" styleClass="table" headerClass="table-header"
 					rowClasses="table-odd-row, table-even-row"
-					columnClasses="userColumn,userColumn,userColumn,userColumn,userColumn">
+					columnClasses="userColumnPlaceholder,userColumn,userColumn,userColumn,userColumn,userColumn,userColumnButtons">
 
-					<h:column>
+					<h:column style="margin-left:10px;"> </h:column>
+
+					<h:column style="margin-left:10px;">
 						<f:facet name="header">Username</f:facet>
 						<h:outputText value="#{user.username}" />
 					</h:column>
@@ -77,36 +97,37 @@
 
 					<h:column>
 						<h:commandButton value="Anpassen" class="btn btn-primary"
-							update="userListView" name="Anpassen" id="Anpassen"
-							action="#{userDataMB.editUser(user.username)}">
-						</h:commandButton>
-					</h:column>
-
-					<h:column>
-						<h:commandButton value="L&ouml;schen" class="btn btn-primary"
-							name="Loeschen" id="Loeschen"
-							actionListener="#{userDataMB.deleteUser(user)}" />
+							update="userListView" name="Anpassen" id="Anpassen" style="width: 90px"
+							action="#{userDataMB.editUser(user.username)}" />	
+						&nbsp;	
+						<h:commandButton value="L&ouml;schen"
+							class="btn btn-danger" name="Loeschen" id="Loeschen" style="width: 90px"
+							actionListener="#{userDataMB.deleteUser(user)}" />						
 					</h:column>
 
 				</h:dataTable>
 			</div>
 			<br />
 
-			<h:panelGrid columns="1" styleClass="panelGrid"
-				rowClasses="panelFirstLine, panelNextLine">
 
-				<h:commandButton immediate="true"
-					action="#{userDataMB.createUser()}" value="Neuer User"
-					class="btn btn-primary"
-					style="width:200px;height:40px; margin-bottom: 10px;">
-				</h:commandButton>
+			<div class="centerPageElements">
+				<h:panelGrid columns="1" styleClass="panelGrid"
+					rowClasses="panelFirstLine, panelNextLine">
 
-				<h:commandButton immediate="true" action="zurueckZurStartseite"
-					class="btn btn-primary" value="Zur&uuml;ck"
-					style="width:200px;height:40px">
-				</h:commandButton>
+					<h:commandButton immediate="true"
+						action="#{userDataMB.createUser()}" value="Neuer User"
+						class="btn btn-primary"
+						style="width:200px;height:40px;margin-bottom: 10px">
+					</h:commandButton>
 
-			</h:panelGrid>
+					<h:commandButton immediate="true" action="zurueckZurStartseite"
+						class="btn btn-primary" value="Zur&uuml;ck"
+						style="width:200px;height:40px;margin-bottom: 10px">
+					</h:commandButton>
+
+				</h:panelGrid>
+			</div>
+
 		</h:form>
 	</center>
 </h:body>

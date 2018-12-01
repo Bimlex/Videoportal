@@ -7,6 +7,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<link rel="shortcut icon" type="image/x-icon"
 		href="../../images/ico.png" />
 	<link rel="stylesheet"
@@ -18,7 +19,9 @@
 
 <h:body>
 	<center>
-		<img src="../../images/logo.svg" alt="LogoHS" style="width: 300px;" />
+		<img
+			src="https://login.hs-osnabrueck.de/nidp/images/hsos-logo-neu.png"
+			alt="LogoHS" style="width: 200px; margin-top: 10px" />
 		<h3>Willkommen #{userMB.user.vorname} #{userMB.user.nachname}</h3>
 
 		<div style="width: 300px; margin-bottom: 20px">Bitte w&auml;hlen
@@ -37,29 +40,34 @@
 
 					<h:commandButton value="Projekte" action="projektMenue"
 						rendered="#{userMB.isUserUser()}"
-						style="min-width:250px; max-width: 550px; margin-bottom:10px; display:inline-block" class="btn btn-primary">
+						style="min-width:250px; max-width: 550px; margin-bottom:10px; display:inline-block"
+						class="btn btn-primary">
 						<f:actionListener binding="#{ userMB.userClicked() }" />
 					</h:commandButton>
 
 					<h:commandButton value="Benutzerverwaltung" action="benutzerverw"
 						rendered="#{userMB.isUserAdmin()}"
-						style="min-width:250px; max-width: 550px; margin-bottom:10px; display:inline-block" class="btn btn-primary">
+						style="min-width:250px; max-width: 550px; margin-bottom:10px; display:inline-block"
+						class="btn btn-primary">
 						<f:actionListener binding="#{ userMB.userClicked() }" />
 					</h:commandButton>
 
 					<h:commandButton value="Themenbereiche" action="topicMenue"
 						rendered="#{userMB.isUserAdmin()}"
-						style="min-width:250px; max-width: 550px; margin-bottom:10px; display:inline-block" class="btn btn-primary">
+						style="min-width:250px; max-width: 550px; margin-bottom:10px; display:inline-block"
+						class="btn btn-primary">
 						<f:actionListener binding="#{ userMB.userClicked() }" />
 					</h:commandButton>
 
 					<h:commandButton value="Video-Verwaltung" action="videoVerwaltung"
 						rendered="#{userMB.isUserAdmin()}"
-						style="min-width:250px; max-width: 550px; margin-bottom:10px; display:inline-block" class="btn btn-primary">
+						style="min-width:250px; max-width: 550px; margin-bottom:10px; display:inline-block"
+						class="btn btn-primary">
 					</h:commandButton>
 
 					<h:commandButton action="#{ userMB.logOut() }" value="Abmelden"
-						style="min-width:250px; max-width: 550px; margin-bottom:10px; display:inline-block" class="btn btn-secondary">
+						style="min-width:250px; max-width: 550px; margin-bottom:10px; display:inline-block"
+						class="btn btn-secondary">
 						<f:actionListener binding="#{ userMB.userClicked() }" />
 					</h:commandButton>
 				</h:panelGrid>
