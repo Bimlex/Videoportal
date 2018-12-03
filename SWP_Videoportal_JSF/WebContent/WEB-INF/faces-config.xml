@@ -37,6 +37,11 @@
   <managed-bean-scope>request</managed-bean-scope>
  </managed-bean>
  <managed-bean>
+  <managed-bean-name>subcategoryMB</managed-bean-name>
+  <managed-bean-class>de.mb.SubcategoryMB</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+ </managed-bean>
+ <managed-bean>
   <managed-bean-name>videoMB</managed-bean-name>
   <managed-bean-class>de.mb.VideoMB</managed-bean-class>
   <managed-bean-scope>request</managed-bean-scope>
@@ -62,6 +67,10 @@
   <navigation-case>
    <from-outcome>topicMenue</from-outcome>
    <to-view-id>/protected/admin/topicMenue.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>subcategoryMenue</from-outcome>
+   <to-view-id>/protected/admin/subcategoryMenue.xhtml</to-view-id>
   </navigation-case>
   <navigation-case>
    <from-outcome>logout</from-outcome>
@@ -366,8 +375,30 @@
  <navigation-rule>
   <from-view-id>/protected/admin/topicMenue.xhtml</from-view-id>
   <navigation-case>
-   <from-outcome>startseite</from-outcome>
+   <from-outcome>zurueckZurStartseite</from-outcome>
    <to-view-id>/protected/public/startseite.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>neueKategorieAnlegen</from-outcome>
+   <to-view-id>/protected/admin/topicAnlegen.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>bestehendeKategorieAendern</from-outcome>
+   <to-view-id>/protected/admin/topicAendern.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+ <navigation-rule>
+  <from-view-id>/protected/admin/topicAendern.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>zurueckZumTopicMenue</from-outcome>
+   <to-view-id>/protected/admin/topicMenue.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+ <navigation-rule>
+  <from-view-id>/protected/admin/topicAnlegen.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>zurueckZumTopicMenue</from-outcome>
+   <to-view-id>/protected/admin/topicMenue.xhtml</to-view-id>
   </navigation-case>
  </navigation-rule>
  <application/>

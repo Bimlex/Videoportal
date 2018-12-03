@@ -67,6 +67,16 @@
 	/*padding-right: 50px; /* maximum width of scrollbar */
 }
 
+
+.topicColumn {
+	max-width: 350px;
+	min-width: 20px;
+	overflow: hidden;
+	text-align: left;
+	padding-left: 10px;
+	vertical-align: middle;
+}
+
 .userColumn {
 	max-width: 200px;
 	min-width: 80px;

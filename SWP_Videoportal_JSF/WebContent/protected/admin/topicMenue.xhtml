@@ -7,55 +7,109 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:fmt="http://java.sun.com/jsp/jstl/fmt">
 <h:head>
+
+	<script>
+	  $("document").ready(function () {
+	      $('.wrapper').scroll(function () {
+	          if ($(this).scrollTop() > 0) {
+	              $('.custom-menu').addClass("custom-menu-bg");
+	          } else {
+	              $('.custom-menu').removeClass("custom-menu-bg");
+	          }
+	      });
+	  });
+	</script>
+	
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<link href="./css/main.css" rel= "stylesheet" type="text/css" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="shortcut icon" type="image/x-icon" href="../../images/ico.png" />
+		
+	<link rel="stylesheet"
+		  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+		  integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+		  crossorigin="anonymous" />
+	<link href="../../css/main.css" rel="stylesheet" type="text/css" />
 	<title>Themenbereiche</title>	
 </h:head>
         
 <h:body>
 	<center>
-		<h3>Themenbereiche</h3>
-		<h:form>
-		
-			<h:outputLabel value="#{userMB.user.vorname} #{userMB.user.nachname} (Username: #{userMB.user.username})"/>
-		
-			<h:dataTable value="#{topicMB.getAlleKategorien()}"
-				var="t"
-				styleClass="table"
-				headerClass="table-header"
-				rowClasses="table-odd-row, table-even-row">
+	<h:form id="userMenue">
+		<div class="centerPageElements">
 				
-				<h:column>
-					<f:facet name="header">Id</f:facet>
-					#{t.topicId}
-				</h:column>
 				
-				<h:column>
-					<f:facet name="header">Name</f:facet>
-					#{t.name}
-				</h:column>	
-				
-				<h:column>
-					<f:facet name="header">Beschreibung</f:facet>
-					#{t.beschreibung}
-				</h:column>																															
-						
-			</h:dataTable>
-			<br/>
+				<h3>Themenbereiche Men&uuml;</h3>
+
 			
-			<h:panelGrid columns="1"
-			styleClass="panelGrid"
-			rowClasses="panelFirstLine, panelNextLine">
-				
-				<h:button value="Themenbereich anlegen" outcome="topicAnlegen" style="width:400px;height:30px" />
-				
-				<h:button value="Themenbereich &auml;ndern" outcome="topicAendernUebersicht" style="width:400px;height:30px" />	
-				
-				<h:button value="Themenbereich l&ouml;schen" outcome="topicLoeschen" style="width:400px;height:30px" />	
+				<h:outputLabel value="#{userMB.user.vorname} #{userMB.user.nachname} (Username: #{userMB.user.username})"/>
+				<br></br>
+								
+				<div class="form-group" style="max-width: 400px;">
+					<h:selectOneRadio enabledClass="radio-inline" id="filterSelection"
+					value="#{topicMB.searchOption}">
+						<f:selectItem itemValue="Name" itemLabel="Name" style="margin-right:10px;" />
+						<f:selectItem itemValue="Beschreibung" itemLabel="Beschreibung" />
+					</h:selectOneRadio>
 					
-				<h:button value="Zur&uuml;ck" outcome="startseite" style="width:400px;height:30px" />
+					<h:inputText id="searchField" value="#{topicMB.searchField}"
+						style="max-width: 150px; display:inline" class="form-control" />
+					<h:commandButton class="btn btn-primary"
+						action="#{topicMB.initialiseTopicList()}" update="topicListView"
+						value="Suche" />					
+				</div>
+		</div>
 				
-			</h:panelGrid>
+				<div class="parent">
+					<h:dataTable value="#{topicMB.initialiseTopicList()}" var="topic"
+					id="topicListView" styleClass="table" headerClass="table-header"
+					rowClasses="table-odd-row, table-even-row"
+					columnClasses="topicColumnPlaceholder,topicColumn,topicColumn,topicColumnButtons">
+					
+						<h:column style="margin-left:10px;"></h:column>
+						
+						<h:column style="margin-left:10px;">
+							<f:facet name="header">Name</f:facet>
+							<h:outputText value="#{topic.name}" />
+						</h:column>
+						
+						<h:column style="margin-left:10px;">
+							<f:facet name="header">Beschreibung</f:facet>
+							<h:outputText value="#{topic.beschreibung}" />
+						</h:column>
+						
+						<h:column>
+							<h:commandButton value="Anpassen" class="btn btn-primary"
+								update="topicListView" name="Anpassen" id="Anpassen" style="width: 90px"
+								action="#{topicMB.editTopic(topic.name)}" />	
+							&nbsp;	
+							<h:commandButton value="L&ouml;schen"
+								class="btn btn-danger" name="Loeschen" id="Loeschen" style="width: 90px"
+								actionListener="#{topicMB.deleteTopic(topic)}" />
+						</h:column>		
+						
+					</h:dataTable>
+					
+				</div>
+				<br/>
+				
+				<div class="centerPageElements">
+					<h:panelGrid columns="1" styleClass="panelGrid"
+						rowClasses="panelFirstLine, panelNextLine">
+	
+						<h:commandButton immediate="true"
+							action="#{topicMB.createTopic()}" value="Neuer Themenbereich"
+							class="btn btn-primary"
+							style="width:200px;height:40px;margin-bottom: 10px">
+						</h:commandButton>
+												
+	
+						<h:commandButton immediate="true" action="zurueckZurStartseite"
+							class="btn btn-primary" value="Zur&uuml;ck"
+							style="width:200px;height:40px;margin-bottom: 10px">
+						</h:commandButton>
+	
+					</h:panelGrid>
+				</div>
 		</h:form>
 	</center>
 </h:body>

@@ -5,8 +5,6 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
-import de.awk.ressourcenverwaltung.model.Maschine;
-import de.awk.ressourcenverwaltung.model.Ressource;
 import de.awk.videoverwaltung.dao.TopicDAO;
 import de.awk.videoverwaltung.facade.ITopicFacade;
 import de.awk.videoverwaltung.model.Topic;
@@ -18,10 +16,11 @@ public class TopicFacadeImpl implements ITopicFacade{
 	private TopicDAO topicDAO;
 	
 	public List<Topic> getAlleKategorien() {
-		System.out.println(topicDAO.findAll().size());
 		return topicDAO.findAll();
 	}
 		
+	
+	//Ungenutzte Methode
 	public Topic getTopicById(int topicId) {
 		return topicDAO.find(topicId);
 	}
@@ -32,19 +31,52 @@ public class TopicFacadeImpl implements ITopicFacade{
 	}
 	
 	public void updateTopic(int topicId, String name, String beschreibung) {
-		Topic aTopic = this.getTopicById(topicId);
+		Topic aTopic = this.findTopicById(topicId);
 		aTopic.setName(name);
 		aTopic.setBeschreibung(beschreibung);
+		topicDAO.save(aTopic);
 	}
 
 	public void deleteTopic(int topicId) {
-		Topic aTopic = this.getTopicById(topicId);
+		Topic aTopic = this.findTopicById(topicId);
 		try {
 			topicDAO.delete(aTopic);
 		} catch (Exception e) {
 			
 		}
 	}
+
+	@Override
+	public List<Topic> findTopicsById(int topicId) {
+		return topicDAO.findTopicsById(topicId);
+	}
+
+	@Override
+	public List<Topic> findTopicsByName(String name) {
+		return topicDAO.findTopicsByName(name);
+	}
+
+	@Override
+	public Topic findTopicById(int topicId) {
+		return topicDAO.findTopicByTopicId(topicId);
+	}
+
+	@Override
+	public Topic findTopicByName(String name) {
+		return topicDAO.findTopicByName(name);
+	}
+
+
+	@Override
+	public List<Topic> findTopicsByBeschreibung(String beschreibung) {
+		return topicDAO.findTopicsByBeschreibung(beschreibung);
+	}
+
+
+
+
+
+
 	
 	
 }

@@ -1,28 +1,30 @@
 package de.awk.videoverwaltung.model;
 
-import java.io.Serializable;
-
-import javax.persistence.Access;
-import javax.persistence.AccessType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import de.awk.ressourcenverwaltung.model.MitarbeiterIn;
-
-
 @Entity
-@Access(AccessType.FIELD)
 @Table(name="swp_topic")
-public class Topic implements Serializable {
+@NamedQueries({
+	@NamedQuery(name="Topic.findTopicsById", query="SELECT t FROM Topic t WHERE t.topicId LIKE :topicId"),
+	@NamedQuery(name="Topic.findTopicsByName", query="SELECT t FROM Topic t WHERE t.name LIKE :name"),
+	@NamedQuery(name="Topic.findTopicsByBeschreibung", query="SELECT t FROM Topic t WHERE t.beschreibung LIKE :beschreibung"),
+	@NamedQuery(name="Topic.findTopicById", query="SELECT t FROM Topic t WHERE t.topicId = :topicId"),
+	@NamedQuery(name="Topic.findTopicByName", query="SELECT t FROM Topic t WHERE t.name = :name")
+})
+public class Topic  {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -3604027455613521554L;
+	public static final String FIND_LIST_BY_ID = "Topic.findTopicsById";
+	public static final String FIND_LIST_BY_NAME = "Topic.findTopicsByName";
+	public static final String FIND_TOPIC_BY_ID = "Topic.findTopicById";
+	public static final String FIND_TOPIC_BY_NAME = "Topic.findTopicByName";
+	public static final String FIND_LIST_BY_BESCHREIBUNG = "Topic.findTopicsByBeschreibung";
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="SEQ_TOPIC_ID")
@@ -44,12 +46,7 @@ public class Topic implements Serializable {
 	public Integer getTopicId() {
 		return topicId;
 	}
-	
-//	public void setTopic(Integer topicId) {
-//		this.topicId = topicId;
-//	//Wird nicht implementiert, weil die ID generiert wird 
-//	}
-	
+		
 	public String getName() {
 		return name;
 	}
