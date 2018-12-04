@@ -28,10 +28,17 @@ public class VideoFacadeImpl implements IVideoFacade {
 	}
 
 	@Override
-	public void updateVideo() {
-		// TODO Auto-generated method stub
-
+	public void updateVideo(String aVideoname, String topic, String subcategory, String description) {
+	
+		Video aVideo = this.findVideoByName(aVideoname);
+		
+		aVideo.setName(aVideoname);
+		aVideo.setTopic(topic);
+		aVideo.setSubcategory(subcategory);
+		aVideo.setDescription(description);
+		videoDAO.save(aVideo);
 	}
+	
 
 	// Paul
 	@Override
@@ -52,8 +59,11 @@ public class VideoFacadeImpl implements IVideoFacade {
 
 	@Override
 	public Video findVideoByName(String videoname) {
-		// TODO Auto-generated method stub
-		return null;
+		return videoDAO.findVideoByName(videoname);
 	}
+
+
+
+
 
 }
