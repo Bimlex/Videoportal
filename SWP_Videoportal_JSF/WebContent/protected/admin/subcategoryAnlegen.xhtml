@@ -47,7 +47,7 @@
 
 				<h:outputLabel value="Beschreibung: " style="vertical-align:text-top"/>
 				<h:inputTextarea cols="50" rows="7" 
-								 value="#{subcategoryMB.beschreibung}" id="beschreibung"
+								 value="#{subcategoryMB.description}" id="description"
 								 class="form-control"
 								 style="margin-left: 20px" />
 				<h:outputLabel value="" />
@@ -60,7 +60,7 @@
 				<h:commandButton action="#{subcategoryMB.saveSubcategory()}"
 					value="Unterkategorie anlegen" class="btn btn-primary"
 					style="width:200px;height:40px;margin-bottom: 10px;" />
-				<h:button value="Zur&uuml;ck" outcome="zurueckZumSubcategoryMenue"
+				<h:button value="Zur&uuml;ck" outcome="backToSubcategoryMenue"
 					class="btn btn-primary" style="width:200px;height:40px;margin-bottom: 10px" />
 			</h:panelGrid>
 

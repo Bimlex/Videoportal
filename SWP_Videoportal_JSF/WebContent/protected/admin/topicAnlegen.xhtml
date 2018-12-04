@@ -41,11 +41,9 @@
 
 				<h:outputLabel value="Beschreibung: " style="vertical-align:text-top"/>
 				<h:inputTextarea cols="50" rows="7" 
-								 value="#{topicMB.beschreibung}" id="beschreibung"
+								 value="#{topicMB.description}" id="description"
 								 class="form-control"
 								 style="margin-left: 20px" />
-				<!-- <h:inputText class="form-control" id="beschreibung"
-					value="#{topicMB.beschreibung}" /> -->
 				<h:outputLabel value="" />
 
 			</h:panelGrid>
@@ -56,7 +54,7 @@
 				<h:commandButton action="#{topicMB.saveTopic()}"
 					value="Themenbereich anlegen" class="btn btn-primary"
 					style="width:200px;height:40px;margin-bottom: 10px;" />
-				<h:button value="Zur&uuml;ck" outcome="zurueckZumTopicMenue"
+				<h:button value="Zur&uuml;ck" outcome="backToTopicMenue"
 					class="btn btn-primary" style="width:200px;height:40px;margin-bottom: 10px" />
 			</h:panelGrid>
 

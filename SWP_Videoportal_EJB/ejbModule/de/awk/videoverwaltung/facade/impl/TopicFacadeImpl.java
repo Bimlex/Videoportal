@@ -21,15 +21,15 @@ public class TopicFacadeImpl implements ITopicFacade{
 		
 	
 	
-	public void saveTopic(String name, String beschreibung) {
-		Topic aTopic = new Topic(name, beschreibung);
+	public void saveTopic(String name, String description) {
+		Topic aTopic = new Topic(name, description);
 		topicDAO.save(aTopic);
 	}
 	
-	public void updateTopic(int topicId, String name, String beschreibung) {
+	public void updateTopic(int topicId, String name, String description) {
 		Topic aTopic = this.findTopicById(topicId);
 		aTopic.setName(name);
-		aTopic.setBeschreibung(beschreibung);
+		aTopic.setDescription(description);
 		topicDAO.save(aTopic);
 	}
 
@@ -67,8 +67,8 @@ public class TopicFacadeImpl implements ITopicFacade{
 
 
 	@Override
-	public List<Topic> findTopicsByBeschreibung(String beschreibung) {
-		return topicDAO.findTopicsByBeschreibung(beschreibung);
+	public List<Topic> findTopicsByDescription(String description) {
+		return topicDAO.findTopicsByDescription(description);
 	}
 
 

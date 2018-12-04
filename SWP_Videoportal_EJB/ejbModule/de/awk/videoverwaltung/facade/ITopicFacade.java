@@ -10,7 +10,7 @@ public interface ITopicFacade {
 
 	public abstract List<Topic> getAlleKategorien();
 	
-	public abstract void updateTopic(int topicId, String name, String beschreibung);
+	public abstract void updateTopic(int topicId, String name, String description);
 	
 
 	
@@ -19,12 +19,12 @@ public interface ITopicFacade {
 	public abstract List<Topic> findTopicsById(int searchfield);
 	public abstract List<Topic> findTopicsByName(String searchField);	
 	
-	public abstract List<Topic> findTopicsByBeschreibung(String searchField);
+	public abstract List<Topic> findTopicsByDescription(String searchField);
 	
 	public abstract Topic findTopicById(int topicId);
 	public abstract Topic findTopicByName(String name);
 	public abstract void deleteTopic(int topicId);
-	public abstract void saveTopic(String name, String beschreibung);
+	public abstract void saveTopic(String name, String description);
 	
 	
 	

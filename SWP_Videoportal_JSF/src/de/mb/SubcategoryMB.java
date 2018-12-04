@@ -47,7 +47,7 @@ public class SubcategoryMB implements Serializable{
 	@NotNull
 	@Size(min=1, max=250, message = "Max. 250 Zeichen!")
 	@Pattern(regexp = "[a-zA-Z0-9_äÄöÖüÜß.,!? ]+", message = "Ungültige Zeichen! Nur folgende Zeichen: a-z A-Z 0-9 und Leerzeichen erlaubt.")
-	private String beschreibung;
+	private String description;
 	
 	private List<Subcategory> subcategoryList = null;
 	private HtmlDataTable dataTableTopic;
@@ -77,8 +77,8 @@ public class SubcategoryMB implements Serializable{
 			case "Name":
 				subcategoryList = subcategoryFacade.findSubcategoriesByName(this.searchField);
 				break;
-			case "Beschreibung":
-				subcategoryList = subcategoryFacade.findSubcategoriesByBeschreibung(this.searchField);
+			case "Description":
+				subcategoryList = subcategoryFacade.findSubcategoriesByDescription(this.searchField);
 				break;
 			}
 		}
@@ -91,18 +91,18 @@ public class SubcategoryMB implements Serializable{
 		this.subcategoryId = aSubcategory.getSubcategoryId();
 		this.topicId = aSubcategory.getTopicId();
 		this.name = aSubcategory.getName();
-		this.beschreibung = aSubcategory.getBeschreibung();
+		this.description = aSubcategory.getDescription();
 		
-		return "bestehendeUnterkategorieAendern";
+		return "changeExistingSubcategory";
 	}
 	
 	public String createSubcategory() {
 		this.subcategoryId = this.getSubcategoryId();
 		this.topicId = 0;
 		this.name = "";
-		this.beschreibung = "";
+		this.description = "";
 		
-		return "neueUnterkategorieAnlegen";
+		return "createNewSubcategory";
 	}
 	
 	public void deleteSubcategory(Subcategory aSubcategory) {
@@ -121,18 +121,18 @@ public class SubcategoryMB implements Serializable{
 			return "";
 		}
 		
-		if (this.beschreibung.isEmpty()) {
+		if (this.description.isEmpty()) {
 			sendInfoMessageToUser("Es wurde keine Beschreibung vergeben");
 			return "";
 		}
 		
 		Subcategory aSubcategory = this.subcategoryFacade.findSubcategoryByName(this.name);
 		if (aSubcategory == null) {
-			this.subcategoryFacade.saveSubcategory(this.topicId, this.name, this.beschreibung);
+			this.subcategoryFacade.saveSubcategory(this.topicId, this.name, this.description);
 			
 			initialiseSubcategoryList();
 			
-			return "zurueckZumSubcategoryMenue";
+			return "backToSubcategoryMenue";
 		} else {
 			sendInfoMessageToUser("Unterkategorie mit dem Namen '" + this.name + " existiert bereits.");
 			return "";
@@ -150,16 +150,16 @@ public class SubcategoryMB implements Serializable{
 			return "";
 		}
 		
-		if (this.beschreibung.isEmpty()) {
+		if (this.description.isEmpty()) {
 			sendInfoMessageToUser("Es wurde keine Beschreibung vergeben");
 			return "";
 		}
 		
-		subcategoryFacade.updateSubcategory(this.subcategoryId, this.topicId,  this.name,  this.beschreibung);
+		subcategoryFacade.updateSubcategory(this.subcategoryId, this.topicId,  this.name, this.description);
 		
 		initialiseSubcategoryList();
 		
-		return "zurueckZumSubcategoryMenue";
+		return "backToSubcategoryMenue";
 		
 	}
 	
@@ -205,11 +205,11 @@ public class SubcategoryMB implements Serializable{
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getBeschreibung() {
-		return beschreibung;
+	public String getDescription() {
+		return description;
 	}
-	public void setBeschreibung(String beschreibung) {
-		this.beschreibung = beschreibung;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	public HtmlDataTable getDataTableTopic() {
 		return dataTableTopic;

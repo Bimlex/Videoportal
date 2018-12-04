@@ -33,11 +33,11 @@ public class SubcategoryDAO extends GenericDAO<Subcategory>{
 		return (List<Subcategory>) this.findAllResult(Subcategory.FIND_LIST_SUBCATEGORIES_BY_NAME, parameters);
 	}
 
-	public List<Subcategory> findSubcategoriesByBeschreibung(String beschreibung) {
+	public List<Subcategory> findSubcategoriesByDescription(String description) {
 		this.getEm().clear();
 		Map<String, Object> parameters = new HashMap<String, Object>();
-		parameters.put("beschreibung", "%" + beschreibung + "%");
-		return (List<Subcategory>) this.findAllResult(Subcategory.FIND_LIST_SUBCATEGORIES_BY_BESCHREIBUNG, parameters);
+		parameters.put("description", "%" + description + "%");
+		return (List<Subcategory>) this.findAllResult(Subcategory.FIND_LIST_SUBCATEGORIES_BY_DESCRIPTION, parameters);
 	}
 
 	public Subcategory findSubcategoryByName(String name) {

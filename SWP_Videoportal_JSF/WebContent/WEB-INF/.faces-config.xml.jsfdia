@@ -27,6 +27,11 @@
     ID="topicMenue::#protected#admin#topicMenue.xhtml" NAME="output4"
     PATH="/protected/admin/topicMenue.xhtml"
     TARGET="rules:#protected#admin#topicMenue.xhtml" TITLE="topicMenue" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="subcategoryMenue::#protected#admin#subcategoryMenue.xhtml"
+    NAME="output6" PATH="/protected/admin/subcategoryMenue.xhtml"
+    TARGET="rules:#protected#admin#subcategoryMenue.xhtml"
+    TITLE="subcategoryMenue" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT ID="logout::#logout.xhtml" NAME="output5"
     PATH="/logout.xhtml" TARGET="rules:#logout.xhtml" TITLE="logout" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
@@ -425,9 +430,20 @@
   <PROCESS-ITEM ID="rules:#protected#admin#topicMenue.xhtml:0"
    NAME="item" PATH="/protected/admin/topicMenue.xhtml" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT
-    ID="startseite::#protected#public#startseite.xhtml" NAME="output"
-    PATH="/protected/public/startseite.xhtml"
-    TARGET="rules:#protected#public#startseite.xhtml" TITLE="startseite" model-entity="JSFProcessItemOutput"/>
+    ID="backToStartPage::#protected#public#startseite.xhtml"
+    NAME="output" PATH="/protected/public/startseite.xhtml"
+    TARGET="rules:#protected#public#startseite.xhtml"
+    TITLE="backToStartPage" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="createNewTopic::#protected#admin#topicAnlegen.xhtml"
+    NAME="output1" PATH="/protected/admin/topicAnlegen.xhtml"
+    TARGET="rules:#protected#admin#topicAnlegen.xhtml"
+    TITLE="createNewTopic" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="changeExistingTopic::#protected#admin#topicAendern.xhtml"
+    NAME="output2" PATH="/protected/admin/topicAendern.xhtml"
+    TARGET="rules:#protected#admin#topicAendern.xhtml"
+    TITLE="changeExistingTopic" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#protected#admin#videoVerwaltung.xhtml"
@@ -444,10 +460,9 @@
     TARGET="rules:#protected#admin#videoAdministration.xhtml"
     TITLE="videoAdministration" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
-    ID="zurueckZurStartseite::#protected#public#startseite.xhtml"
-    NAME="output2" PATH="/protected/public/startseite.xhtml"
-    TARGET="rules:#protected#public#startseite.xhtml"
-    TITLE="zurueckZurStartseite" model-entity="JSFProcessItemOutput"/>
+    ID="videoSuche::#protected#admin#videoSuche.xhtml" NAME="output2"
+    PATH="/protected/admin/videoSuche.xhtml"
+    TARGET="rules:#protected#admin#videoSuche.xhtml" TITLE="videoSuche" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#protected#admin#videoSuche.xhtml"
@@ -485,6 +500,71 @@
     NAME="output" PATH="/protected/admin/videoVerwaltung.xhtml"
     TARGET="rules:#protected#admin#videoVerwaltung.xhtml"
     TITLE="zurueckZurVideoverwaltung" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#protected#admin#subcategoryMenue.xhtml"
+  PATH="/protected/admin/subcategoryMenue.xhtml" SHAPE="352,513,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#protected#admin#subcategoryMenue.xhtml:0"
+   NAME="item" PATH="/protected/admin/subcategoryMenue.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="backToStartPage::#protected#public#startseite.xhtml"
+    NAME="output" PATH="/protected/public/startseite.xhtml"
+    TARGET="rules:#protected#public#startseite.xhtml"
+    TITLE="backToStartPage" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="createNewSubcategory::#protected#admin#subcategoryAnlegen.xhtml"
+    NAME="output1" PATH="/protected/admin/subcategoryAnlegen.xhtml"
+    TARGET="rules:#protected#admin#subcategoryAnlegen.xhtml"
+    TITLE="createNewSubcategory" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="changeExistingSubcategory::#protected#admin#subcategoryAendern.xhtml"
+    NAME="output2" PATH="/protected/admin/subcategoryAendern.xhtml"
+    TARGET="rules:#protected#admin#subcategoryAendern.xhtml"
+    TITLE="changeExistingSubcategory" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#protected#admin#topicAnlegen.xhtml"
+  PATH="/protected/admin/topicAnlegen.xhtml" SHAPE="624,17,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#protected#admin#topicAnlegen.xhtml:0"
+   NAME="item" PATH="/protected/admin/topicAnlegen.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="backToTopicMenue::#protected#admin#topicMenue.xhtml"
+    NAME="output" PATH="/protected/admin/topicMenue.xhtml"
+    TARGET="rules:#protected#admin#topicMenue.xhtml"
+    TITLE="backToTopicMenue" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#protected#admin#topicAendern.xhtml"
+  PATH="/protected/admin/topicAendern.xhtml" SHAPE="32,3153,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#protected#admin#topicAendern.xhtml:0"
+   NAME="item" PATH="/protected/admin/topicAendern.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="backToTopicMenue::#protected#admin#topicMenue.xhtml"
+    NAME="output" PATH="/protected/admin/topicMenue.xhtml"
+    TARGET="rules:#protected#admin#topicMenue.xhtml"
+    TITLE="backToTopicMenue" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#protected#admin#subcategoryAnlegen.xhtml"
+  PATH="/protected/admin/subcategoryAnlegen.xhtml" SHAPE="32,3153,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#protected#admin#subcategoryAnlegen.xhtml:0"
+   NAME="item" PATH="/protected/admin/subcategoryAnlegen.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="backToSubcategoryMenue::#protected#admin#subcategoryMenue.xhtml"
+    NAME="output" PATH="/protected/admin/subcategoryMenue.xhtml"
+    TARGET="rules:#protected#admin#subcategoryMenue.xhtml"
+    TITLE="backToSubcategoryMenue" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#protected#admin#subcategoryAendern.xhtml"
+  PATH="/protected/admin/subcategoryAendern.xhtml" SHAPE="32,3153,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#protected#admin#subcategoryAendern.xhtml:0"
+   NAME="item" PATH="/protected/admin/subcategoryAendern.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="backToSubcategoryMenue::#protected#admin#subcategoryMenue.xhtml"
+    NAME="output" PATH="/protected/admin/subcategoryMenue.xhtml"
+    TARGET="rules:#protected#admin#subcategoryMenue.xhtml"
+    TITLE="backToSubcategoryMenue" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
 </PROCESS>

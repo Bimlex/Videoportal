@@ -55,11 +55,11 @@ public class TopicDAO extends GenericDAO<Topic>{
 		return(List<Topic>) this.findAllResult(Topic.FIND_LIST_BY_NAME, parameters);		
 	}
 
-	public List<Topic> findTopicsByBeschreibung(String beschreibung) {
+	public List<Topic> findTopicsByDescription(String description) {
 		this.getEm().clear();
 		Map<String, Object> parameters = new HashMap<String, Object>();
-		parameters.put("beschreibung" , "%" + beschreibung + "%");
-		return(List<Topic>) this.findAllResult(Topic.FIND_LIST_BY_BESCHREIBUNG, parameters);
+		parameters.put("description" , "%" + description + "%");
+		return(List<Topic>) this.findAllResult(Topic.FIND_LIST_BY_DESCRIPTION, parameters);
 	}
 	
 		

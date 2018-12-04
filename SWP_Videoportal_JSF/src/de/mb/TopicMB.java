@@ -46,7 +46,7 @@ public class TopicMB implements Serializable{
 	@Size(min=1, max=250, message = "Max. 250 Zeichen!")
 	//Umlaute müssen noch in regexp und Klammern und eventuell noch andere Sonderzeichen
 	@Pattern(regexp = "[a-zA-Z0-9_äÄöÖüÜß.,!? ]+", message = "Ungültiges Zeichen! Nur folgende Zeichen: a-z A-Z 0-9 und Leerzeichen erlaubt.")
-	private String beschreibung;
+	private String description;
 	
 	private List<Topic> topicList = null;
 	private HtmlDataTable dataTableTopic;
@@ -73,8 +73,8 @@ public class TopicMB implements Serializable{
 			case "Name":
 				topicList = topicFacade.findTopicsByName(this.searchField);
 				break;
-			case "Beschreibung":
-				topicList = topicFacade.findTopicsByBeschreibung(this.searchField);
+			case "Description":
+				topicList = topicFacade.findTopicsByDescription(this.searchField);
 				break;
 			}
 		}
@@ -87,17 +87,17 @@ public class TopicMB implements Serializable{
 	
 		this.topicId = aTopic.getTopicId();
 		this.name = aTopic.getName();
-		this.beschreibung = aTopic.getBeschreibung();
+		this.description = aTopic.getDescription();
 		
-		return "bestehendeKategorieAendern";	
+		return "changeExistingTopic";	
 	}
 		
 	public String createTopic() {
 		this.topicId = this.getTopicId();
 		this.name = "";
-		this.beschreibung = "";
+		this.description = "";
 		
-		return "neueKategorieAnlegen";
+		return "createNewTopic";
 	}	
 	
 	public void deleteTopic(Topic aTopic) {
@@ -111,18 +111,18 @@ public class TopicMB implements Serializable{
 			return "";
 		}
 		
-		if (this.beschreibung.isEmpty()) {
+		if (this.description.isEmpty()) {
 			sendInfoMessageToUser("Es wurde keine Beschreibung vergeben");
 			return "";
 		}
 		
 		Topic aTopic = this.topicFacade.findTopicByName(this.name);
 		if (aTopic == null) {
-			this.topicFacade.saveTopic(this.name, this.beschreibung);
+			this.topicFacade.saveTopic(this.name, this.description);
 			
 			initialiseTopicList();
 			
-			return "zurueckZumTopicMenue";
+			return "backToTopicMenue";
 		} else {
 			sendInfoMessageToUser("Themenbereich mit dem Namen  '" + this.name + "  existiert bereits.");
 			return "";
@@ -137,16 +137,16 @@ public class TopicMB implements Serializable{
 			return "";
 		}
 		
-		if (this.beschreibung.isEmpty()) {
+		if (this.description.isEmpty()) {
 			sendInfoMessageToUser("Es wurde keine Beschreibung vergeben");
 			return "";
 		}
 		
-		topicFacade.updateTopic(this.topicId, this.name, this.beschreibung);
+		topicFacade.updateTopic(this.topicId, this.name, this.description);
 	
 		initialiseTopicList();
 		
-		return "zurueckZumTopicMenue";
+		return "backToTopicMenue";
 	}
 	
 	private void sendInfoMessageToUser(String message) {
@@ -185,11 +185,11 @@ public class TopicMB implements Serializable{
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getBeschreibung() {
-		return beschreibung;
+	public String getDescription() {
+		return description;
 	}
-	public void setBeschreibung(String beschreibung) {
-		this.beschreibung = beschreibung;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	public List<Topic> getTopicList() {
 		return topicList;

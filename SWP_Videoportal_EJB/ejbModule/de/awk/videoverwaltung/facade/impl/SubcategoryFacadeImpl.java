@@ -24,16 +24,16 @@ public class SubcategoryFacadeImpl implements ISubcategoryFacade{
 		return subcategoryDAO.find(subcategoryId);
 	}
 	
-	public void saveSubcategory(int topicId, String name, String beschreibung) {
-		Subcategory aSubcategory = new Subcategory(topicId, name, beschreibung);
+	public void saveSubcategory(int topicId, String name, String description) {
+		Subcategory aSubcategory = new Subcategory(topicId, name, description);
 		subcategoryDAO.save(aSubcategory);
 	}
 	
-	public void updateSubcategory(int subcategoryId, int topicId, String name, String beschreibung) {
+	public void updateSubcategory(int subcategoryId, int topicId, String name, String description) {
 		Subcategory aSubcategory = this.getSubcategoryById(subcategoryId);
 		aSubcategory.setTopicId(topicId);
 		aSubcategory.setName(name);
-		aSubcategory.setBeschreibung(beschreibung);
+		aSubcategory.setDescription(description);
 		subcategoryDAO.save(aSubcategory);
 	}
 	
@@ -57,8 +57,8 @@ public class SubcategoryFacadeImpl implements ISubcategoryFacade{
 	}
 
 	@Override
-	public List<Subcategory> findSubcategoriesByBeschreibung(String beschreibung) {
-		return subcategoryDAO.findSubcategoriesByBeschreibung(beschreibung);
+	public List<Subcategory> findSubcategoriesByDescription(String description) {
+		return subcategoryDAO.findSubcategoriesByDescription(description);
 	}
 
 	@Override

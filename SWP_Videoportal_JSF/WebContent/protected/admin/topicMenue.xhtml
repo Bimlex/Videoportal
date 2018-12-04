@@ -48,7 +48,7 @@
 					<h:selectOneRadio enabledClass="radio-inline" id="filterSelection"
 					value="#{topicMB.searchOption}">
 						<f:selectItem itemValue="Name" itemLabel="Name" style="margin-right:10px;" />
-						<f:selectItem itemValue="Beschreibung" itemLabel="Beschreibung" />
+						<f:selectItem itemValue="Description" itemLabel="Beschreibung" />
 					</h:selectOneRadio>
 					
 					<h:inputText id="searchField" value="#{topicMB.searchField}"
@@ -77,7 +77,7 @@
 						
 						<h:column style="margin-left:10px;">
 							<f:facet name="header">Beschreibung</f:facet>
-							<h:outputText value="#{topic.beschreibung}" />
+							<h:outputText value="#{topic.description}" />
 						</h:column>
 						
 						<h:column>
@@ -106,7 +106,7 @@
 						</h:commandButton>
 												
 	
-						<h:commandButton immediate="true" action="zurueckZurStartseite"
+						<h:commandButton immediate="true" action="backToStartPage"
 							class="btn btn-primary" value="Zur&uuml;ck"
 							style="width:200px;height:40px;margin-bottom: 10px">
 						</h:commandButton>
