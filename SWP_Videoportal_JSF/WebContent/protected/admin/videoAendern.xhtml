@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link href="../../css/main.css" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+		integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+		crossorigin="anonymous" />
+	<link rel="shortcut icon" type="image/x-icon"
+		href="../../images/ico.png" />
+	<title>Video &auml;ndern</title>
+		
+</h:head>
+	<h:body>
+		<center>
+		<h3>Video &auml;ndern</h3>
+			<h:form>
+			
+			<h:panelGrid columns="3" 
+				id="Video-Grid"
+				styleClass="panelGrid"
+				rowClasses="panelFirstLine, panelNextLine">
+ 				
+				<h:outputLabel value="ID: " />
+				<h:outputText value="#{videoMB.videoId}"  style="width: 200"/>
+				<h:inputHidden id="videoId" value="#{videoMB.videoId}"/>
+
+				
+				<h:outputLabel value="Titel: " />
+				<h:inputText id="name" class="form-control" value="#{videoMB.name}" style="width: 200"/>
+				<h:outputLabel value="" />
+				
+				<h:outputLabel value="Themenbereich: " />
+				<h:inputText id="topic" class="form-control" value="#{videoMB.topic}" style="width: 200"/>
+				<h:outputLabel value="" />		
+				
+				<h:outputLabel value="Kategorie" />
+				<h:inputText id="category" class="form-control" value="#{videoMB.subcategory}" style="width: 200"/>
+				<h:outputLabel value="" />	
+				
+				<h:outputLabel value="Beschreibung" />
+				<h:inputText id="description" class="form-control" value="#{videoMB.description}" style="width: 200"/>
+				<h:outputLabel value="" />
+
+			</h:panelGrid>
+			
+ 			<h:panelGrid columns="1"
+				styleClass="panelGrid"
+				rowClasses="panelFirstLine, panelNextLine">
+				<h:commandButton action="#{videoMB.updateVideo()}" 
+					value="Video anpassen" class="btn btn-primary" style="width:200px;height:40px;margin-bottom: 10px;" />
+				<h:button value="Zur&uuml;ck" outcome="zurueckZurVideoverwaltung" 
+				class="btn btn-primary" style="width:200px;height:40px;margin-bottom: 10px" />	
+			</h:panelGrid>
+			 
+			
+			
+			</h:form>
+			
+		</center>
+	</h:body>
+</html>

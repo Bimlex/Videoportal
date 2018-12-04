@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
@@ -45,6 +46,84 @@ public class VideoMB {
 //		}
 //		return video;
 //	}
+	
+	public String updateVideo() {
+
+		if (this.name.isEmpty()) {
+			sendInfoMessageToUser("Es wurde kein Videoname vergeben");
+			return "";
+		}
+
+		if (this.topic.isEmpty()) {
+			sendInfoMessageToUser("Es wurde kein Themenbereich vergeben");
+			return "";
+		}
+		if (this.subcategory.isEmpty()) {
+			sendInfoMessageToUser("Es wurde kein Kategorie vergeben");
+			return "";
+		}
+
+		if (this.description.isEmpty()) {
+			sendInfoMessageToUser("Es wurde kein Beschreibung vergeben");
+			return "";
+		}
+
+		
+		videoFacade.updateVideo(this.name, this.topic, this.subcategory, this.description);
+
+//		initialiseVideoList();
+
+		return "zurueckZumVideoMenue";
+
+	}
+	
+//	private void initialiseVideoList() {
+//
+//		if (this.searchField == null) {
+//			videoList = videoFacade.getAllVideos();
+//		} else if (this.searchField.equals("")) {
+//			videoList = videoFacade.getAllVideos();
+//		} else {
+//			if(searchOption == null) {
+//				searchOption = "Username";
+//			}
+//			
+//			if(searchOption.equals("")) {
+//				searchOption = "Username";
+//			}
+//
+//			switch (searchOption) {
+//			case "Username":
+//				videoList = videoFacade.findVideoByName(this.searchField);
+//				break;
+//			case "Vorname":
+//				videoList = videoFacade.findVideoByName(this.searchField);
+//				break;
+//			case "Nachname":
+//				videoList = videoFacade.findVideoByName(this.searchField);
+//				break;
+//			}
+//
+//		}
+//		
+//		for (User aUser : userList) {
+//			aUser.setPassword("*********");
+//		}
+//		
+//		return userList;
+//	}
+
+	private void sendInfoMessageToUser(String message) {
+		FacesContext context = getContext();
+		context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, message, message));
+	}
+	
+
+	private FacesContext getContext() {
+		FacesContext context = FacesContext.getCurrentInstance();
+		return context;
+	}
+
 
 	private HttpServletRequest getRequest() {
 		return (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
@@ -53,6 +132,24 @@ public class VideoMB {
 	public List<Video> getAllVideos() {
 		videoList = videoFacade.getAllVideos();
 		return videoList;
+	}
+
+	public String editVideo(String aVideoname) {
+		System.out.println("---------------------------" + aVideoname);
+		System.out.println("-----------" + videoList.size() + "----------------" );
+		Video aVideo = this.videoFacade.findVideoByName(aVideoname);
+		
+		this.videoId= aVideo.getVideoId();
+		this.name = aVideo.getName();
+		this.description = aVideo.getDescription();
+		this.topic = aVideo.getTopic();
+		this.subcategory = aVideo.getSubcategory();
+
+		return "bestehendesVideoAendern";
+	}
+	
+	public void deleteVideo(Video aVideo) {
+		this.videoFacade.deleteVideo(aVideo.getVideoId());
 	}
 
 //	public Integer getVideoId() {
@@ -85,6 +182,7 @@ public class VideoMB {
 	 }
 	
 	
+	 
 	
 	
 	
