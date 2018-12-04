@@ -6,18 +6,22 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
 	<h:outputStylesheet library="css" name="main.css" />
-	<link rel="shortcut icon" type="image/x-icon" href="../../images/ico.png" />
-</h:head>	
+	<link rel="shortcut icon" type="image/x-icon"
+		href="../../images/ico.png" />
+</h:head>
 <h:body>
 	<center>
-		<h2>Der User #{userMB.user.username} wurde abgemeldet </h2>
-		<h:panelGrid columns="1">
-			<h:outputLabel rendered="#{userMB.isUserUser()}" value="Klicks: #{userMB.user.timesClicked}"/>
-			<h:outputLabel rendered="#{userMB.isUserUser()}" value="Dauer der Anmeldung: #{userMB.user.minutesLoggedIn} Minute(n)"/>
-		</h:panelGrid>
-		#{userMB.reset()}
-		<br/>
-<!-- 		<h:button value="Zur&uuml;ck zum Login" outcome="backToLogin" style="width:200px;height:30px" /> -->
+		<img
+			src="https://login.hs-osnabrueck.de/nidp/images/hsos-logo-neu.png"
+			alt="LogoHS" style="width: 200px; margin-top: 10px" />
+		<h3>Der User #{userMB.user.username} wurde abgemeldet</h3>
+
+		Sie werden automatisch zur Login-Seite weitergeleitet.
+
+		<script language="javascript" type="text/javascript">
+		window.setTimeout('window.location = "http://localhost:8080/SWP_Videoportal_JSF/"',2000);
+		</script>
+
 	</center>
 </h:body>
 </html>

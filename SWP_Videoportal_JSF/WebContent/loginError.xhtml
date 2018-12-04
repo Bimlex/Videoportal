@@ -1,26 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"   
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      >
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<link rel="shortcut icon" type="image/x-icon" href="../../images/ico.png" />
-	<title>Login-Fehler</title>	
+	<link rel="shortcut icon" type="image/x-icon"
+		href="../../images/ico.png" />
+	<title>Login-Fehler</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="shortcut icon" type="image/x-icon"
+		href="../../images/ico.png" />
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+		integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+		crossorigin="anonymous" />
 </h:head>
-    
+
 <h:body>
 	<center>
-		<h2>Sie konnten nicht angemeldet werden!</h2>
-		<h:panelGrid columns="1">
-			Bitte kehren Sie zum Login zur&uuml;ck und versuchen Sie es noch einmal.
-		</h:panelGrid>
-		#{userMB.reset()}
-		<br/>
-<!-- 		<h:button value="Zur&uuml;ck zum Login" outcome="backToLogin" style="width:200px;height:30px" /> -->
+
+		<img
+			src="https://login.hs-osnabrueck.de/nidp/images/hsos-logo-neu.png"
+			alt="LogoHS" style="width: 200px; margin-top: 10px" />
+		<h3>Die Anmeldung hat nicht funktioniert</h3>
+
+		Sie werden automatisch zur Login-Seite weitergeleitet.
+
+		<script language="javascript" type="text/javascript">
+		window.setTimeout('window.location = "http://localhost:8080/SWP_Videoportal_JSF/"',2000);
+		</script>
+
 	</center>
 </h:body>
 </html>
