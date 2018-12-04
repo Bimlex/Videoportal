@@ -375,58 +375,58 @@
  <navigation-rule>
   <from-view-id>/protected/admin/topicMenue.xhtml</from-view-id>
   <navigation-case>
-   <from-outcome>zurueckZurStartseite</from-outcome>
+   <from-outcome>backToStartPage</from-outcome>
    <to-view-id>/protected/public/startseite.xhtml</to-view-id>
   </navigation-case>
   <navigation-case>
-   <from-outcome>neueKategorieAnlegen</from-outcome>
+   <from-outcome>createNewTopic</from-outcome>
    <to-view-id>/protected/admin/topicAnlegen.xhtml</to-view-id>
   </navigation-case>
   <navigation-case>
-   <from-outcome>bestehendeKategorieAendern</from-outcome>
+   <from-outcome>changeExistingTopic</from-outcome>
    <to-view-id>/protected/admin/topicAendern.xhtml</to-view-id>
   </navigation-case>
  </navigation-rule>
  <navigation-rule>
   <from-view-id>/protected/admin/topicAendern.xhtml</from-view-id>
   <navigation-case>
-   <from-outcome>zurueckZumTopicMenue</from-outcome>
+   <from-outcome>backToTopicMenue</from-outcome>
    <to-view-id>/protected/admin/topicMenue.xhtml</to-view-id>
   </navigation-case>
  </navigation-rule>
  <navigation-rule>
   <from-view-id>/protected/admin/topicAnlegen.xhtml</from-view-id>
   <navigation-case>
-   <from-outcome>zurueckZumTopicMenue</from-outcome>
+   <from-outcome>backToTopicMenue</from-outcome>
    <to-view-id>/protected/admin/topicMenue.xhtml</to-view-id>
   </navigation-case>
  </navigation-rule>
  <navigation-rule>
   <from-view-id>/protected/admin/subcategoryMenue.xhtml</from-view-id>
   <navigation-case>
-   <from-outcome>zurueckZurStartseite</from-outcome>
+   <from-outcome>backToStartPage</from-outcome>
    <to-view-id>/protected/public/startseite.xhtml</to-view-id>
   </navigation-case>
   <navigation-case>
-   <from-outcome>neueUnterkategorieAnlegen</from-outcome>
+   <from-outcome>createNewSubcategory</from-outcome>
    <to-view-id>/protected/admin/subcategoryAnlegen.xhtml</to-view-id>
   </navigation-case>
   <navigation-case>
-   <from-outcome>bestehendeUnterkategorieAendern</from-outcome>
+   <from-outcome>changeExistingSubcategory</from-outcome>
    <to-view-id>/protected/admin/subcategoryAendern.xhtml</to-view-id>
   </navigation-case>
  </navigation-rule>
  <navigation-rule>
   <from-view-id>/protected/admin/subcategoryAnlegen.xhtml</from-view-id>
   <navigation-case>
-   <from-outcome>zurueckZumSubcategoryMenue</from-outcome>
+   <from-outcome>backToSubcategoryMenue</from-outcome>
    <to-view-id>/protected/admin/subcategoryMenue.xhtml</to-view-id>
   </navigation-case>
  </navigation-rule>
  <navigation-rule>
   <from-view-id>/protected/admin/subcategoryAendern.xhtml</from-view-id>
   <navigation-case>
-   <from-outcome>zurueckZumSubcategoryMenue</from-outcome>
+   <from-outcome>backToSubcategoryMenue</from-outcome>
    <to-view-id>/protected/admin/subcategoryMenue.xhtml</to-view-id>
   </navigation-case>
  </navigation-rule>
