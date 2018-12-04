@@ -18,7 +18,7 @@ import javax.persistence.Table;
 	@NamedQuery(name="Topic.findTopicById", query="SELECT t FROM Topic t WHERE t.topicId = :topicId"),
 	@NamedQuery(name="Topic.findTopicByName", query="SELECT t FROM Topic t WHERE t.name = :name")
 })
-public class Topic  {
+public class Topic {
 
 	public static final String FIND_LIST_BY_ID = "Topic.findTopicsById";
 	public static final String FIND_LIST_BY_NAME = "Topic.findTopicsByName";
@@ -40,33 +40,23 @@ public class Topic  {
 		this.name = name;
 		this.beschreibung = beschreibung;
 	}
-
 	
-	//Getter & Setter-Methoden
+	//Getter & Setter
 	public Integer getTopicId() {
 		return topicId;
-	}
-		
+	}		
 	public String getName() {
 		return name;
 	}
-
 	public void setName(String name) {
 		this.name = name;
 	}
-
 	public String getBeschreibung() {
 		return beschreibung;
 	}
-
 	public void setBeschreibung(String beschreibung) {
 		this.beschreibung = beschreibung;
 	}
 	
-	@Override
-	public int hashCode() {
-		return this.getTopicId();
-	}
-		
 		
 }

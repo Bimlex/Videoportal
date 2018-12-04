@@ -33,7 +33,8 @@ public class TopicMB implements Serializable{
 	@EJB
 	ITopicFacade topicFacade;
 	
-	@NotNull @Digits(fraction = 0, integer = 6) 
+	@NotNull 
+	@Digits(fraction = 0, integer = 6) 
 	private int topicId;
 	
 	@NotNull
@@ -79,18 +80,7 @@ public class TopicMB implements Serializable{
 		}
 		
 		return topicList;		
-	}
-	
-	//Braucht man nicht!!!
-	public void getTopicInfo() throws IOException {
-		int index = dataTableTopic.getRowIndex(); // Actually not interesting info.
-		User user = (User) dataTableTopic.getRowData(); // This is what you want.
-
-		System.out.println(topic.getName());
-		System.out.println(topic.getBeschreibung());
-	}
-
-	
+	}	
 	
 	public String editTopic(String name) {
 		Topic aTopic = this.topicFacade.findTopicByName(name);
@@ -101,21 +91,14 @@ public class TopicMB implements Serializable{
 		
 		return "bestehendeKategorieAendern";	
 	}
-	
-	
-	
-	
-	
-	
-	//Nochmal überprüfen
+		
 	public String createTopic() {
 		this.topicId = this.getTopicId();
 		this.name = "";
 		this.beschreibung = "";
 		
 		return "neueKategorieAnlegen";
-	}
-	
+	}	
 	
 	public void deleteTopic(Topic aTopic) {
 		this.topicFacade.deleteTopic(aTopic.getTopicId());
@@ -232,40 +215,6 @@ public class TopicMB implements Serializable{
 	public void setSearchOption(String searchOption) {
 		this.searchOption = searchOption;
 	}
-	
-	
-	
-	
-//	public Topic getTopicById(Integer id) {
-//		return topicFacade.getTopicById(id);
-//	}
-//	
-//	public String neuenTopicAnlegen() {
-//		topicFacade.saveTopic(this.name, this.beschreibung);
-//		return "topicMenue";
-//	}
-//	
-//	public void topicAendern() {
-//		topicFacade.updateTopic(this.topicId, this.name, this.beschreibung);
-//	}
-//	
-//	public void topicLoeschen() {
-//		topicFacade.deleteTopic(topicId);
-//	}
-	
-	
-
-	
-
-
-	
 		
-
-	
-
-	
-
-
-	
 	
 }

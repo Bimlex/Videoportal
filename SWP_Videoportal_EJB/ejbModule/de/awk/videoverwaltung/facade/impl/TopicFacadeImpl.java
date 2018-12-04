@@ -20,10 +20,6 @@ public class TopicFacadeImpl implements ITopicFacade{
 	}
 		
 	
-	//Ungenutzte Methode
-	public Topic getTopicById(int topicId) {
-		return topicDAO.find(topicId);
-	}
 	
 	public void saveTopic(String name, String beschreibung) {
 		Topic aTopic = new Topic(name, beschreibung);
@@ -46,6 +42,9 @@ public class TopicFacadeImpl implements ITopicFacade{
 		}
 	}
 
+	
+	
+	
 	@Override
 	public List<Topic> findTopicsById(int topicId) {
 		return topicDAO.findTopicsById(topicId);

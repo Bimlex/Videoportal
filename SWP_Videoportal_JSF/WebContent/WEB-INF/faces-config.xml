@@ -401,5 +401,34 @@
    <to-view-id>/protected/admin/topicMenue.xhtml</to-view-id>
   </navigation-case>
  </navigation-rule>
+ <navigation-rule>
+  <from-view-id>/protected/admin/subcategoryMenue.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>zurueckZurStartseite</from-outcome>
+   <to-view-id>/protected/public/startseite.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>neueUnterkategorieAnlegen</from-outcome>
+   <to-view-id>/protected/admin/subcategoryAnlegen.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>bestehendeUnterkategorieAendern</from-outcome>
+   <to-view-id>/protected/admin/subcategoryAendern.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+ <navigation-rule>
+  <from-view-id>/protected/admin/subcategoryAnlegen.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>zurueckZumSubcategoryMenue</from-outcome>
+   <to-view-id>/protected/admin/subcategoryMenue.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+ <navigation-rule>
+  <from-view-id>/protected/admin/subcategoryAendern.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>zurueckZumSubcategoryMenue</from-outcome>
+   <to-view-id>/protected/admin/subcategoryMenue.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
  <application/>
 </faces-config>

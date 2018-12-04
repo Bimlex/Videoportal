@@ -9,7 +9,6 @@ import de.awk.videoverwaltung.model.Topic;
 public interface ITopicFacade {
 
 	public abstract List<Topic> getAlleKategorien();
-	public abstract Topic getTopicById(int topicId);
 	
 	public abstract void updateTopic(int topicId, String name, String beschreibung);
 	

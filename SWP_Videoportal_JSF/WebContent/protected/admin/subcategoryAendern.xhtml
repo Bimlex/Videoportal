@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link href="../../css/main.css" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+		integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+		crossorigin="anonymous" />
+	<link rel="shortcut icon" type="image/x-icon"
+		href="../../images/ico.png" />
+	<title>Unterkategorie &auml;ndern</title>
+</h:head>
+
+<h:body>
+	<center>
+		<h3>Unterkategorie &auml;ndern</h3>
+		<h:messages layout="list" styleClass="messageStyleClassVP"
+			errorClass="errorMessageVP" infoClass="infoMessageVP" />
+
+		<h:form id="User-Formular">
+
+			<h:outputLabel
+				value="#{userMB.user.vorname} #{userMB.user.nachname} (Username: #{userMB.user.username})" />
+			<br />
+			<br />
+			<h:panelGrid columns="3" id="User-Grid" styleClass="panelGrid"
+				rowClasses="userRow,userRow,userRow">
+
+
+				<h:outputLabel value="ThemenbereichsID: " />
+				<h:inputText class="form-control" id="TopicId"
+							 value="#{subcategoryMB.topicId}" 
+							 style="margin-left: 20px"/>
+				<h:inputHidden id="SubcategoryId" value="#{subcategoryMB.subcategoryId}" />
+
+				<h:outputLabel value="Name: " />
+				<h:inputText class="form-control" id="Name"
+							 value="#{subcategoryMB.name}" 
+							 style="margin-left: 20px"/>
+				<h:outputLabel value="" />		
+
+				<h:outputLabel value="Beschreibung: " />
+				<h:inputTextarea class="form-control" id="Beschreibung"
+								 cols="50" rows="7"
+								 value="#{subcategoryMB.beschreibung}" 
+								 style="margin-left: 20px"/>
+				<h:outputLabel value="" />
+
+			</h:panelGrid>
+			<br />
+
+			<h:panelGrid columns="1" styleClass="panelGrid"
+				rowClasses="panelFirstLine, panelNextLine">
+				<h:commandButton action="#{subcategoryMB.updateSubcategory()}"
+					value="Unterkategorie anpassen" class="btn btn-primary"
+					style="width:200px;height:40px;margin-bottom: 10px;">
+				</h:commandButton>
+				<h:button value="Zur&uuml;ck" outcome="zurueckZumSubcategoryMenue"
+					class="btn btn-primary" style="width:200px;height:40px;margin-bottom: 10px" />
+			</h:panelGrid>
+
+		</h:form>
+	</center>
+</h:body>
+</html>
