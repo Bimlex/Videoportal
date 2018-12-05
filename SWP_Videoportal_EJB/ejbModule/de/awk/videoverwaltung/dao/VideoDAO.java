@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.ejb.Stateless;
 
 import de.awk.videoverwaltung.dao.GenericDAO;
+import de.awk.videoverwaltung.model.Topic;
 import de.awk.videoverwaltung.model.Video;
 
 
@@ -26,5 +27,12 @@ public class VideoDAO  extends GenericDAO<Video> {
     	parameters.put("videoname", videoname);
 	return super.findOneResult(Video.FIND_BY_VIDEONAME, parameters);
     }
+
+	public Video findVideoById(int videoId) {
+		this.getEm().clear();
+		Map<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put("videoId", videoId);
+		return super.findOneResult(Video.FIND_VIDEO_BY_ID, parameters);
+	}
 	
 }

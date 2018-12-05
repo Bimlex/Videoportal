@@ -28,10 +28,11 @@ public class VideoFacadeImpl implements IVideoFacade {
 	}
 
 	@Override
-	public void updateVideo(String aVideoname, String topic, String subcategory, String description) {
+	public void updateVideo(Integer aVideoId, String aVideoname, String topic, String subcategory, String description) {
 	
-		Video aVideo = this.findVideoByName(aVideoname);
+		Video aVideo = this.findVideoById(aVideoId);
 		
+		aVideo.setVideoId(aVideoId);
 		aVideo.setName(aVideoname);
 		aVideo.setTopic(topic);
 		aVideo.setSubcategory(subcategory);
@@ -60,6 +61,12 @@ public class VideoFacadeImpl implements IVideoFacade {
 	@Override
 	public Video findVideoByName(String videoname) {
 		return videoDAO.findVideoByName(videoname);
+	}
+
+	
+	@Override
+	public Video findVideoById(int aVideoId) {
+		return videoDAO.findVideoById(aVideoId);
 	}
 
 

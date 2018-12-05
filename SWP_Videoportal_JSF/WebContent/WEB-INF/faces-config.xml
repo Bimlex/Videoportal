@@ -112,12 +112,18 @@
   <navigation-case>
    <from-outcome>bestehendesVideoAendern</from-outcome>
    <to-view-id>/protected/admin/videoAendern.xhtml</to-view-id>
-  </navigation-case>  
+  </navigation-case>
   <navigation-case>
    <from-outcome>zurueckZurVideoverwaltung</from-outcome>
    <to-view-id>/protected/admin/videoVerwaltung.xhtml</to-view-id>
   </navigation-case>
-   </navigation-rule>
+  
+    <navigation-case>
+   <from-outcome>zurueckZumVideoMenue</from-outcome>
+   <to-view-id>/protected/admin/videoAdministration.xhtml</to-view-id>
+  </navigation-case>
+  
+   </navigation-rule>   
       <navigation-rule>
   <from-view-id>/protected/admin/videoAendern.xhtml</from-view-id>
   <navigation-case>

@@ -17,7 +17,9 @@ import javax.persistence.Table;
 @Access(AccessType.FIELD)
 @Table(name="swp_video")
 @NamedQueries({
-	@NamedQuery(name="Video.findVideoByName", query="SELECT v FROM Video v WHERE v.name = :videoname")
+	@NamedQuery(name="Video.findVideoByName", query="SELECT v FROM Video v WHERE v.name = :videoname"),
+	@NamedQuery(name="Video.findVideoById", query="SELECT v FROM Video v WHERE v.videoId = :videoId"),
+
 })
 public class Video implements Serializable {
 
@@ -29,6 +31,7 @@ public class Video implements Serializable {
 	
 
 	public static final String FIND_BY_VIDEONAME = "Video.findVideoByName";
+	public static final String FIND_VIDEO_BY_ID = "Video.findVideoById";
 	
 	
 	@Id
@@ -95,6 +98,12 @@ public class Video implements Serializable {
 	public void setSubcategory(String subcategory) {
 		this.subcategory = subcategory;
 	}
+
+	public void setVideoId(Integer videoId) {
+		this.videoId = videoId;
+	}
+
+	
 
 	
 

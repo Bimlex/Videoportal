@@ -48,7 +48,12 @@ public class VideoMB {
 //	}
 	
 	public String updateVideo() {
-
+		
+//		if (this.videoId.isEmpty()) {
+//			sendInfoMessageToUser("Es wurde keine ID vergeben");
+//			return "";
+//		}
+	
 		if (this.name.isEmpty()) {
 			sendInfoMessageToUser("Es wurde kein Videoname vergeben");
 			return "";
@@ -69,7 +74,7 @@ public class VideoMB {
 		}
 
 		
-		videoFacade.updateVideo(this.name, this.topic, this.subcategory, this.description);
+		videoFacade.updateVideo(this.videoId, this.name, this.topic, this.subcategory, this.description);
 
 //		initialiseVideoList();
 
@@ -112,6 +117,10 @@ public class VideoMB {
 //		
 //		return userList;
 //	}
+
+	public void setTopic(String topic) {
+		this.topic = topic;
+	}
 
 	private void sendInfoMessageToUser(String message) {
 		FacesContext context = getContext();
@@ -271,6 +280,14 @@ public class VideoMB {
 		}
 		return true;
 
+	}
+
+	public void setSubcategory(String subcategory) {
+		this.subcategory = subcategory;
+	}
+
+	public void setVideoList(List<Video> videoList) {
+		this.videoList = videoList;
 	}
 
 	private static String getFilename(Part part) {
