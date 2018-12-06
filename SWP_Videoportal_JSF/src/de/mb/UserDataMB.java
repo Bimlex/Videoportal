@@ -55,43 +55,19 @@ public class UserDataMB implements Serializable {
 	private HtmlDataTable dataTableUser;
 	private String searchField;
 	private String searchOption;
+	private String searchText;
 
 	private List<String> roleSelection = new ArrayList<String>();
 
-	public String getSearchField() {
-		return searchField;
-	}
-
-	public void setSearchField(String searchField) {
-		this.searchField = searchField;
-	}
-
-	// public void searchUser() {
-	// this.userList = this.userFacade.getUserByName(this.searchField);
-	// }
 
 	@PostConstruct
 	public void init() {
 		// Fuellt Dropdown-Auswahl-Menue (Benutzer, Administrator)
 		roleSelection = this.userFacade.getRoleSelection();
 
-		if (userList == null) {
-			// Standardwert fuer Suchoption setzen
-//			this.searchOption = "Username";
-
-			
-			// TEST
-//			this.searchOption = "Nachname";
-//			this.searchField = "d";
-			
-			// initialisiert die Usertabelle
-//			initialiseUserList();
-		}
-
 	}
 
 	public List<User> initialiseUserList() {
-//		this.userList = null;
 
 		if (this.searchField == null) {
 			userList = userFacade.getAllUser();
@@ -126,6 +102,7 @@ public class UserDataMB implements Serializable {
 		
 		return userList;
 	}
+		
 
 	public HtmlDataTable getDataTableUser() {
 		return dataTableUser;
@@ -136,24 +113,13 @@ public class UserDataMB implements Serializable {
 	}
 
 	public void getUserInfo() throws IOException {
-		int index = dataTableUser.getRowIndex(); // Actually not interesting info.
-		User user = (User) dataTableUser.getRowData(); // This is what you want.
+		int index = dataTableUser.getRowIndex(); 
+		User user = (User) dataTableUser.getRowData(); 
 
 		System.out.println(user.getUsername());
 		System.out.println(user.getVorname());
 	}
 
-//	public String editUser(User aUser) {
-//		// Wechsel zur User aendern Sicht
-//		this.username = aUser.getUsername();
-//		this.password = "";
-//		this.vorname = aUser.getVorname();
-//		this.nachname = aUser.getNachname();
-//		this.rolename = aUser.getRolename();
-//
-//		return "bestehendenUserAendern";
-//	}
-	
 	public String editUser(String aUsername) {
 		// Wechsel zur User aendern Sicht
 		
@@ -161,13 +127,17 @@ public class UserDataMB implements Serializable {
 		System.out.println("-----------" + userList.size() + "----------------" + searchField);
 		User aUser = this.userFacade.findUserByName(aUsername);
 		
-		this.username = aUser.getUsername();
-		this.password = "";
-		this.vorname = aUser.getVorname();
-		this.nachname = aUser.getNachname();
-		this.rolename = aUser.getRolename();
+		if(aUser != null) {
+			this.username = aUser.getUsername();
+			this.password = "";
+			this.vorname = aUser.getVorname();
+			this.nachname = aUser.getNachname();
+			this.rolename = aUser.getRolename();
 
-		return "bestehendenUserAendern";
+			return "bestehendenUserAendern";
+		}
+		return "";
+
 	}
 
 	public String createUser() {
@@ -182,17 +152,10 @@ public class UserDataMB implements Serializable {
 	}
 
 	public void deleteUser(User aUser) {
-		this.userFacade.deleteUser(aUser.getUsername());
+		if(aUser != null) {
+			this.userFacade.deleteUser(aUser.getUsername());
+		}
 	}
-
-	// public List<User> getAlleUser() {
-	// // Eventuell umschreiben umschieben in UserFacadeImpl
-	// userList = userFacade.getAllUser();
-	// for (User aUser : userList) {
-	// aUser.setPassword("*********");
-	// }
-	// return userList;
-	// }
 
 	public String saveUser() {
 		// Neuen User speichern
@@ -221,7 +184,7 @@ public class UserDataMB implements Serializable {
 		if (aUser == null) {
 			this.userFacade.saveUser(this.username, aPassword, this.vorname, this.nachname, this.rolename);
 
-			initialiseUserList();
+			initialiseUserList();			
 
 			return "zurueckZumUserMenue";
 		} else {
@@ -265,6 +228,14 @@ public class UserDataMB implements Serializable {
 	private FacesContext getContext() {
 		FacesContext context = FacesContext.getCurrentInstance();
 		return context;
+	}
+	
+	public String getSearchField() {
+		return searchField;
+	}
+
+	public void setSearchField(String searchField) {
+		this.searchField = searchField;
 	}
 
 	public String getSearchOption() {
