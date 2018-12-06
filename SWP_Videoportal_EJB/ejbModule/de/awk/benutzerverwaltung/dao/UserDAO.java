@@ -9,7 +9,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
 import de.awk.benutzerverwaltung.model.User;
-import de.awk.projektverwaltung.model.Projekt;
 
 @Stateless
 public class UserDAO extends GenericDAO<User> {

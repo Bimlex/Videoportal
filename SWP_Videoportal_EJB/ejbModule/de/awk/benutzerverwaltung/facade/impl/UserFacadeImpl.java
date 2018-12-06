@@ -12,7 +12,6 @@ import javax.persistence.TypedQuery;
 import de.awk.benutzerverwaltung.dao.UserDAO;
 import de.awk.benutzerverwaltung.facade.IUserFacade;
 import de.awk.benutzerverwaltung.model.User;
-import de.awk.projektverwaltung.model.Projekt;
 
 @Stateless
 public class UserFacadeImpl implements IUserFacade {
