@@ -32,24 +32,11 @@
 			<h:form>
 				<h:panelGrid columns="1" styleClass="panelGrid"
 					rowClasses="panelFirstLine, panelNextLine">
-					<h:commandButton value="Ressourcen" action="ressourcenMenue"
-						rendered="#{userMB.isUserAdmin()}"
-						style="min-width:250px; max-width: 550px; margin-bottom:10px; display:inline-block"
-						class="btn btn-primary">
-					</h:commandButton>
-
-					<h:commandButton value="Projekte" action="projektMenue"
-						rendered="#{userMB.isUserUser()}"
-						style="min-width:250px; max-width: 550px; margin-bottom:10px; display:inline-block"
-						class="btn btn-primary">
-						<f:actionListener binding="#{ userMB.userClicked() }" />
-					</h:commandButton>
 
 					<h:commandButton value="Benutzerverwaltung" action="benutzerverw"
 						rendered="#{userMB.isUserAdmin()}"
 						style="min-width:250px; max-width: 550px; margin-bottom:10px; display:inline-block"
 						class="btn btn-primary">
-						<f:actionListener binding="#{ userMB.userClicked() }" />
 					</h:commandButton>
 
 					<h:commandButton value="Themenbereiche" action="topicMenue"
@@ -73,7 +60,6 @@
 					<h:commandButton action="#{ userMB.logOut() }" value="Abmelden"
 						style="min-width:250px; max-width: 550px; margin-bottom:10px; display:inline-block"
 						class="btn btn-secondary">
-						<f:actionListener binding="#{ userMB.userClicked() }" />
 					</h:commandButton>
 				</h:panelGrid>
 			</h:form>

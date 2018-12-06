@@ -24,38 +24,24 @@ public class UserFacadeImpl implements IUserFacade {
 		return userDAO.findUserByUsername(name);
 	}
 
-	@Override
-	public void setTimesClickedForLastLogin(String aUsername, int aTimesClicked) {
-		User aUser = this.findUserByName(aUsername);
-		aUser.setTimesClicked(aTimesClicked);
-		userDAO.save(aUser);
-	}
 
 	@Override
-	public void setMinutesLoggedIn(String aUsername, int aMinutesLoggedIn) {
-		User aUser = this.findUserByName(aUsername);
-		aUser.setMinutesLoggedIn(aMinutesLoggedIn);
-		userDAO.save(aUser);
-		
-	}
-	
-	@Override
-	public void saveUser(String aUsername, String aPassword, String aVorname, 
-			String aNachname, String aRolename) {
+	public void saveUser(String aUsername, String aPassword, String aPrename, 
+			String aSurname, String aRolename) {
 		
 		User aUser = new User(
 				aUsername, 
 				aPassword, 
-				aVorname,
-				aNachname, 
+				aPrename,
+				aSurname, 
 				aRolename);
 		
 		userDAO.save(aUser);
 	}
 	
 	@Override
-	public void updateUser(String aUsername, String aPassword, String aVorname, 
-			String aNachname, String aRolename) {
+	public void updateUser(String aUsername, String aPassword, String aPrename, 
+			String aSurname, String aRolename) {
 		
 		User aUser = this.findUserByName(aUsername);
 		
@@ -63,11 +49,8 @@ public class UserFacadeImpl implements IUserFacade {
 		if(!aPassword.isEmpty()) {
 			aUser.setPassword(aPassword);
 		} 
-//		else {
-//			aUser.setPassword(aUser.getPassword());
-//		}
-		aUser.setVorname(aVorname);
-		aUser.setNachname(aNachname);
+		aUser.setVorname(aPrename);
+		aUser.setNachname(aSurname);
 		aUser.setRolename(aRolename);
 		userDAO.save(aUser);
 	}
@@ -76,22 +59,7 @@ public class UserFacadeImpl implements IUserFacade {
 	public List<User> getAllUser() {
 		return userDAO.findAll();
 	}
-	
-	@Override
-	public List<User> getUsersByUsername(String name) {
-		return userDAO.getUsersByUsername(name);
-	}
-	
-	@Override
-	public List<User> getUsersByPrename(String name) {
-		return userDAO.getUsersByPrename(name);
-	}
-	
-	@Override
-	public List<User> getUsersBySurname(String name) {
-		return userDAO.getUsersBySurname(name);
-	}
-	
+		
 	@Override
 	public List<User> findUsersByUsername(String name) {
 		return userDAO.findUsersByUsername(name);
@@ -125,7 +93,6 @@ public class UserFacadeImpl implements IUserFacade {
 		roleSelection.add("Administrator");
 		return roleSelection;
 	}
-	
 
 	
 }

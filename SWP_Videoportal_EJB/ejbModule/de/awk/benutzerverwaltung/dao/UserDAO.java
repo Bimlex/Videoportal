@@ -25,12 +25,7 @@ public class UserDAO extends GenericDAO<User> {
     	parameters.put("username", name);
 	return super.findOneResult(User.FIND_BY_USERNAME, parameters);
     }
-    
-    // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    // TESTEN WIE findUserByUsername FÜR EINE LISTE FUNKTIONIERT
-    // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    // https://forum.primefaces.org/viewtopic.php?t=8098
-    // Evtl. funktioniert die NamedQuery besser
+   
     
     public List<User> findUsersByUsername(String name) {
     	this.getEm().clear();
@@ -55,35 +50,7 @@ public class UserDAO extends GenericDAO<User> {
     	return (List<User>) this.findAllResult(User.FIND_LIST_BY_SURNAME, parameters);
     	
     }
-    
-    
-	public List<User> getUsersByUsername(String name) {
-		// wird u.a. benutzt um die Uebersichtsliste der User zu filtern
-		this.getEm().clear();
-		TypedQuery<User> query = this.getEm().createQuery(
-				"SELECT u FROM User u WHERE u.username like :name", User.class);
-		name = name + "%";
-		return query.setParameter("name", name).getResultList();
-	}    
-	
-	public List<User> getUsersByPrename(String name) {
-		// wird u.a. benutzt um die Uebersichtsliste der User zu filtern
-		this.getEm().clear();
-		TypedQuery<User> query = this.getEm().createQuery(
-				"SELECT u FROM User u WHERE u.vorname like :name", User.class);
-		name = name + "%";
-		return query.setParameter("name", name).getResultList();
-	}    
-	
-	public List<User> getUsersBySurname(String name) {
-		// wird u.a. benutzt um die Uebersichtsliste der User zu filtern
-		this.getEm().clear();
-		TypedQuery<User> query = this.getEm().createQuery(
-				"SELECT u FROM User u WHERE u.nachname like :name", User.class);
-		name = name + "%";
-		return query.setParameter("name", name).getResultList();
-	}    
-    
+        
 	public void delete(User aUser){
 		super.delete(aUser.getUsername(), User.class);
 	}
