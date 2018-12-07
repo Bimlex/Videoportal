@@ -1,10 +1,10 @@
-package de.awk.benutzerverwaltung.facade;
+package de.awk.userManagement.facade;
 
 import java.util.List;
 
 import javax.ejb.Local;
 
-import de.awk.benutzerverwaltung.model.User;
+import de.awk.userManagement.model.User;
 
 @Local
 public interface IUserFacade {
@@ -16,5 +16,6 @@ public interface IUserFacade {
 	public abstract List<String> getRoleSelection();
 	public abstract List<User> findUsersByUsername(String name);
 	public abstract List<User> findUsersByPrename(String name);
-	public abstract List<User> findUsersBySurname(String name);	
+	public abstract List<User> findUsersBySurname(String name);
+	public abstract String get_SHA_512_SecurePassword(String passwordToHash, String salt);	
 }

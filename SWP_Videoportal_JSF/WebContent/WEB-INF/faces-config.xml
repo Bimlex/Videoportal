@@ -2,31 +2,6 @@
 <faces-config version="2.2" xmlns="http://xmlns.jcp.org/xml/ns/javaee"
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
  <managed-bean>
-  <managed-bean-name>mitarbeiterInMB</managed-bean-name>
-  <managed-bean-class>de.mb.MitarbeiterInMB</managed-bean-class>
-  <managed-bean-scope>request</managed-bean-scope>
- </managed-bean>
- <managed-bean>
-  <managed-bean-name>maschineMB</managed-bean-name>
-  <managed-bean-class>de.mb.MaschineMB</managed-bean-class>
-  <managed-bean-scope>request</managed-bean-scope>
- </managed-bean>
- <managed-bean>
-  <managed-bean-name>ressourceMB</managed-bean-name>
-  <managed-bean-class>de.mb.RessourceMB</managed-bean-class>
-  <managed-bean-scope>request</managed-bean-scope>
- </managed-bean>
- <managed-bean>
-  <managed-bean-name>projektMB</managed-bean-name>
-  <managed-bean-class>de.mb.ProjektMB</managed-bean-class>
-  <managed-bean-scope>request</managed-bean-scope>
- </managed-bean>
- <managed-bean>
-  <managed-bean-name>projResBuchMB</managed-bean-name>
-  <managed-bean-class>de.mb.ProjResBuchMB</managed-bean-class>
-  <managed-bean-scope>request</managed-bean-scope>
- </managed-bean>
- <managed-bean>
   <managed-bean-name>userDataMB</managed-bean-name>
   <managed-bean-class>de.mb.UserDataMB</managed-bean-class>
   <managed-bean-scope>request</managed-bean-scope>
@@ -49,15 +24,7 @@
  <navigation-rule>
   <from-view-id>/protected/public/startseite.xhtml</from-view-id>
   <navigation-case>
-   <from-outcome>projektMenue</from-outcome>
-   <to-view-id>/protected/user/projektMenue.xhtml</to-view-id>
-  </navigation-case>
-  <navigation-case>
-   <from-outcome>ressourcenMenue</from-outcome>
-   <to-view-id>/protected/admin/ressourcenMenue.xhtml</to-view-id>
-  </navigation-case>
-  <navigation-case>
-   <from-outcome>benutzerverw</from-outcome>
+   <from-outcome>userMenue</from-outcome>
    <to-view-id>/protected/admin/userMenue.xhtml</to-view-id>
   </navigation-case>
   <navigation-case>
@@ -117,233 +84,23 @@
    <from-outcome>zurueckZurVideoverwaltung</from-outcome>
    <to-view-id>/protected/admin/videoVerwaltung.xhtml</to-view-id>
   </navigation-case>
-  
-    <navigation-case>
+  <navigation-case>
    <from-outcome>zurueckZumVideoMenue</from-outcome>
    <to-view-id>/protected/admin/videoAdministration.xhtml</to-view-id>
   </navigation-case>
-  
-   </navigation-rule>   
-      <navigation-rule>
+ </navigation-rule>
+ <navigation-rule>
   <from-view-id>/protected/admin/videoAendern.xhtml</from-view-id>
   <navigation-case>
    <from-outcome>zurueckZurVideoverwaltung</from-outcome>
    <to-view-id>/protected/admin/videoVerwaltung.xhtml</to-view-id>
   </navigation-case>
-   </navigation-rule>
+ </navigation-rule>
  <navigation-rule>
   <from-view-id>/protected/admin/videoSicht.xhtml</from-view-id>
   <navigation-case>
    <from-outcome>zurueckZurVideoverwaltung</from-outcome>
    <to-view-id>/protected/admin/videoVerwaltung.xhtml</to-view-id>
-  </navigation-case>
- </navigation-rule>
- <navigation-rule>
-  <from-view-id>/protected/user/projektMenue.xhtml</from-view-id>
-  <navigation-case>
-   <from-outcome>startseite</from-outcome>
-   <to-view-id>/protected/public/startseite.xhtml</to-view-id>
-  </navigation-case>
-  <navigation-case>
-   <from-outcome>projektAnlegen</from-outcome>
-   <to-view-id>/protected/user/projektAnlegen.xhtml</to-view-id>
-  </navigation-case>
-  <navigation-case>
-   <from-outcome>projektAendernUebersicht</from-outcome>
-   <to-view-id>/protected/user/projektAendernUebersicht.xhtml</to-view-id>
-  </navigation-case>
-  <navigation-case>
-   <from-outcome>projektLoeschen</from-outcome>
-   <to-view-id>/protected/user/projektLoeschen.xhtml</to-view-id>
-  </navigation-case>
-  <navigation-case>
-   <from-outcome>projResBuchMenue</from-outcome>
-   <to-view-id>/protected/user/projResBuchMenue.xhtml</to-view-id>
-  </navigation-case>
- </navigation-rule>
- <navigation-rule>
-  <from-view-id>/protected/user/projektAnlegen.xhtml</from-view-id>
-  <navigation-case>
-   <from-outcome>projektMenue</from-outcome>
-   <to-view-id>/protected/user/projektMenue.xhtml</to-view-id>
-  </navigation-case>
- </navigation-rule>
- <navigation-rule>
-  <from-view-id>/protected/user/projektAendernUebersicht.xhtml</from-view-id>
-  <navigation-case>
-   <from-outcome>projektMenue</from-outcome>
-   <to-view-id>/protected/user/projektMenue.xhtml</to-view-id>
-  </navigation-case>
-  <navigation-case>
-   <from-outcome>projektAendern</from-outcome>
-   <to-view-id>/protected/user/projektAendern.xhtml</to-view-id>
-  </navigation-case>
- </navigation-rule>
- <navigation-rule>
-  <from-view-id>/protected/user/projektAendern.xhtml</from-view-id>
-  <navigation-case>
-   <from-outcome>projektAendernUebersicht</from-outcome>
-   <to-view-id>/protected/user/projektAendernUebersicht.xhtml</to-view-id>
-  </navigation-case>
- </navigation-rule>
- <navigation-rule>
-  <from-view-id>/protected/user/projektLoeschen.xhtml</from-view-id>
-  <navigation-case>
-   <from-outcome>projektMenue</from-outcome>
-   <to-view-id>/protected/user/projektMenue.xhtml</to-view-id>
-  </navigation-case>
- </navigation-rule>
- <navigation-rule>
-  <from-view-id>/protected/user/projResBuchMenue.xhtml</from-view-id>
-  <navigation-case>
-   <from-outcome>projektMenue</from-outcome>
-   <to-view-id>/protected/user/projektMenue.xhtml</to-view-id>
-  </navigation-case>
-  <navigation-case>
-   <from-outcome>projResBuchHinzufuegen</from-outcome>
-   <to-view-id>/protected/user/projResBuchHinzufuegen.xhtml</to-view-id>
-  </navigation-case>
-  <navigation-case>
-   <from-outcome>projResBuchAnzeigenUndLoeschen</from-outcome>
-   <to-view-id>/protected/user/projResBuchAnzeigenUndLoeschen.xhtml</to-view-id>
-  </navigation-case>
-  <navigation-case>
-   <from-outcome>projResBuchKosten</from-outcome>
-   <to-view-id>/protected/user/projResBuchKosten.xhtml</to-view-id>
-  </navigation-case>
- </navigation-rule>
- <navigation-rule>
-  <from-view-id>/protected/user/projResBuchHinzufuegen.xhtml</from-view-id>
-  <navigation-case>
-   <from-outcome>projResBuchMenue</from-outcome>
-   <to-view-id>/protected/user/projResBuchMenue.xhtml</to-view-id>
-  </navigation-case>
- </navigation-rule>
- <navigation-rule>
-  <from-view-id>/protected/user/projResBuchAnzeigenUndLoeschen.xhtml</from-view-id>
-  <navigation-case>
-   <from-outcome>projResBuchMenue</from-outcome>
-   <to-view-id>/protected/user/projResBuchMenue.xhtml</to-view-id>
-  </navigation-case>
- </navigation-rule>
- <navigation-rule>
-  <from-view-id>/protected/user/projResBuchKosten.xhtml</from-view-id>
-  <navigation-case>
-   <from-outcome>projResBuchMenue</from-outcome>
-   <to-view-id>/protected/user/projResBuchMenue.xhtml</to-view-id>
-  </navigation-case>
- </navigation-rule>
- <navigation-rule>
-  <from-view-id>/protected/admin/ressourcenMenue.xhtml</from-view-id>
-  <navigation-case>
-   <from-outcome>startseite</from-outcome>
-   <to-view-id>/protected/public/startseite.xhtml</to-view-id>
-  </navigation-case>
-  <navigation-case>
-   <from-outcome>mitarbeiterInMenue</from-outcome>
-   <to-view-id>/protected/admin/mitarbeiterInMenue.xhtml</to-view-id>
-  </navigation-case>
-  <navigation-case>
-   <from-outcome>maschineMenue</from-outcome>
-   <to-view-id>/protected/admin/maschineMenue.xhtml</to-view-id>
-  </navigation-case>
- </navigation-rule>
- <navigation-rule>
-  <from-view-id>/protected/admin/mitarbeiterInMenue.xhtml</from-view-id>
-  <navigation-case>
-   <from-outcome>ressourcenMenue</from-outcome>
-   <to-view-id>/protected/admin/ressourcenMenue.xhtml</to-view-id>
-  </navigation-case>
-  <navigation-case>
-   <from-outcome>mitarbeiterInAnlegen</from-outcome>
-   <to-view-id>/protected/admin/mitarbeiterInAnlegen.xhtml</to-view-id>
-  </navigation-case>
-  <navigation-case>
-   <from-outcome>mitarbeiterInAendernUebersicht</from-outcome>
-   <to-view-id>/protected/admin/mitarbeiterInAendernUebersicht.xhtml</to-view-id>
-  </navigation-case>
-  <navigation-case>
-   <from-outcome>mitarbeiterInLoeschen</from-outcome>
-   <to-view-id>/protected/admin/mitarbeiterInLoeschen.xhtml</to-view-id>
-  </navigation-case>
- </navigation-rule>
- <navigation-rule>
-  <from-view-id>/protected/admin/mitarbeiterInAnlegen.xhtml</from-view-id>
-  <navigation-case>
-   <from-outcome>mitarbeiterInMenue</from-outcome>
-   <to-view-id>/protected/admin/mitarbeiterInMenue.xhtml</to-view-id>
-  </navigation-case>
- </navigation-rule>
- <navigation-rule>
-  <from-view-id>/protected/admin/mitarbeiterInAendernUebersicht.xhtml</from-view-id>
-  <navigation-case>
-   <from-outcome>mitarbeiterInMenue</from-outcome>
-   <to-view-id>/protected/admin/mitarbeiterInMenue.xhtml</to-view-id>
-  </navigation-case>
-  <navigation-case>
-   <from-outcome>mitarbeiterInAendern</from-outcome>
-   <to-view-id>/protected/admin/mitarbeiterInAendern.xhtml</to-view-id>
-  </navigation-case>
- </navigation-rule>
- <navigation-rule>
-  <from-view-id>/protected/admin/mitarbeiterInAendern.xhtml</from-view-id>
-  <navigation-case>
-   <from-outcome>mitarbeiterInAendernUebersicht</from-outcome>
-   <to-view-id>/protected/admin/mitarbeiterInAendernUebersicht.xhtml</to-view-id>
-  </navigation-case>
- </navigation-rule>
- <navigation-rule>
-  <from-view-id>/protected/admin/mitarbeiterInLoeschen.xhtml</from-view-id>
-  <navigation-case>
-   <from-outcome>mitarbeiterInMenue</from-outcome>
-   <to-view-id>/protected/admin/mitarbeiterInMenue.xhtml</to-view-id>
-  </navigation-case>
- </navigation-rule>
- <navigation-rule>
-  <from-view-id>/protected/admin/maschineMenue.xhtml</from-view-id>
-  <navigation-case>
-   <from-outcome>ressourcenMenue</from-outcome>
-   <to-view-id>/protected/admin/ressourcenMenue.xhtml</to-view-id>
-  </navigation-case>
-  <navigation-case>
-   <from-outcome>maschineAnlegen</from-outcome>
-   <to-view-id>/protected/admin/maschineAnlegen.xhtml</to-view-id>
-  </navigation-case>
-  <navigation-case>
-   <from-outcome>maschineLoeschen</from-outcome>
-   <to-view-id>/protected/admin/maschineLoeschen.xhtml</to-view-id>
-  </navigation-case>
- </navigation-rule>
- <navigation-rule>
-  <from-view-id>/protected/admin/maschineAnlegen.xhtml</from-view-id>
-  <navigation-case>
-   <from-outcome>mitarbeiterInMenue</from-outcome>
-   <to-view-id>/protected/admin/mitarbeiterInMenue.xhtml</to-view-id>
-  </navigation-case>
- </navigation-rule>
- <navigation-rule>
-  <from-view-id>/protected/admin/maschineAendernUebersicht.xhtml</from-view-id>
-  <navigation-case>
-   <from-outcome>maschineMenue</from-outcome>
-   <to-view-id>/protected/admin/maschineMenue.xhtml</to-view-id>
-  </navigation-case>
-  <navigation-case>
-   <from-outcome>maschineAendern</from-outcome>
-   <to-view-id>/protected/admin/maschineAendern.xhtml</to-view-id>
-  </navigation-case>
- </navigation-rule>
- <navigation-rule>
-  <from-view-id>/protected/admin/maschineAendern.xhtml</from-view-id>
-  <navigation-case>
-   <from-outcome>maschineAendernUebersicht</from-outcome>
-   <to-view-id>/protected/admin/maschineAendernUebersicht.xhtml</to-view-id>
-  </navigation-case>
- </navigation-rule>
- <navigation-rule>
-  <from-view-id>/protected/admin/maschineLoeschen.xhtml</from-view-id>
-  <navigation-case>
-   <from-outcome>mitarbeiterInMenue</from-outcome>
-   <to-view-id>/protected/admin/mitarbeiterInMenue.xhtml</to-view-id>
   </navigation-case>
  </navigation-rule>
  <navigation-rule>
@@ -363,29 +120,29 @@
  <navigation-rule>
   <from-view-id>/protected/admin/userMenue.xhtml</from-view-id>
   <navigation-case>
-   <from-outcome>zurueckZurStartseite</from-outcome>
+   <from-outcome>backToStartingPage</from-outcome>
    <to-view-id>/protected/public/startseite.xhtml</to-view-id>
   </navigation-case>
   <navigation-case>
-   <from-outcome>neuenUserAnlegen</from-outcome>
-   <to-view-id>/protected/admin/userAnlegen.xhtml</to-view-id>
+   <from-outcome>createNewUser</from-outcome>
+   <to-view-id>/protected/admin/userCreate.xhtml</to-view-id>
   </navigation-case>
   <navigation-case>
-   <from-outcome>bestehendenUserAendern</from-outcome>
-   <to-view-id>/protected/admin/userAendern.xhtml</to-view-id>
+   <from-outcome>changeExistingUser</from-outcome>
+   <to-view-id>/protected/admin/userChange.xhtml</to-view-id>
   </navigation-case>
  </navigation-rule>
  <navigation-rule>
-  <from-view-id>/protected/admin/userAendern.xhtml</from-view-id>
+  <from-view-id>/protected/admin/userChange.xhtml</from-view-id>
   <navigation-case>
-   <from-outcome>zurueckZumUserMenue</from-outcome>
+   <from-outcome>backToUserMenue</from-outcome>
    <to-view-id>/protected/admin/userMenue.xhtml</to-view-id>
   </navigation-case>
  </navigation-rule>
  <navigation-rule>
-  <from-view-id>/protected/admin/userAnlegen.xhtml</from-view-id>
+  <from-view-id>/protected/admin/userCreate.xhtml</from-view-id>
   <navigation-case>
-   <from-outcome>zurueckZumUserMenue</from-outcome>
+   <from-outcome>backToUserMenue</from-outcome>
    <to-view-id>/protected/admin/userMenue.xhtml</to-view-id>
   </navigation-case>
  </navigation-rule>

@@ -22,7 +22,7 @@
 		<img
 			src="https://login.hs-osnabrueck.de/nidp/images/hsos-logo-neu.png"
 			alt="LogoHS" style="width: 200px; margin-top: 10px" />
-		<h3>Willkommen #{userMB.user.vorname} #{userMB.user.nachname}</h3>
+		<h3>Willkommen</h3>
 
 		<div style="width: 300px; margin-bottom: 20px">Bitte w&auml;hlen
 			Sie eine Option.</div>
@@ -33,7 +33,7 @@
 				<h:panelGrid columns="1" styleClass="panelGrid"
 					rowClasses="panelFirstLine, panelNextLine">
 
-					<h:commandButton value="Benutzerverwaltung" action="benutzerverw"
+					<h:commandButton value="Benutzerverwaltung" action="userMenue"
 						rendered="#{userMB.isUserAdmin()}"
 						style="min-width:250px; max-width: 550px; margin-bottom:10px; display:inline-block"
 						class="btn btn-primary">

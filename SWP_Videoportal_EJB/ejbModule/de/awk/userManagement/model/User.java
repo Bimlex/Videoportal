@@ -1,4 +1,4 @@
-package de.awk.benutzerverwaltung.model;
+package de.awk.userManagement.model;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -19,8 +19,8 @@ import javax.persistence.Table;
 @NamedQueries({
 	@NamedQuery(name="User.findUserByUsername", query="SELECT u FROM User u WHERE u.username = :username"),
 	@NamedQuery(name="User.findUsersByUsername", query="SELECT u FROM User u WHERE u.username LIKE :username"),
-	@NamedQuery(name="User.findUsersByPrename", query="SELECT u FROM User u WHERE u.vorname LIKE :vorname"),
-	@NamedQuery(name="User.findUsersBySurname", query="SELECT u FROM User u WHERE u.nachname LIKE :nachname")
+	@NamedQuery(name="User.findUsersByPrename", query="SELECT u FROM User u WHERE u.prename LIKE :prename"),
+	@NamedQuery(name="User.findUsersBySurname", query="SELECT u FROM User u WHERE u.surname LIKE :surname")
 })
 public class User {
 
@@ -34,19 +34,19 @@ public class User {
 	@Id
 	private String username;
 	private String password;
-	private String vorname;
-	private String nachname;
+	private String prename;
+	private String surname;
 	private int timesClicked;
 	private int minutesLoggedIn;
 	private String rolename;
 
 
-	public User(String aUsername, String aPassword, String aVorname, 
-			String aNachname, String aRolename){
+	public User(String aUsername, String aPassword, String aPrename, 
+			String aSurname, String aRolename){
 		this.username = aUsername;
 		this.password = aPassword;
-		this.vorname = aVorname;
-		this.nachname = aNachname;
+		this.prename = aPrename;
+		this.surname = aSurname;
 		this.rolename = aRolename;
 	}
 
@@ -70,20 +70,20 @@ public class User {
 		this.username = name;
 	}
 
-	public String getVorname() {
-		return vorname;
+	public String getPrename() {
+		return prename;
 	}
 
-	public void setVorname(String vorname) {
-		this.vorname = vorname;
+	public void setPrename(String prename) {
+		this.prename = prename;
 	}
 
-	public String getNachname() {
-		return nachname;
+	public String getSurname() {
+		return surname;
 	}
 
-	public void setNachname(String nachname) {
-		this.nachname = nachname;
+	public void setSurname(String surname) {
+		this.surname = surname;
 	}
 
 	public int getTimesClicked() {

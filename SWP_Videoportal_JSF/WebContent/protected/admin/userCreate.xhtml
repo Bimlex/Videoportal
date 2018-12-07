@@ -15,37 +15,30 @@
 		crossorigin="anonymous" />
 	<link rel="shortcut icon" type="image/x-icon"
 		href="../../images/ico.png" />
-	<title>User &auml;ndern</title>
+	<title>User anlegen</title>
 </h:head>
 
 <h:body>
 	<center>
-		<h3>User &auml;ndern</h3>
+		<h3>User anlegen</h3>
 		<h:messages layout="list" styleClass="messageStyleClassVP"
 			errorClass="errorMessageVP" infoClass="infoMessageVP" />
 
 		<h:form id="User-Formular">
 
-			<h:outputLabel
-				value="#{userMB.user.vorname} #{userMB.user.nachname} (Username: #{userMB.user.username})" />
 			<br />
 			<br />
 			<h:panelGrid columns="3" id="User-Grid" styleClass="panelGrid"
 				rowClasses="userRow,userRow,userRow,userRow,userRow,userRow">
 
 				<h:outputLabel value="Username " />
-				<h:outputText value="#{userDataMB.username}" />
-				<h:inputHidden id="Username" value="#{userDataMB.username}" />
+				<h:inputText class="form-control" id="Username"
+					value="#{userDataMB.username}" />
+				<h:outputLabel value="" />
 
 				<h:outputLabel value="Passwort " />
 				<h:inputText class="form-control" id="Passwort"
 					value="#{userDataMB.password}" />
-				<h:outputLabel value="" />
-
-				<h:outputLabel value="" />
-				<h:outputLabel
-					style="font-size:9px; display: inline-block; width: 150px"
-					value="(Wenn kein Passwort eingeben wird, wird das alte Passwort beibehalten.)" />
 				<h:outputLabel value="" />
 
 				<h:outputLabel value="Rollenname " />
@@ -56,25 +49,23 @@
 
 				<h:outputLabel value="Vorname " />
 				<h:inputText class="form-control" id="Vorname"
-					value="#{userDataMB.vorname}" />
+					value="#{userDataMB.prename}" />
 				<h:outputLabel value="" />
 
 				<h:outputLabel value="Nachname " />
 				<h:inputText class="form-control" id="Nachname"
-					value="#{userDataMB.nachname}" />
+					value="#{userDataMB.surname}" />
 				<h:outputLabel value="" />
-
 
 			</h:panelGrid>
 			<br />
 
 			<h:panelGrid columns="1" styleClass="panelGrid"
 				rowClasses="panelFirstLine, panelNextLine">
-				<h:commandButton action="#{userDataMB.updateUser()}"
-					value="User anpassen" class="btn btn-primary"
-					style="width:200px;height:40px;margin-bottom: 10px;">
-				</h:commandButton>
-				<h:button value="Zur&uuml;ck" outcome="zurueckZumUserMenue"
+				<h:commandButton action="#{userDataMB.saveUser()}"
+					value="User anlegen" class="btn btn-primary"
+					style="width:200px;height:40px;margin-bottom: 10px;" />
+				<h:button value="Zur&uuml;ck" outcome="backToUserMenue"
 					class="btn btn-primary" style="width:200px;height:40px;margin-bottom: 10px" />
 			</h:panelGrid>
 

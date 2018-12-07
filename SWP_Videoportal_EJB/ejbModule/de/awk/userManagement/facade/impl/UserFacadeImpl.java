@@ -1,5 +1,8 @@
- package de.awk.benutzerverwaltung.facade.impl;
+ package de.awk.userManagement.facade.impl;
 
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -9,9 +12,9 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
-import de.awk.benutzerverwaltung.dao.UserDAO;
-import de.awk.benutzerverwaltung.facade.IUserFacade;
-import de.awk.benutzerverwaltung.model.User;
+import de.awk.userManagement.dao.UserDAO;
+import de.awk.userManagement.facade.IUserFacade;
+import de.awk.userManagement.model.User;
 
 @Stateless
 public class UserFacadeImpl implements IUserFacade {
@@ -48,8 +51,8 @@ public class UserFacadeImpl implements IUserFacade {
 		if(!aPassword.isEmpty()) {
 			aUser.setPassword(aPassword);
 		} 
-		aUser.setVorname(aPrename);
-		aUser.setNachname(aSurname);
+		aUser.setPrename(aPrename);
+		aUser.setSurname(aSurname);
 		aUser.setRolename(aRolename);
 		userDAO.save(aUser);
 	}
@@ -91,6 +94,24 @@ public class UserFacadeImpl implements IUserFacade {
 		roleSelection.add("Benutzer");
 		roleSelection.add("Administrator");
 		return roleSelection;
+	}
+	
+	@Override
+	public String get_SHA_512_SecurePassword(String passwordToHash, String salt) {
+		String generatedPassword = null;
+		try {
+			MessageDigest md = MessageDigest.getInstance("SHA-512");
+			md.update(salt.getBytes(StandardCharsets.UTF_8));
+			byte[] bytes = md.digest(passwordToHash.getBytes(StandardCharsets.UTF_8));
+			StringBuilder sb = new StringBuilder();
+			for (int i = 0; i < bytes.length; i++) {
+				sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+			}
+			generatedPassword = sb.toString();
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+		return generatedPassword;
 	}
 
 	

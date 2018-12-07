@@ -25,8 +25,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import de.awk.benutzerverwaltung.facade.IUserFacade;
-import de.awk.benutzerverwaltung.model.User;
+import de.awk.userManagement.facade.IUserFacade;
+import de.awk.userManagement.model.User;
 
 @ManagedBean(name = "userDataMB")
 @SessionScoped
@@ -47,8 +47,8 @@ public class UserDataMB implements Serializable {
 
 	private String username;
 	private String password;
-	private String vorname;
-	private String nachname;
+	private String prename;
+	private String surname;
 	private String rolename;
 
 	private List<User> userList = null;
@@ -68,7 +68,7 @@ public class UserDataMB implements Serializable {
 	}
 
 	public List<User> initialiseUserList() {
-
+		
 		if (this.searchField == null) {
 			userList = userFacade.getAllUser();
 		} else if (this.searchField.equals("")) {
@@ -116,25 +116,21 @@ public class UserDataMB implements Serializable {
 		int index = dataTableUser.getRowIndex(); 
 		User user = (User) dataTableUser.getRowData(); 
 
-		System.out.println(user.getUsername());
-		System.out.println(user.getVorname());
 	}
 
 	public String editUser(String aUsername) {
 		// Wechsel zur User aendern Sicht
 		
-		System.out.println("---------------------------" + aUsername);
-		System.out.println("-----------" + userList.size() + "----------------" + searchField);
 		User aUser = this.userFacade.findUserByName(aUsername);
 		
 		if(aUser != null) {
 			this.username = aUser.getUsername();
 			this.password = "";
-			this.vorname = aUser.getVorname();
-			this.nachname = aUser.getNachname();
+			this.prename = aUser.getPrename();
+			this.surname = aUser.getSurname();
 			this.rolename = aUser.getRolename();
 
-			return "bestehendenUserAendern";
+			return "changeExistingUser";
 		}
 		return "";
 
@@ -144,11 +140,11 @@ public class UserDataMB implements Serializable {
 		// Wechsel zur User anlegen Sicht
 		this.username = "";
 		this.password = "";
-		this.vorname = "";
-		this.nachname = "";
+		this.prename = "";
+		this.surname = "";
 		this.rolename = "";
 
-		return "neuenUserAnlegen";
+		return "createNewUser";
 	}
 
 	public void deleteUser(User aUser) {
@@ -182,11 +178,11 @@ public class UserDataMB implements Serializable {
 
 		User aUser = this.userFacade.findUserByName(this.username);
 		if (aUser == null) {
-			this.userFacade.saveUser(this.username, aPassword, this.vorname, this.nachname, this.rolename);
+			this.userFacade.saveUser(this.username, aPassword, this.prename, this.surname, this.rolename);
 
 			initialiseUserList();			
 
-			return "zurueckZumUserMenue";
+			return "backToUserMenue";
 		} else {
 			sendInfoMessageToUser("User " + this.username + " existiert bereits.");
 			return "";
@@ -212,12 +208,31 @@ public class UserDataMB implements Serializable {
 			aPassword = get_SHA_512_SecurePassword(this.password, "");
 		}
 
-		userFacade.updateUser(this.username, aPassword, this.vorname, this.nachname, this.rolename);
+		userFacade.updateUser(this.username, aPassword, this.prename, this.surname, this.rolename);
 
 		initialiseUserList();
 
-		return "zurueckZumUserMenue";
+		return "backToUserMenue";
 
+	}
+	
+	public String get_SHA_512_SecurePassword(String passwordToHash, String salt) {
+//		String generatedPassword = null;
+//		try {
+//			MessageDigest md = MessageDigest.getInstance("SHA-512");
+//			md.update(salt.getBytes(StandardCharsets.UTF_8));
+//			byte[] bytes = md.digest(passwordToHash.getBytes(StandardCharsets.UTF_8));
+//			StringBuilder sb = new StringBuilder();
+//			for (int i = 0; i < bytes.length; i++) {
+//				sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+//			}
+//			generatedPassword = sb.toString();
+//		} catch (NoSuchAlgorithmException e) {
+//			e.printStackTrace();
+//		}
+//		return generatedPassword;
+		
+		return this.userFacade.get_SHA_512_SecurePassword(passwordToHash, salt);
 	}
 
 	private void sendInfoMessageToUser(String message) {
@@ -286,20 +301,20 @@ public class UserDataMB implements Serializable {
 		this.password = password;
 	}
 
-	public String getVorname() {
-		return vorname;
+	public String getPrename() {
+		return prename;
 	}
 
-	public void setVorname(String vorname) {
-		this.vorname = vorname;
+	public void setPrename(String prename) {
+		this.prename = prename;
 	}
 
-	public String getNachname() {
-		return nachname;
+	public String getSurname() {
+		return surname;
 	}
 
-	public void setNachname(String nachname) {
-		this.nachname = nachname;
+	public void setSurname(String surname) {
+		this.surname = surname;
 	}
 
 	public String getRolename() {
@@ -316,23 +331,6 @@ public class UserDataMB implements Serializable {
 
 	public void setRoleSelection(List<String> roleSelection) {
 		this.roleSelection = roleSelection;
-	}
-
-	public static String get_SHA_512_SecurePassword(String passwordToHash, String salt) {
-		String generatedPassword = null;
-		try {
-			MessageDigest md = MessageDigest.getInstance("SHA-512");
-			md.update(salt.getBytes(StandardCharsets.UTF_8));
-			byte[] bytes = md.digest(passwordToHash.getBytes(StandardCharsets.UTF_8));
-			StringBuilder sb = new StringBuilder();
-			for (int i = 0; i < bytes.length; i++) {
-				sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
-			}
-			generatedPassword = sb.toString();
-		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
-		}
-		return generatedPassword;
 	}
 
 }

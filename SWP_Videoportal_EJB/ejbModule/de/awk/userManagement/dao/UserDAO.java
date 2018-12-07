@@ -1,4 +1,4 @@
-package de.awk.benutzerverwaltung.dao;
+package de.awk.userManagement.dao;
 
 import java.util.HashMap;
 import java.util.List;
@@ -8,7 +8,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
-import de.awk.benutzerverwaltung.model.User;
+import de.awk.userManagement.model.User;
 
 @Stateless
 public class UserDAO extends GenericDAO<User> {
@@ -37,7 +37,7 @@ public class UserDAO extends GenericDAO<User> {
     public List<User> findUsersByPrename(String name) {
     	this.getEm().clear();
     	Map<String, Object> parameters = new HashMap<String, Object>();
-    	parameters.put("vorname", name + "%");
+    	parameters.put("prename", name + "%");
     	return (List<User>) this.findAllResult(User.FIND_LIST_BY_PRENAME, parameters);
     	
     }
@@ -45,7 +45,7 @@ public class UserDAO extends GenericDAO<User> {
     public List<User> findUsersBySurname(String name) {
     	this.getEm().clear();
     	Map<String, Object> parameters = new HashMap<String, Object>();
-    	parameters.put("nachname", name + "%");
+    	parameters.put("surname", name + "%");
     	return (List<User>) this.findAllResult(User.FIND_LIST_BY_SURNAME, parameters);
     	
     }

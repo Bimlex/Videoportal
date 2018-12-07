@@ -26,8 +26,6 @@
 				<h3>Benutzerverwaltung</h3>
 
 
-				<h:outputLabel
-					value="#{userMB.user.vorname} #{userMB.user.nachname} (Username: #{userMB.user.username})" />
 				<br /> <br />
 
 
@@ -70,12 +68,12 @@
 
 						<h:column>
 							<f:facet name="header">Vorname</f:facet>
-							<h:outputText value="#{user.vorname}" />
+							<h:outputText value="#{user.prename}" />
 						</h:column>
 
 						<h:column>
 							<f:facet name="header">Nachname</f:facet>
-							<h:outputText value="#{user.nachname}" />
+							<h:outputText value="#{user.surname}" />
 						</h:column>
 
 						<h:column>
@@ -85,7 +83,7 @@
 
 						<h:column>
 							<h:commandButton value="Anpassen" class="btn btn-primary"
-								update="userListView" name="Anpassen" id="Anpassen"
+								name="Anpassen" id="Anpassen"
 								style="width: 90px"
 								action="#{userDataMB.editUser(user.username)}" />
 						&nbsp;	
@@ -109,7 +107,7 @@
 							style="width:200px;height:40px;margin-bottom: 10px">
 						</h:commandButton>
 
-						<h:commandButton immediate="true" action="zurueckZurStartseite"
+						<h:commandButton immediate="true" action="backToStartingPage"
 							class="btn btn-primary" value="Zur&uuml;ck"
 							style="width:200px;height:40px;margin-bottom: 10px">
 						</h:commandButton>

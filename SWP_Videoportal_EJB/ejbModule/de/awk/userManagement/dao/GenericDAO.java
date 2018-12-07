@@ -1,4 +1,4 @@
-package de.awk.benutzerverwaltung.dao;
+package de.awk.userManagement.dao;
 
 import java.util.List;
 import java.util.Map;
@@ -12,7 +12,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.ParameterExpression;
 
-import de.awk.benutzerverwaltung.model.User;
+import de.awk.userManagement.model.User;
 
 public abstract class GenericDAO<T> {
 
