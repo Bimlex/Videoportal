@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:fmt="http://java.sun.com/jsp/jstl/fmt">
+
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -17,16 +19,24 @@
 		crossorigin="anonymous" />
 	<link href="../../css/main.css" rel="stylesheet" type="text/css" />
 	<title>Benutzerverwaltung</title>
+
+
+
+
 </h:head>
 
 <h:body>
 	<center>
-		<h:form id="userMenue">
+
+
+		<h:form id="userMenue" method="post">
 			<div class="centerPageElements">
 				<h3>Benutzerverwaltung</h3>
 
 
 				<br /> <br />
+
+
 
 
 				<div class="form-group" style="max-width: 400px;">
@@ -41,81 +51,106 @@
 
 
 					<h:inputText id="searchField" value="#{userDataMB.searchField}"
-						style="max-width: 150px; display:inline" class="form-control" />
+						style="max-width: 150px; display:inline" class="form-control"
+						onfocus="this.value" />
 					<h:commandButton class="btn btn-primary"
 						action="#{userDataMB.initialiseUserList()}" update="userListView"
 						value="Suche" />
 				</div>
 			</div>
-				<div class="parent">
-					<h:dataTable value="#{userDataMB.initialiseUserList()}" var="user"
-						id="userListView" styleClass="table" headerClass="table-header"
-						rowClasses="table-odd-row, table-even-row"
-						columnClasses="userColumnPlaceholder,userColumn,userColumn,userColumn,userColumn,userColumn,userColumnButtons">
+			<div class="parent">
+				<h:dataTable value="#{userDataMB.initialiseUserList()}" var="user"
+					id="userListView" styleClass="table" headerClass="table-header"
+					rowClasses="table-odd-row, table-even-row"
+					columnClasses="userColumnPlaceholder,userColumn,userColumn,userColumn,userColumn,userColumn,userColumnButtons">
 
-						<h:column style="margin-left:10px;">
-						</h:column>
+					<h:column style="margin-left:10px;">
+					</h:column>
 
-						<h:column style="margin-left:10px;">
-							<f:facet name="header">Username</f:facet>
-							<h:outputText value="#{user.username}" />
-						</h:column>
+					<h:column style="margin-left:10px;">
+						<f:facet name="header">Username</f:facet>
+						<h:outputText value="#{user.username}" />
+					</h:column>
 
-						<h:column>
-							<f:facet name="header">Passwort</f:facet>
-							<h:outputText value="#{user.password}" />
-						</h:column>
+					<h:column>
+						<f:facet name="header">Passwort</f:facet>
+						<h:outputText value="#{user.password}" />
+					</h:column>
 
-						<h:column>
-							<f:facet name="header">Vorname</f:facet>
-							<h:outputText value="#{user.prename}" />
-						</h:column>
+					<h:column>
+						<f:facet name="header">Vorname</f:facet>
+						<h:outputText value="#{user.prename}" />
+					</h:column>
 
-						<h:column>
-							<f:facet name="header">Nachname</f:facet>
-							<h:outputText value="#{user.surname}" />
-						</h:column>
+					<h:column>
+						<f:facet name="header">Nachname</f:facet>
+						<h:outputText value="#{user.surname}" />
+					</h:column>
 
-						<h:column>
-							<f:facet name="header">Rollenname</f:facet>
-							<h:outputText value="#{user.rolename}" />
-						</h:column>
+					<h:column>
+						<f:facet name="header">Rollenname</f:facet>
+						<h:outputText value="#{user.rolename}" />
+					</h:column>
 
-						<h:column>
-							<h:commandButton value="Anpassen" class="btn btn-primary"
-								name="Anpassen" id="Anpassen"
-								style="width: 90px"
-								action="#{userDataMB.editUser(user.username)}" />
+					<h:column>
+						<h:commandButton value="Anpassen" class="btn btn-primary"
+							name="Anpassen" id="Anpassen" style="width: 90px"
+							action="#{userDataMB.editUser(user.username)}" />
 						&nbsp;	
 						<h:commandButton value="L&ouml;schen" class="btn btn-danger"
-								name="Loeschen" id="Loeschen" style="width: 90px"
-								actionListener="#{userDataMB.deleteUser(user)}" />
-						</h:column>
+							name="Loeschen" id="Loeschen" style="width: 90px"
+							actionListener="#{userDataMB.deleteUser(user)}" />
+					</h:column>
 
-					</h:dataTable>
-				</div>
-				<br />
+				</h:dataTable>
+			</div>
+			<br />
 
 
-				<div class="centerPageElements">
-					<h:panelGrid columns="1" styleClass="panelGrid"
-						rowClasses="panelFirstLine, panelNextLine">
+			<div class="centerPageElements">
+				<h:panelGrid columns="1" styleClass="panelGrid"
+					rowClasses="panelFirstLine, panelNextLine">
 
-						<h:commandButton immediate="true"
-							action="#{userDataMB.createUser()}" value="Neuer User"
-							class="btn btn-primary"
-							style="width:200px;height:40px;margin-bottom: 10px">
-						</h:commandButton>
+					<h:commandButton immediate="true"
+						action="#{userDataMB.createUser()}" value="Neuer User"
+						class="btn btn-primary"
+						style="width:200px;height:40px;margin-bottom: 10px">
+					</h:commandButton>
 
-						<h:commandButton immediate="true" action="backToStartingPage"
-							class="btn btn-primary" value="Zur&uuml;ck"
-							style="width:200px;height:40px;margin-bottom: 10px">
-						</h:commandButton>
+					<h:commandButton immediate="true" action="backToStartingPage"
+						class="btn btn-primary" value="Zur&uuml;ck"
+						style="width:200px;height:40px;margin-bottom: 10px">
+					</h:commandButton>
 
-					</h:panelGrid>
-				</div>
+				</h:panelGrid>
+			</div>
 
-			</h:form>
+		</h:form>
 	</center>
+
+	<script language="javascript" type="text/javascript">
+						var text = document.getElementById("userMenue:searchField");
+						var form = document.getElementById("userMenue");
+						text.onkeyup = function() { 
+							form.submit();
+						}	
+						function moveCursorToEnd(el) {
+						    if (typeof el.selectionStart == "number") {
+						        el.selectionStart = el.selectionEnd = el.value.length;
+						    } else if (typeof el.createTextRange != "undefined") {
+						        el.focus();
+						        var range = el.createTextRange();
+						        range.collapse(false);
+						        range.select();
+						    }
+						}	
+						moveCursorToEnd(text);			
+	</script>
 </h:body>
+
+
+
+
+
 </html>
+
