@@ -8,7 +8,9 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:fmt="http://java.sun.com/jsp/jstl/fmt">
 
+
 <h:head>
+
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<link rel="shortcut icon" type="image/x-icon"
@@ -144,7 +146,9 @@
 						        range.select();
 						    }
 						}	
-						moveCursorToEnd(text);			
+						text.focus(moveCursorToEnd(text));
+
+							
 	</script>
 </h:body>
 
