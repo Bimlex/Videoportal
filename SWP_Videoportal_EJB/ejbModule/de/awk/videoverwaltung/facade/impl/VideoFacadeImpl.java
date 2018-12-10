@@ -1,13 +1,19 @@
 package de.awk.videoverwaltung.facade.impl;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
-
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.servlet.http.Part;
+
+import com.sun.org.apache.regexp.internal.recompile;
 
 import de.awk.videoverwaltung.dao.VideoDAO;
 import de.awk.videoverwaltung.facade.IVideoFacade;
-import de.awk.videoverwaltung.model.Topic;
+import de.awk.videoverwaltung.facade.impl.util.Converter;
+import de.awk.videoverwaltung.facade.impl.util.Directory;
+import de.awk.videoverwaltung.facade.impl.util.IdGen;
 import de.awk.videoverwaltung.model.Video;
 
 @Stateless
@@ -27,11 +33,11 @@ public class VideoFacadeImpl implements IVideoFacade {
 		return videoDAO.find(videoId);
 	}
 
+	Converter converter = new Converter();
+
 	@Override
 	public void updateVideo(Integer aVideoId, String aVideoname, String topic, String subcategory, String description) {
-	
 		Video aVideo = this.findVideoById(aVideoId);
-		
 		aVideo.setVideoId(aVideoId);
 		aVideo.setName(aVideoname);
 		aVideo.setTopic(topic);
@@ -39,13 +45,24 @@ public class VideoFacadeImpl implements IVideoFacade {
 		aVideo.setDescription(description);
 		videoDAO.save(aVideo);
 	}
-	
 
 	// Paul
 	@Override
-	public void uploadVideo(String name, String description, String aPath) {
-		Video video = new Video(name, "topic", "subcategory", description, aPath);
-		videoDAO.save(video);
+	public boolean uploadVideo(File file, Part fileToUpload, String name, String description, String subcategory) {
+		boolean ok = false;
+		try {
+			if (converter.uploadNewVideo(file, fileToUpload)) {
+				Video video = new Video(name, "topic", subcategory, description, converter.getVideoPath());
+				videoDAO.save(video);
+				System.out.println("Ein Bier trinken");
+				ok = true;
+			}
+		} catch (IOException e) {
+			System.out.println("Ein heftiger Fehler");
+			e.printStackTrace();
+			ok = false;
+		}
+		return ok;
 	}
 
 	@Override
@@ -63,14 +80,17 @@ public class VideoFacadeImpl implements IVideoFacade {
 		return videoDAO.findVideoByName(videoname);
 	}
 
-	
 	@Override
 	public Video findVideoById(int aVideoId) {
 		return videoDAO.findVideoById(aVideoId);
 	}
 
+	public VideoDAO getVideoDAO() {
+		return videoDAO;
+	}
 
-
-
+	public void setVideoDAO(VideoDAO videoDAO) {
+		this.videoDAO = videoDAO;
+	}
 
 }

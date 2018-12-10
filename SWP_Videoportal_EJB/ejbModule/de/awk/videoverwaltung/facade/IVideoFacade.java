@@ -1,8 +1,10 @@
 package de.awk.videoverwaltung.facade;
 
+import java.io.File;
 import java.util.List;
 
 import javax.ejb.Local;
+import javax.servlet.http.Part;
 
 import de.awk.videoverwaltung.model.Video;
 
@@ -18,7 +20,7 @@ public interface IVideoFacade {
 	public abstract void updateVideo(Integer aVideoId, String aVideoname, String topic, String subcategory, String description);
 
 	// Paul
-	public abstract void uploadVideo(String name, String description, String aPath);
+	public abstract boolean uploadVideo(File file,Part fileToUpload, String name, String description,String subcategory);
 
 	public abstract void deleteVideo(int id);
 

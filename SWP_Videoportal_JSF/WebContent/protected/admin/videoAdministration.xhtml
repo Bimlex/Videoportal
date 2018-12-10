@@ -17,83 +17,92 @@
 </h:head>
 <h:body>
 	<center>
-	<h3>Videoadministration</h3>
+		<h3>Videoadministration</h3>
 
 		<h:form>
 			<div class="parent">
-			<h:dataTable value="#{videoMB.getAllVideos()}" var="video"
-				styleClass="table" headerClass="table-header"
-				rowClasses="table-odd-row, table-even-row"
-				columnClasses="userColumn,userColumn,userColumn,userColumn,userColumn">
+				<h:dataTable value="#{videoMB.getAllVideos()}" var="video"
+					styleClass="table" headerClass="table-header"
+					rowClasses="table-odd-row, table-even-row"
+					columnClasses="userColumn,userColumn,userColumn,userColumn,userColumn">
 
-				<h:column style="margin-left:10px;"> </h:column>
- 
-				<h:column>
-					<f:facet name="header">ID</f:facet>
+					<h:column style="margin-left:10px;">
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">ID</f:facet>
 						<h:outputText value="#{video.videoId}" />
 					</h:column>
-	
-				<h:column>
-					<f:facet name="header">Thema</f:facet>
+
+					<h:column>
+						<f:facet name="header">Thema</f:facet>
 						<h:outputText value="#{video.topic}" />
 					</h:column>
-	
-				<h:column>
-					<f:facet name="header">Kategorie</f:facet>
+
+					<h:column>
+						<f:facet name="header">Kategorie</f:facet>
 						<h:outputText value="#{video.subcategory}" />
 					</h:column>
-	
-				<h:column>
-					<f:facet name="header">Titel</f:facet>
+
+					<h:column>
+						<f:facet name="header">Titel</f:facet>
 						<h:outputText value="#{video.name}" />
 					</h:column>
-					
-				<h:column>
-						<h:commandButton value="Anpassen" class="btn btn-primary"
-							update="videoListView" name="Anpassen" id="Anpassen" style="width: 90px"
-							action="#{videoMB.editVideo(video.name)}" />	
-						&nbsp;
-						<h:commandButton value="L&ouml;schen"
-							class="btn btn-danger" name="Loeschen" id="Loeschen" style="width: 90px"
-							actionListener="#{videoMB.deleteVideo(video)}" />						
+
+					<h:column>
+						<f:facet name="header">Description</f:facet>
+						<h:outputText value="#{video.description}" />
 					</h:column>
-			
-			</h:dataTable>
+
+					<h:column>
+						<h:commandButton value="Anpassen" class="btn btn-primary"
+							update="videoListView" name="Anpassen" id="Anpassen"
+							style="width: 90px" action="#{videoMB.editVideo(video.name)}" />	
+						&nbsp;
+						<h:commandButton value="L&ouml;schen" class="btn btn-danger"
+							name="Loeschen" id="Loeschen" style="width: 90px"
+							actionListener="#{videoMB.deleteVideo(video)}" />
+					</h:column>
+
+				</h:dataTable>
 			</div>
 		</h:form>
-	<br />
+		<br />
 
-	<div style="background-color: #f2f2f2; margin-left: 10px; margin-right: 10px; padding: 20px; max-width: 400px; min-width: 250px; border-radius: 5px">
-			<h:panelGrid>
-			<h:form><h:inputText id="titelField" value="Titel"
-					style="max-width: 220px; display:inline" class="form-control" />
-			</h:form>
-			<br />
-			<h:form><h:inputText id="descriptionField" value="Beschreibung"
-					style="max-width: 220px; min-height: 200px; max-height: 400px;  display:inline" class="form-control" />
-			</h:form>
-			<br />
-			
-				<h:form enctype="multipart/form-data">
-					<h:panelGrid columns="1" styleClass="panelGrid"
-						rowClasses="panelFirstLine, panelNextLine">
-						<h:inputFile value="#{converterMB.fileToUpload}"
-							 style="min-width:250px; max-width: 550px; 
-						margin-bottom:10px; display:inline-block" class="btn btn-primary" required="true" />
-					</h:panelGrid>
+		<div
+			style="background-color: #f2f2f2; margin-left: 10px; margin-right: 10px; padding: 20px; max-width: 400px; min-width: 250px; border-radius: 5px">
+			<h:form enctype="multipart/form-data">
+				<h:panelGrid>
+					<h:inputText id="name" value="#{videoMB.name}" required="true"
+						style="max-width: 220px; display:inline" class="form-control" />
 					<br />
-					<h:panelGrid columns="1" styleClass="panelGrid"
-						rowClasses="panelFirstLine, panelNextLine">
-						<h:commandButton value="Upload" action="#{converterMB.upload()}" style="min-width:250px; max-width: 550px; 
-						margin-bottom:10px; display:inline-block" class="btn btn-primary"/>	
-						
-						<br />
-						
-						<h:button value="Zur&uuml;ck zur Videoverwaltung" outcome="zurueckZurVideoverwaltung" style="min-width:250px; max-width: 550px; 
-						margin-bottom:10px; display:inline-block" class="btn btn-primary"/>	
-					</h:panelGrid>
-				</h:form>
-			</h:panelGrid>
+					<h:inputText id="description" value="#{videoMB.description}"
+						required="true"
+						style="max-width: 220px; min-height: 200px; max-height: 400px;  display:inline"
+						class="form-control" />
+					<br />
+
+					<h:inputFile value="#{videoMB.fileToUpload}"
+						style="min-width:250px; max-width: 550px; 
+						margin-bottom:10px; display:inline-block"
+						class="btn btn-primary" required="true" />
+					<br />
+
+					<h:commandButton value="Upload" action="#{videoMB.upload()}"
+						style="min-width:250px; max-width: 550px; 
+						margin-bottom:10px; display:inline-block"
+						class="btn btn-primary" />
+					<br />
+				</h:panelGrid>
+
+			</h:form>
+
+			<h:button value="Zur&uuml;ck zur Videoverwaltung"
+				outcome="zurueckZurVideoverwaltung"
+				style="min-width:250px; max-width: 550px; 
+						margin-bottom:10px; display:inline-block"
+				class="btn btn-primary" />
+
 		</div>
 	</center>
 
