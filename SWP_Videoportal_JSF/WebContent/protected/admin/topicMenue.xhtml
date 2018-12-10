@@ -8,17 +8,6 @@
       xmlns:fmt="http://java.sun.com/jsp/jstl/fmt">
 <h:head>
 
-	<script>
-	  $("document").ready(function () {
-	      $('.wrapper').scroll(function () {
-	          if ($(this).scrollTop() > 0) {
-	              $('.custom-menu').addClass("custom-menu-bg");
-	          } else {
-	              $('.custom-menu').removeClass("custom-menu-bg");
-	          }
-	      });
-	  });
-	</script>
 	
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -40,8 +29,6 @@
 				
 				<h3>Themenbereiche Men&uuml;</h3>
 
-			
-				<h:outputLabel value="#{userMB.user.vorname} #{userMB.user.nachname} (Username: #{userMB.user.username})"/>
 				<br></br>
 								
 				<div class="form-group" style="max-width: 400px;">
@@ -81,6 +68,10 @@
 						</h:column>
 						
 						<h:column>
+							<h:commandButton value="Auswahl" class="btn btn-primary"
+								update="topicListView" name="Auswahl" id="Auswahl" style="width: 90px"
+								action="#{subcategoryMB.setTopicIdForFilter(topic.topicId)}" />
+							&nbsp;	
 							<h:commandButton value="Anpassen" class="btn btn-primary"
 								update="topicListView" name="Anpassen" id="Anpassen" style="width: 90px"
 								action="#{topicMB.editTopic(topic.name)}" />	

@@ -15,7 +15,9 @@ import javax.persistence.Table;
 	@NamedQuery(name="Subcategory.findListSubcategoriesByTopicId", query="SELECT s FROM Subcategory s WHERE s.topicId LIKE :topicId"),
 	@NamedQuery(name="Subcategory.findListSubcategoriesByName", query="SELECT s FROM Subcategory s WHERE s.name LIKE :name"),
 	@NamedQuery(name="Subcategory.findListSubcategoriesByDescription", query="SELECT s FROM Subcategory s WHERE s.description LIKE :description"),
-	@NamedQuery(name="Subcategory.findSubcategoryByName", query="SELECT s FROM Subcategory s WHERE s.name = :name")	
+	@NamedQuery(name="Subcategory.findSubcategoryByName", query="SELECT s FROM Subcategory s WHERE s.name = :name"),
+	@NamedQuery(name="Subcategory.findListSubcategoriesByTopicIdAndName", query="SELECT s FROM Subcategory s WHERE s.name = :name AND s.topicId = :topicId"),
+	@NamedQuery(name="Subcategory.findListSubcategoriesByTopicIdAndDescription", query="SELECT s FROM Subcategory s WHERE s.description = :description AND s.topicId = :topicId")
 })
 public class Subcategory {
 
@@ -23,6 +25,8 @@ public class Subcategory {
 	public static final String FIND_LIST_SUBCATEGORIES_BY_NAME = "Subcategory.findListSubcategoriesByName";
 	public static final String FIND_LIST_SUBCATEGORIES_BY_DESCRIPTION = "Subcategory.findListSubcategoriesByDescription";
 	public static final String FIND_SUBCATEGORY_BY_NAME = "Subcategory.findSubcategoryByName";
+	public static final String FIND_LIST_SUBCATEGORIES_BY_TOPICID_AND_NAME = "Subcategory.findListSubcategoriesByTopicIdAndName";
+	public static final String FIND_LIST_SUBCATEGORIES_BY_TOPICID_AND_DESCRITPION = "Subcategory.findListSubcategoriesByTopicIdAndDescription";
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="SEQ_SUBCATEGORY_ID")

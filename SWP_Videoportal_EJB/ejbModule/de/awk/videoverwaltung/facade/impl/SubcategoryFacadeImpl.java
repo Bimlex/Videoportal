@@ -46,24 +46,28 @@ public class SubcategoryFacadeImpl implements ISubcategoryFacade{
 		}
 	}
 
-	@Override
-	public List<Subcategory> findSubcategoriesByTopicId(int subcategoryId) {
-		return subcategoryDAO.findSubcategoriesByTopicId(subcategoryId);
+	public List<Subcategory> findSubcategoriesByTopicId(int topicId) {
+		return subcategoryDAO.findSubcategoriesByTopicId(topicId);
 	}
 
-	@Override
 	public List<Subcategory> findSubcategoriesByName(String name) {
 		return subcategoryDAO.findSubcategoriesByName(name);
 	}
 
-	@Override
 	public List<Subcategory> findSubcategoriesByDescription(String description) {
 		return subcategoryDAO.findSubcategoriesByDescription(description);
 	}
 
-	@Override
 	public Subcategory findSubcategoryByName(String name) {
 		return subcategoryDAO.findSubcategoryByName(name);
+	}
+
+	public List<Subcategory> findSubcategoriesByNameAndTopicId(int topicId, String name) {
+		return subcategoryDAO.findSubcategoriesByNameAndTopicId(topicId, name);
+	}
+
+	public List<Subcategory> findSubcategoriesByDescriptionAndTopicId(int topicId, String description) {
+		return subcategoryDAO.findSubcategoriesByDescriptionAndTopicId(topicId, description);
 	}
 	
 	

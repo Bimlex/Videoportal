@@ -1,6 +1,5 @@
 package de.mb;
 
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
 
@@ -15,7 +14,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-import de.awk.benutzerverwaltung.model.User;
+import de.awk.videoverwaltung.facade.ISubcategoryFacade;
 import de.awk.videoverwaltung.facade.ITopicFacade;
 import de.awk.videoverwaltung.model.Topic;
 
@@ -33,6 +32,9 @@ public class TopicMB implements Serializable{
 	@EJB
 	ITopicFacade topicFacade;
 	
+	@EJB
+	ISubcategoryFacade subcategoryFacade;
+	
 	@NotNull 
 	@Digits(fraction = 0, integer = 6) 
 	private int topicId;
@@ -44,7 +46,6 @@ public class TopicMB implements Serializable{
 
 	@NotNull
 	@Size(min=1, max=250, message = "Max. 250 Zeichen!")
-	//Umlaute müssen noch in regexp und Klammern und eventuell noch andere Sonderzeichen
 	@Pattern(regexp = "[a-zA-Z0-9_äÄöÖüÜß.,!? ]+", message = "Ungültiges Zeichen! Nur folgende Zeichen: a-z A-Z 0-9 und Leerzeichen erlaubt.")
 	private String description;
 	
@@ -52,9 +53,9 @@ public class TopicMB implements Serializable{
 	private HtmlDataTable dataTableTopic;
 	private String searchField;
 	private String searchOption;
-		
+	
+	
 	public List<Topic> initialiseTopicList() {
-//		this.topicList = null;
 		
 		if (this.searchField == null) {
 			topicList = topicFacade.getAlleKategorien();
@@ -80,7 +81,7 @@ public class TopicMB implements Serializable{
 		}
 		
 		return topicList;		
-	}	
+	}			
 	
 	public String editTopic(String name) {
 		Topic aTopic = this.topicFacade.findTopicByName(name);

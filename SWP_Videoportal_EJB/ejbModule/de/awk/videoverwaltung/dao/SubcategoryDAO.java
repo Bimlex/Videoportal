@@ -11,6 +11,8 @@ import de.awk.videoverwaltung.model.Subcategory;
 @Stateless
 public class SubcategoryDAO extends GenericDAO<Subcategory>{
 
+
+
 	public SubcategoryDAO() {
 		super(Subcategory.class);
 	}
@@ -45,6 +47,22 @@ public class SubcategoryDAO extends GenericDAO<Subcategory>{
 		Map<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put("name", name);
 		return super.findOneResult(Subcategory.FIND_SUBCATEGORY_BY_NAME, parameters);
+	}
+	
+	public List<Subcategory> findSubcategoriesByNameAndTopicId (int topicId, String name){
+		this.getEm().clear();
+		Map<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put("topicId", topicId);
+		parameters.put("name", name);
+		return (List<Subcategory>) this.findAllResult(Subcategory.FIND_LIST_SUBCATEGORIES_BY_TOPICID_AND_NAME, parameters);
+	}
+	
+	public List<Subcategory> findSubcategoriesByDescriptionAndTopicId (int topicId, String description){
+		this.getEm().clear();
+		Map<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put("topicId", topicId);
+		parameters.put("description", description);
+		return (List<Subcategory>) this.findAllResult(Subcategory.FIND_LIST_SUBCATEGORIES_BY_TOPICID_AND_DESCRITPION, parameters);
 	}
 	
 	

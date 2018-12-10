@@ -84,6 +84,42 @@ public class SubcategoryMB implements Serializable{
 		}
 		return subcategoryList;
 	}
+		
+	public List<Subcategory> initialiseSubcategoryListByTopicId(){
+		this.subcategoryList = null;
+		
+		if (this.searchField == null) {
+			subcategoryList = subcategoryFacade.findSubcategoriesByTopicId(topicId);
+		} else if (this.searchField.equals("")) {
+			subcategoryList = subcategoryFacade.findSubcategoriesByTopicId(topicId);
+		} else {
+			if (searchOption == null) {
+				searchOption = "Name";
+			}
+			
+			if (searchOption.equals("")) {
+				searchOption = "Name";
+			}
+			
+			switch (searchOption) {
+			case "Name":
+				subcategoryList = subcategoryFacade.findSubcategoriesByNameAndTopicId(this.topicId, this.searchField);
+				break;
+			case "Description":
+				subcategoryList = subcategoryFacade.findSubcategoriesByDescriptionAndTopicId(this.topicId, this.searchField);
+				break;
+			}
+		}
+		return subcategoryList;
+	}
+	
+	public String setTopicIdForFilter(int aTopicId) {
+		
+		this.topicId = aTopicId;
+		
+		return "showSubcategories";
+	}
+	
 	
 	public String editSubcategory(String name) {
 		Subcategory aSubcategory = this.subcategoryFacade.findSubcategoryByName(name);

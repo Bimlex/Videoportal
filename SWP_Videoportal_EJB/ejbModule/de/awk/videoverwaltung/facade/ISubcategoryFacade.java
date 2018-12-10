@@ -19,11 +19,11 @@ public interface ISubcategoryFacade {
 	public abstract List<Subcategory> findSubcategoriesByName(String searchField);
 	public abstract List<Subcategory> findSubcategoriesByDescription(String searchField);
 	
-//	public abstract Subcategory findSubcategoryById(int subcategoryId);
-//	public abstract Subcategory findSubcategoryByBeschreibung(String beschreibung);
 	
 	public abstract Subcategory findSubcategoryByName(String name);
 	public abstract void updateSubcategory(int subcategoryId, int topicId, String name, String description);
+	public abstract List<Subcategory> findSubcategoriesByNameAndTopicId(int topicId, String searchField);
+	public abstract List<Subcategory> findSubcategoriesByDescriptionAndTopicId(int topicId, String searchField);
 	
 	
 }
