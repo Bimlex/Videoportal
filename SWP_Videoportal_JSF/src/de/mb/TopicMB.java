@@ -14,7 +14,6 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-import de.awk.videoverwaltung.facade.ISubcategoryFacade;
 import de.awk.videoverwaltung.facade.ITopicFacade;
 import de.awk.videoverwaltung.model.Topic;
 
@@ -30,10 +29,7 @@ public class TopicMB implements Serializable{
 	private Topic topic;
 	
 	@EJB
-	ITopicFacade topicFacade;
-	
-	@EJB
-	ISubcategoryFacade subcategoryFacade;
+	ITopicFacade topicFacade;	
 	
 	@NotNull 
 	@Digits(fraction = 0, integer = 6) 

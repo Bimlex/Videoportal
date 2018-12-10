@@ -17,6 +17,7 @@ public interface ITopicFacade {
 	
 	public abstract void saveTopic(String name, String description);
 	public abstract void deleteTopic(int topicId);
-	public abstract void updateTopic(int topicId, String name, String description);	
+	public abstract void updateTopic(int topicId, String name, String description);
+	
 	
 }

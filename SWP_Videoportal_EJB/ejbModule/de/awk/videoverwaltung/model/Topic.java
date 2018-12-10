@@ -15,7 +15,7 @@ import javax.persistence.Table;
 	@NamedQuery(name="Topic.findTopicsByName", query="SELECT t FROM Topic t WHERE t.name LIKE :name"),
 	@NamedQuery(name="Topic.findTopicsByDescription", query="SELECT t FROM Topic t WHERE t.description LIKE :description"),
 	@NamedQuery(name="Topic.findTopicByTopicId", query="SELECT t FROM Topic t WHERE t.topicId = :topicId"),
-	@NamedQuery(name="Topic.findTopicByName", query="SELECT t FROM Topic t WHERE t.name = :name")
+	@NamedQuery(name="Topic.findTopicByName", query="SELECT t FROM Topic t WHERE t.name LIKE :name")
 })
 public class Topic {
 	
