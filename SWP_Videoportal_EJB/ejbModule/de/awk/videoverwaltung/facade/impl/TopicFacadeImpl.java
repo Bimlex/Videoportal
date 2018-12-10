@@ -25,15 +25,21 @@ public class TopicFacadeImpl implements ITopicFacade{
 	
 	public List<Topic> findTopicsByDescription(String description) {
 		return topicDAO.findTopicsByDescription(description);
-	}
+	}	
+	
+	
+	
 	
 	public Topic findTopicById(int topicId) {
 		return topicDAO.findTopicByTopicId(topicId);
-	}
+	}	
 	
 	public Topic findTopicByName(String name) {
 		return topicDAO.findTopicByName(name);
 	}
+	
+	
+	
 	
 	public void saveTopic(String name, String description) {
 		Topic aTopic = new Topic(name, description);

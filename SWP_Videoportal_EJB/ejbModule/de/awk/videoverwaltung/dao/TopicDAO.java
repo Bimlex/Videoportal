@@ -37,7 +37,7 @@ public class TopicDAO extends GenericDAO<Topic>{
 		this.getEm().clear();
 		Map<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put("topicId", topicId);
-		return super.findOneResult(Topic.FIND_TOPIC_BY_ID, parameters);
+		return super.findOneResult(Topic.FIND_TOPIC_BY_TOPICID, parameters);
 	}
 	
 	public Topic findTopicByName(String name) {

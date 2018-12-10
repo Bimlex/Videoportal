@@ -14,14 +14,14 @@ import javax.persistence.Table;
 @NamedQueries({
 	@NamedQuery(name="Topic.findTopicsByName", query="SELECT t FROM Topic t WHERE t.name LIKE :name"),
 	@NamedQuery(name="Topic.findTopicsByDescription", query="SELECT t FROM Topic t WHERE t.description LIKE :description"),
-	@NamedQuery(name="Topic.findTopicById", query="SELECT t FROM Topic t WHERE t.topicId = :topicId"),
+	@NamedQuery(name="Topic.findTopicByTopicId", query="SELECT t FROM Topic t WHERE t.topicId = :topicId"),
 	@NamedQuery(name="Topic.findTopicByName", query="SELECT t FROM Topic t WHERE t.name = :name")
 })
 public class Topic {
 	
 	public static final String FIND_TOPICLIST_BY_NAME = "Topic.findTopicsByName";
 	public static final String FIND_TOPICLIST_BY_DESCRIPTION = "Topic.findTopicsByDescription";
-	public static final String FIND_TOPIC_BY_ID = "Topic.findTopicById";
+	public static final String FIND_TOPIC_BY_TOPICID = "Topic.findTopicByTopicId";
 	public static final String FIND_TOPIC_BY_NAME = "Topic.findTopicByName";	
 	
 	@Id
