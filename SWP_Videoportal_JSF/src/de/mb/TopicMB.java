@@ -58,9 +58,9 @@ public class TopicMB implements Serializable{
 	public List<Topic> initialiseTopicList() {
 		
 		if (this.searchField == null) {
-			topicList = topicFacade.getAlleKategorien();
+			topicList = topicFacade.getAllTopics();
 		} else if (this.searchField.equals("")) {
-			topicList = topicFacade.getAlleKategorien();
+			topicList = topicFacade.getAllTopics();
 		} else {
 			if(searchOption == null) {
 				searchOption = "Name";
@@ -160,7 +160,7 @@ public class TopicMB implements Serializable{
 		return context;
 	}
 
-
+	
 	//Getter ---- Setter	
 	public Topic getTopic() {
 		return topic;

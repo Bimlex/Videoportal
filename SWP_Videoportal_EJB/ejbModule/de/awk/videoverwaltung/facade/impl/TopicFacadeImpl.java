@@ -11,19 +11,40 @@ import de.awk.videoverwaltung.model.Topic;
 
 @Stateless
 public class TopicFacadeImpl implements ITopicFacade{
-
+	
 	@EJB
 	private TopicDAO topicDAO;
 	
-	public List<Topic> getAlleKategorien() {
+	public List<Topic> getAllTopics() {
 		return topicDAO.findAll();
 	}
-		
 	
+	public List<Topic> findTopicsByName(String name) {
+		return topicDAO.findTopicsByName(name);
+	}
+	
+	public List<Topic> findTopicsByDescription(String description) {
+		return topicDAO.findTopicsByDescription(description);
+	}
+	
+	public Topic findTopicById(int topicId) {
+		return topicDAO.findTopicByTopicId(topicId);
+	}
+	
+	public Topic findTopicByName(String name) {
+		return topicDAO.findTopicByName(name);
+	}
 	
 	public void saveTopic(String name, String description) {
 		Topic aTopic = new Topic(name, description);
 		topicDAO.save(aTopic);
+	}
+	
+	public void deleteTopic(int topicId) {
+		Topic aTopic = this.findTopicById(topicId);
+		try {
+			topicDAO.delete(aTopic);
+		} catch (Exception e) {}
 	}
 	
 	public void updateTopic(int topicId, String name, String description) {
@@ -32,50 +53,6 @@ public class TopicFacadeImpl implements ITopicFacade{
 		aTopic.setDescription(description);
 		topicDAO.save(aTopic);
 	}
-
-	public void deleteTopic(int topicId) {
-		Topic aTopic = this.findTopicById(topicId);
-		try {
-			topicDAO.delete(aTopic);
-		} catch (Exception e) {
-			
-		}
-	}
-
-	
-	
-	
-	@Override
-	public List<Topic> findTopicsById(int topicId) {
-		return topicDAO.findTopicsById(topicId);
-	}
-
-	@Override
-	public List<Topic> findTopicsByName(String name) {
-		return topicDAO.findTopicsByName(name);
-	}
-
-	@Override
-	public Topic findTopicById(int topicId) {
-		return topicDAO.findTopicByTopicId(topicId);
-	}
-
-	@Override
-	public Topic findTopicByName(String name) {
-		return topicDAO.findTopicByName(name);
-	}
-
-
-	@Override
-	public List<Topic> findTopicsByDescription(String description) {
-		return topicDAO.findTopicsByDescription(description);
-	}
-
-
-
-
-
-
 	
 	
 }

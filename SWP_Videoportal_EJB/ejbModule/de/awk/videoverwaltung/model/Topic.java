@@ -12,19 +12,17 @@ import javax.persistence.Table;
 @Entity
 @Table(name="swp_topic")
 @NamedQueries({
-	@NamedQuery(name="Topic.findTopicsById", query="SELECT t FROM Topic t WHERE t.topicId LIKE :topicId"),
 	@NamedQuery(name="Topic.findTopicsByName", query="SELECT t FROM Topic t WHERE t.name LIKE :name"),
 	@NamedQuery(name="Topic.findTopicsByDescription", query="SELECT t FROM Topic t WHERE t.description LIKE :description"),
 	@NamedQuery(name="Topic.findTopicById", query="SELECT t FROM Topic t WHERE t.topicId = :topicId"),
 	@NamedQuery(name="Topic.findTopicByName", query="SELECT t FROM Topic t WHERE t.name = :name")
 })
 public class Topic {
-
-	public static final String FIND_LIST_BY_ID = "Topic.findTopicsById";
-	public static final String FIND_LIST_BY_NAME = "Topic.findTopicsByName";
+	
+	public static final String FIND_TOPICLIST_BY_NAME = "Topic.findTopicsByName";
+	public static final String FIND_TOPICLIST_BY_DESCRIPTION = "Topic.findTopicsByDescription";
 	public static final String FIND_TOPIC_BY_ID = "Topic.findTopicById";
-	public static final String FIND_TOPIC_BY_NAME = "Topic.findTopicByName";
-	public static final String FIND_LIST_BY_DESCRIPTION = "Topic.findTopicsByDescription";
+	public static final String FIND_TOPIC_BY_NAME = "Topic.findTopicByName";	
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="SEQ_TOPIC_ID")
@@ -35,11 +33,12 @@ public class Topic {
 	private String description;
 	
 	public Topic () {}
-
+	
 	public Topic(String name, String description) {
 		this.name = name;
 		this.description = description;
 	}
+	
 	
 	//Getter & Setter
 	public Integer getTopicId() {
