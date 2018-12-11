@@ -133,9 +133,12 @@
 	<script language="javascript" type="text/javascript">
 						var text = document.getElementById("userMenue:searchField");
 						var form = document.getElementById("userMenue");
+						var timer;
 						text.onkeyup = function() { 
-							form.submit();
+							clearTimeout(timer);
+							timer=setTimeout(function validate(){form.submit();},300)
 						}	
+						
 						function moveCursorToEnd(el) {
 						    if (typeof el.selectionStart == "number") {
 						        el.selectionStart = el.selectionEnd = el.value.length;
