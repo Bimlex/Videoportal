@@ -53,9 +53,7 @@ public class TopicMB implements Serializable{
 	
 	public List<Topic> initialiseTopicList() {
 		
-		if (this.searchField == null) {
-			topicList = topicFacade.getAllTopics();
-		} else if (this.searchField.equals("")) {
+		if (this.searchField == null || this.searchField.equals("")) {
 			topicList = topicFacade.getAllTopics();
 		} else {
 			if(searchOption == null) {

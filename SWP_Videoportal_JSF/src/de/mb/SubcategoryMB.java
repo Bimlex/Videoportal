@@ -15,6 +15,7 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import de.awk.videoverwaltung.facade.ISubcategoryFacade;
+import de.awk.videoverwaltung.facade.ITopicFacade;
 import de.awk.videoverwaltung.model.Subcategory;
 
 @ManagedBean(name="subcategoryMB")
@@ -30,6 +31,9 @@ public class SubcategoryMB implements Serializable{
 	
 	@EJB
 	ISubcategoryFacade subcategoryFacade;
+	
+	@EJB
+	ITopicFacade topicFacade;
 	
 	@NotNull
 	@Digits(fraction = 0, integer = 6)
@@ -58,16 +62,10 @@ public class SubcategoryMB implements Serializable{
 	public List<Subcategory> initialiseSubcategoryList(){
 		this.subcategoryList = null;
 		
-		if (this.searchField == null) {
-			subcategoryList = subcategoryFacade.getAllSubcategories();
-		} else if (this.searchField.equals("")) {
+		if (this.searchField == null || this.searchField.equals("")) {
 			subcategoryList = subcategoryFacade.getAllSubcategories();
 		} else {
-			if (searchOption == null) {
-				searchOption = "ThemenbereichsID";
-			}
-			
-			if (searchOption.equals("")) {
+			if (searchOption == null || searchOption.equals("")) {
 				searchOption = "ThemenbereichsID";
 			}
 			
@@ -89,28 +87,29 @@ public class SubcategoryMB implements Serializable{
 	public List<Subcategory> initialiseSubcategoryListByTopicId(){
 		this.subcategoryList = null;
 		
-		if (this.searchField == null) {
-			subcategoryList = subcategoryFacade.findSubcategoriesByTopicId(topicId);
-		} else if (this.searchField.equals("")) {
-			subcategoryList = subcategoryFacade.findSubcategoriesByTopicId(topicId);
+		if (this.searchField == null || this.searchField.equals("")) {
+			subcategoryList = subcategoryFacade.findSubcategoriesByTopicId(this.topicId);
 		} else {
-			if (searchOption == null) {
-				searchOption = "Name";
-			}
-			
-			if (searchOption.equals("")) {
+			if (searchOption == null || searchOption.equals("")) {
 				searchOption = "Name";
 			}
 			
 			switch (searchOption) {
 			case "Name":
+				this.subcategoryList = null;
+				System.out.println("Dies ist die TopicId wenn man nach Name filtert = " +topicId);
+				System.out.println("TOPICID = " + topicId + " --------------------------------- " +" SUCHFELD: " + this.searchField);
 				subcategoryList = subcategoryFacade.findSubcategoriesByNameAndTopicId(this.topicId, this.searchField);
 				break;
 			case "Description":
+				this.subcategoryList = null;
+				System.out.println("Dies ist die TopicId wenn man nach Beschreibung filtert = " +topicId);
+				System.out.println("TOPICID = " + topicId + " --------------------------------- " +" SUCHFELD: " + this.searchField);
 				subcategoryList = subcategoryFacade.findSubcategoriesByDescriptionAndTopicId(this.topicId, this.searchField);
 				break;
 			}
 		}
+		System.out.println(topicId);
 		return subcategoryList;
 	}
 	
@@ -153,6 +152,12 @@ public class SubcategoryMB implements Serializable{
 			return "";
 		}
 		
+		Object aObject = this.topicFacade.findTopicById(this.topicId);
+		if (aObject == null) {
+			sendInfoMessageToUser("Es gibt keinen Themenbereich mit der ID: '" + this.topicId + "'");
+			return "";
+		}
+		
 		if (this.name.isEmpty()) {
 			sendInfoMessageToUser("Es wurde kein Name vergeben");
 			return "";
@@ -179,6 +184,12 @@ public class SubcategoryMB implements Serializable{
 	public String updateSubcategory() {
 		if (this.topicId == 0) {
 			sendInfoMessageToUser("Es wurde keine ThemenbereichsID mit angebeben");
+			return "";
+		}
+		
+		Object aObject = this.topicFacade.findTopicById(this.topicId);
+		if (aObject == null) {
+			sendInfoMessageToUser("Es gibt keinen Themenbereich mit der ID: '" + this.topicId + "'");
 			return "";
 		}
 		
