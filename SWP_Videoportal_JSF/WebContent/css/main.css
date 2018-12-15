@@ -67,6 +67,8 @@
 	/*padding-right: 50px; /* maximum width of scrollbar */
 }
 
+
+/* ######### Subcategory CSS Start ######### */
 .subcategoryColumn {
 	max-width: 350px;
 	min-width: 20px;
@@ -76,6 +78,21 @@
 	vertical-align: middle;
 }
 
+.subcategoryColumnButtons {
+	min-width: 220px;
+	overflow: hidden;
+	text-align: right;
+	padding-left: 10px;
+	vertical-align: middle;
+}
+
+.subcategoryColumnPlaceholder {
+	max-width:10px;
+}]
+/* ######### Subcategory CSS End ######### */
+
+
+/* ######### Topic CSS Start ######### */
 .topicColumn {
 	max-width: 350px;
 	min-width: 20px;
@@ -84,6 +101,20 @@
 	padding-left: 10px;
 	vertical-align: middle;
 }
+
+.topicColumnButtons {
+	min-width: 220px;
+	overflow: hidden;
+	text-align: right;
+	padding-left: 10px;
+	vertical-align: middle;
+}
+
+.topicColumnPlaceholder {
+	max-width:10px;
+}]
+/* ######### Topic CSS End ######### */
+
 
 .userColumn {
 	max-width: 200px;
