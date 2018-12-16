@@ -32,12 +32,12 @@
    <to-view-id>/protected/admin/videoVerwaltung.xhtml</to-view-id>
   </navigation-case>
   <navigation-case>
-   <from-outcome>topicMenue</from-outcome>
-   <to-view-id>/protected/admin/topicMenue.xhtml</to-view-id>
+   <from-outcome>topicMenu</from-outcome>
+   <to-view-id>/protected/admin/topicMenu.xhtml</to-view-id>
   </navigation-case>
   <navigation-case>
-   <from-outcome>subcategoryMenue</from-outcome>
-   <to-view-id>/protected/admin/subcategoryMenue.xhtml</to-view-id>
+   <from-outcome>subcategoryMenu</from-outcome>
+   <to-view-id>/protected/admin/subcategoryMenu.xhtml</to-view-id>
   </navigation-case>
   <navigation-case>
    <from-outcome>logout</from-outcome>
@@ -147,18 +147,18 @@
   </navigation-case>
  </navigation-rule>
  <navigation-rule>
-  <from-view-id>/protected/admin/topicMenue.xhtml</from-view-id>
+  <from-view-id>/protected/admin/topicMenu.xhtml</from-view-id>
   <navigation-case>
    <from-outcome>backToStartPage</from-outcome>
    <to-view-id>/protected/public/startseite.xhtml</to-view-id>
   </navigation-case>
   <navigation-case>
    <from-outcome>createNewTopic</from-outcome>
-   <to-view-id>/protected/admin/topicAnlegen.xhtml</to-view-id>
+   <to-view-id>/protected/admin/topicCreate.xhtml</to-view-id>
   </navigation-case>
   <navigation-case>
    <from-outcome>changeExistingTopic</from-outcome>
-   <to-view-id>/protected/admin/topicAendern.xhtml</to-view-id>
+   <to-view-id>/protected/admin/topicChange.xhtml</to-view-id>
   </navigation-case>
   <navigation-case>
    <from-outcome>showSubcategories</from-outcome>
@@ -166,57 +166,57 @@
   </navigation-case>
  </navigation-rule>
  <navigation-rule>
-  <from-view-id>/protected/admin/topicAendern.xhtml</from-view-id>
+  <from-view-id>/protected/admin/topicChange.xhtml</from-view-id>
   <navigation-case>
-   <from-outcome>backToTopicMenue</from-outcome>
-   <to-view-id>/protected/admin/topicMenue.xhtml</to-view-id>
+   <from-outcome>backToTopicMenu</from-outcome>
+   <to-view-id>/protected/admin/topicMenu.xhtml</to-view-id>
   </navigation-case>
  </navigation-rule>
  <navigation-rule>
-  <from-view-id>/protected/admin/topicAnlegen.xhtml</from-view-id>
+  <from-view-id>/protected/admin/topicCreate.xhtml</from-view-id>
   <navigation-case>
-   <from-outcome>backToTopicMenue</from-outcome>
-   <to-view-id>/protected/admin/topicMenue.xhtml</to-view-id>
+   <from-outcome>backToTopicMenu</from-outcome>
+   <to-view-id>/protected/admin/topicMenu.xhtml</to-view-id>
   </navigation-case>
  </navigation-rule>
  <navigation-rule>
-  <from-view-id>/protected/admin/subcategoryMenue.xhtml</from-view-id>
+  <from-view-id>/protected/admin/subcategoryMenu.xhtml</from-view-id>
   <navigation-case>
    <from-outcome>backToStartPage</from-outcome>
    <to-view-id>/protected/public/startseite.xhtml</to-view-id>
   </navigation-case>
   <navigation-case>
    <from-outcome>createNewSubcategory</from-outcome>
-   <to-view-id>/protected/admin/subcategoryAnlegen.xhtml</to-view-id>
+   <to-view-id>/protected/admin/subcategoryCreate.xhtml</to-view-id>
   </navigation-case>
   <navigation-case>
    <from-outcome>changeExistingSubcategory</from-outcome>
-   <to-view-id>/protected/admin/subcategoryAendern.xhtml</to-view-id>
+   <to-view-id>/protected/admin/subcategoryChange.xhtml</to-view-id>
   </navigation-case>
  </navigation-rule>
  <navigation-rule>
-  <from-view-id>/protected/admin/subcategoryAnlegen.xhtml</from-view-id>
+  <from-view-id>/protected/admin/subcategoryCreate.xhtml</from-view-id>
   <navigation-case>
-   <from-outcome>backToSubcategoryMenue</from-outcome>
-   <to-view-id>/protected/admin/subcategoryMenue.xhtml</to-view-id>
+   <from-outcome>backToSubcategoryMenu</from-outcome>
+   <to-view-id>/protected/admin/subcategoryMenu.xhtml</to-view-id>
   </navigation-case>
  </navigation-rule>
  <navigation-rule>
-  <from-view-id>/protected/admin/subcategoryAendern.xhtml</from-view-id>
+  <from-view-id>/protected/admin/subcategoryChange.xhtml</from-view-id>
   <navigation-case>
-   <from-outcome>backToSubcategoryMenue</from-outcome>
-   <to-view-id>/protected/admin/subcategoryMenue.xhtml</to-view-id>
+   <from-outcome>backToSubcategoryMenu</from-outcome>
+   <to-view-id>/protected/admin/subcategoryMenu.xhtml</to-view-id>
   </navigation-case>
  </navigation-rule>
  <navigation-rule>
   <from-view-id>/protected/admin/subcategoriesByTopic.xhtml</from-view-id>
   <navigation-case>
-   <from-outcome>backToTopicMenue</from-outcome>
-   <to-view-id>/protected/admin/topicMenue.xhtml</to-view-id>
+   <from-outcome>backToTopicMenu</from-outcome>
+   <to-view-id>/protected/admin/topicMenu.xhtml</to-view-id>
   </navigation-case>
   <navigation-case>
    <from-outcome>changeExistingSubcategory</from-outcome>
-   <to-view-id>/protected/admin/subcategoryAendern.xhtml</to-view-id>
+   <to-view-id>/protected/admin/subcategoryChange.xhtml</to-view-id>
   </navigation-case>
  </navigation-rule>
  <application/>

@@ -78,4 +78,13 @@ public class SubcategoryDAO extends GenericDAO<Subcategory>{
 	}
 	
 	
+
+	public void deleteAllSubcategoriesByTopicId(int topicId) {
+		this.getEm().clear();
+		Map<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put("topicId", topicId);
+		this.findAllResult(Subcategory.DELETE_ALL_SUBCATEGORIES_BY_TOPICID, parameters);
+	}
+	
+	
 }

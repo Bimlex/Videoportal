@@ -85,7 +85,7 @@ public class SubcategoryMB implements Serializable{
 	}
 		
 	public List<Subcategory> initialiseSubcategoryListByTopicId(){
-		this.subcategoryList = null;
+		List<Subcategory> subcategoryList = null;
 		
 		if (this.searchField == null || this.searchField.equals("")) {
 			subcategoryList = subcategoryFacade.findSubcategoriesByTopicId(this.topicId);
@@ -109,13 +109,15 @@ public class SubcategoryMB implements Serializable{
 				break;
 			}
 		}
-		System.out.println(topicId);
+		System.out.println("*************** TopicId innerhalb der Methode *initialiseSubcategoryListByTopicId* "+ topicId);
+		System.out.println(subcategoryList.toString());
 		return subcategoryList;
 	}
 	
 	public String setTopicIdForFilter(int aTopicId) {
 		
 		this.topicId = aTopicId;
+		System.out.println("*******TOPICID in der Methode setTopicForFilter" + aTopicId);
 		
 		return "showSubcategories";
 	}
@@ -123,6 +125,7 @@ public class SubcategoryMB implements Serializable{
 	
 	public String editSubcategory(String name) {
 		Subcategory aSubcategory = this.subcategoryFacade.findSubcategoryByName(name);
+		System.out.println(aSubcategory);
 		
 		this.subcategoryId = aSubcategory.getSubcategoryId();
 		this.topicId = aSubcategory.getTopicId();
@@ -174,7 +177,7 @@ public class SubcategoryMB implements Serializable{
 			
 			initialiseSubcategoryList();
 			
-			return "backToSubcategoryMenue";
+			return "backToSubcategoryMenu";
 		} else {
 			sendInfoMessageToUser("Unterkategorie mit dem Namen '" + this.name + " existiert bereits.");
 			return "";
@@ -207,7 +210,7 @@ public class SubcategoryMB implements Serializable{
 		
 		initialiseSubcategoryList();
 		
-		return "backToSubcategoryMenue";
+		return "backToSubcategoryMenu";
 		
 	}
 	
