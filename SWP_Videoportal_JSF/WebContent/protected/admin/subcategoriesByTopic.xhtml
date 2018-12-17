@@ -23,7 +23,7 @@
         
 <h:body>
 	<center>
-	<h:form id="userMenue">
+	<h:form id="userMenu">
 		<div class="centerPageElements">
 				
 				
@@ -48,7 +48,7 @@
 		</div>
 				
 				<div class="parent">
-					<h:dataTable value="#{subcategoryMB.initialiseSubcategoryListByTopicId()}" var="subcategory"
+					<h:dataTable value="#{subcategoryMB.initialiseSubcategoryListByTopicId(userMB.topicId)}" var="subcategory"
 					id="subcategoryListView" styleClass="table" headerClass="table-header"
 					rowClasses="table-odd-row, table-even-row"
 					columnClasses="subcategoryColumnPlaceholder,subcategoryColumn,subcategoryColumn,subcategoryColumn,subcategoryColumnButtons">

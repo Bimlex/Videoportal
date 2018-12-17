@@ -13,13 +13,13 @@
 	
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<link rel="shortcut icon" type="image/x-icon" href="../../images/ico.png" />		
+	<link rel="shortcut icon" type="image/x-icon" href="../../images/ico.png" />
 	<link rel="stylesheet"
 		  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
 		  integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
 		  crossorigin="anonymous" />
-	<link href="../../css/main.css" rel="stylesheet" type="text/css" />		
-	<title>Themenbereiche</title>		
+	<link href="../../css/main.css" rel="stylesheet" type="text/css" />
+	<title>Themenbereiche</title>	
 	
 </h:head>
         
@@ -82,7 +82,12 @@
 					<h:column>
 						<h:commandButton value="Auswahl" class="btn btn-primary"
 										 update="topicListView" name="Auswahl" id="Auswahl" style="width: 90px"
-										 action="#{subcategoryMB.setTopicIdForFilter(topic.topicId)}" />
+										 action="#{topicMB.selectTopicId()}" >
+							<f:setPropertyActionListener 
+														 value="#{topic.topicId}" 
+														 target="#{userMB.topicId}">							
+							</f:setPropertyActionListener>
+						</h:commandButton>
 							&nbsp;	
 						<h:commandButton value="Anpassen" class="btn btn-primary"
 										 update="topicListView" name="Anpassen" id="Anpassen" style="width: 90px"
@@ -121,8 +126,8 @@
 	</center>
 	
 	<script language="javascript" type="text/javascript">
-				var text = document.getElementById("topicMenue:searchField");
-				var form = document.getElementById("topicMenue");
+				var text = document.getElementById("topicMenu:searchField");
+				var form = document.getElementById("topicMenu");
 				var timer;
 				text.onkeyup = function() { 
 					clearTimeout(timer);

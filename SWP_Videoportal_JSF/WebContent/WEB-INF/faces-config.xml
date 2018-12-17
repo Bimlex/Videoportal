@@ -24,8 +24,8 @@
  <navigation-rule>
   <from-view-id>/protected/public/startseite.xhtml</from-view-id>
   <navigation-case>
-   <from-outcome>userMenue</from-outcome>
-   <to-view-id>/protected/admin/userMenue.xhtml</to-view-id>
+   <from-outcome>userMenu</from-outcome>
+   <to-view-id>/protected/admin/userMenu.xhtml</to-view-id>
   </navigation-case>
   <navigation-case>
    <from-outcome>videoVerwaltung</from-outcome>
@@ -47,8 +47,8 @@
  <navigation-rule>
   <from-view-id>/protected/admin/videoVerwaltung.xhtml</from-view-id>
   <navigation-case>
-   <from-outcome>topicMenue</from-outcome>
-   <to-view-id>/protected/admin/topicMenue.xhtml</to-view-id>
+   <from-outcome>topicMenu</from-outcome>
+   <to-view-id>/protected/admin/topicMenu.xhtml</to-view-id>
   </navigation-case>
   <navigation-case>
    <from-outcome>videoAdministration</from-outcome>
@@ -85,7 +85,7 @@
    <to-view-id>/protected/admin/videoVerwaltung.xhtml</to-view-id>
   </navigation-case>
   <navigation-case>
-   <from-outcome>zurueckZumVideoMenue</from-outcome>
+   <from-outcome>zurueckZumVideoMenu</from-outcome>
    <to-view-id>/protected/admin/videoAdministration.xhtml</to-view-id>
   </navigation-case>
  </navigation-rule>
@@ -118,7 +118,7 @@
   </navigation-case>
  </navigation-rule>
  <navigation-rule>
-  <from-view-id>/protected/admin/userMenue.xhtml</from-view-id>
+  <from-view-id>/protected/admin/userMenu.xhtml</from-view-id>
   <navigation-case>
    <from-outcome>backToStartingPage</from-outcome>
    <to-view-id>/protected/public/startseite.xhtml</to-view-id>
@@ -135,15 +135,15 @@
  <navigation-rule>
   <from-view-id>/protected/admin/userChange.xhtml</from-view-id>
   <navigation-case>
-   <from-outcome>backToUserMenue</from-outcome>
-   <to-view-id>/protected/admin/userMenue.xhtml</to-view-id>
+   <from-outcome>backToUserMenu</from-outcome>
+   <to-view-id>/protected/admin/userMenu.xhtml</to-view-id>
   </navigation-case>
  </navigation-rule>
  <navigation-rule>
   <from-view-id>/protected/admin/userCreate.xhtml</from-view-id>
   <navigation-case>
-   <from-outcome>backToUserMenue</from-outcome>
-   <to-view-id>/protected/admin/userMenue.xhtml</to-view-id>
+   <from-outcome>backToUserMenu</from-outcome>
+   <to-view-id>/protected/admin/userMenu.xhtml</to-view-id>
   </navigation-case>
  </navigation-rule>
  <navigation-rule>
@@ -198,14 +198,14 @@
   <from-view-id>/protected/admin/subcategoryCreate.xhtml</from-view-id>
   <navigation-case>
    <from-outcome>backToSubcategoryMenu</from-outcome>
-   <to-view-id>/protected/admin/subcategoryMenu.xhtml</to-view-id>
+   <to-view-id>/protected/admin/subcategoriesByTopic.xhtml</to-view-id>
   </navigation-case>
  </navigation-rule>
  <navigation-rule>
   <from-view-id>/protected/admin/subcategoryChange.xhtml</from-view-id>
   <navigation-case>
    <from-outcome>backToSubcategoryMenu</from-outcome>
-   <to-view-id>/protected/admin/subcategoryMenu.xhtml</to-view-id>
+   <to-view-id>/protected/admin/subcategoriesByTopic.xhtml</to-view-id>
   </navigation-case>
  </navigation-rule>
  <navigation-rule>
@@ -217,6 +217,10 @@
   <navigation-case>
    <from-outcome>changeExistingSubcategory</from-outcome>
    <to-view-id>/protected/admin/subcategoryChange.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>createNewSubcategory</from-outcome>
+   <to-view-id>/protected/admin/subcategoryCreate.xhtml</to-view-id>
   </navigation-case>
  </navigation-rule>
  <application/>

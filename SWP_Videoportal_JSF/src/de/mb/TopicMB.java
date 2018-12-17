@@ -56,6 +56,10 @@ public class TopicMB implements Serializable{
 	private String searchOption;
 	
 	
+	public String selectTopicId() {
+		return "showSubcategories";
+	}
+	
 	public List<Topic> initialiseTopicList() {
 		
 		if (this.searchField == null || this.searchField.equals("")) {

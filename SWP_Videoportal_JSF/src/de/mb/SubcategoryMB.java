@@ -6,7 +6,9 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.component.html.HtmlDataTable;
 import javax.faces.context.FacesContext;
 import javax.validation.constraints.Digits;
@@ -17,9 +19,10 @@ import javax.validation.constraints.Size;
 import de.awk.videoverwaltung.facade.ISubcategoryFacade;
 import de.awk.videoverwaltung.facade.ITopicFacade;
 import de.awk.videoverwaltung.model.Subcategory;
+import de.mb.util.SaveValue;
 
 @ManagedBean(name="subcategoryMB")
-@RequestScoped
+@SessionScoped
 public class SubcategoryMB implements Serializable{
 
 	/**
@@ -34,6 +37,11 @@ public class SubcategoryMB implements Serializable{
 	
 	@EJB
 	ITopicFacade topicFacade;
+	
+
+	
+//	@ManagedProperty(value="#{saveValue}")
+//	private SaveValue saveValue;
 	
 	@NotNull
 	@Digits(fraction = 0, integer = 6)
@@ -84,11 +92,12 @@ public class SubcategoryMB implements Serializable{
 		return subcategoryList;
 	}
 		
-	public List<Subcategory> initialiseSubcategoryListByTopicId(){
+	public List<Subcategory> initialiseSubcategoryListByTopicId(int aTopicId){
+		
 		List<Subcategory> subcategoryList = null;
 		
 		if (this.searchField == null || this.searchField.equals("")) {
-			subcategoryList = subcategoryFacade.findSubcategoriesByTopicId(this.topicId);
+			subcategoryList = subcategoryFacade.findSubcategoriesByTopicId(aTopicId);
 		} else {
 			if (searchOption == null || searchOption.equals("")) {
 				searchOption = "Name";
@@ -97,30 +106,30 @@ public class SubcategoryMB implements Serializable{
 			switch (searchOption) {
 			case "Name":
 				this.subcategoryList = null;
-				System.out.println("Dies ist die TopicId wenn man nach Name filtert = " +topicId);
-				System.out.println("TOPICID = " + topicId + " --------------------------------- " +" SUCHFELD: " + this.searchField);
-				subcategoryList = subcategoryFacade.findSubcategoriesByNameAndTopicId(this.topicId, this.searchField);
+//				System.out.println("Dies ist die TopicId wenn man nach Name filtert = " + this.topicId);
+//				System.out.println("TOPICID = " + topicId + " --------------------------------- " +" SUCHFELD: " + this.searchField);
+				subcategoryList = subcategoryFacade.findSubcategoriesByNameAndTopicId(aTopicId, this.searchField);
 				break;
 			case "Description":
 				this.subcategoryList = null;
-				System.out.println("Dies ist die TopicId wenn man nach Beschreibung filtert = " +topicId);
-				System.out.println("TOPICID = " + topicId + " --------------------------------- " +" SUCHFELD: " + this.searchField);
-				subcategoryList = subcategoryFacade.findSubcategoriesByDescriptionAndTopicId(this.topicId, this.searchField);
+//				System.out.println("Dies ist die TopicId wenn man nach Beschreibung filtert = " +topicId);
+//				System.out.println("TOPICID = " + topicId + " --------------------------------- " +" SUCHFELD: " + this.searchField);
+				subcategoryList = subcategoryFacade.findSubcategoriesByDescriptionAndTopicId(aTopicId, this.searchField);
 				break;
 			}
 		}
-		System.out.println("*************** TopicId innerhalb der Methode *initialiseSubcategoryListByTopicId* "+ topicId);
-		System.out.println(subcategoryList.toString());
+//		System.out.println("*************** TopicId innerhalb der Methode *initialiseSubcategoryListByTopicId* "+ this.topicId);
+//		System.out.println(subcategoryList.toString());
 		return subcategoryList;
 	}
 	
-	public String setTopicIdForFilter(int aTopicId) {
-		
-		this.topicId = aTopicId;
-		System.out.println("*******TOPICID in der Methode setTopicForFilter" + aTopicId);
-		
-		return "showSubcategories";
-	}
+//	public String setTopicIdForFilter(int aTopicId) {
+//		
+//		this.topicId = aTopicId;
+//		System.out.println("*******TOPICID in der Methode setTopicForFilter" + aTopicId);
+//		
+//		return "showSubcategories";
+//	}
 	
 	
 	public String editSubcategory(String name) {
