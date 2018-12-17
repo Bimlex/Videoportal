@@ -31,12 +31,13 @@
 			<h:panelGrid columns="3" id="User-Grid" styleClass="panelGrid"
 				rowClasses="userRow,userRow,userRow,userRow,userRow,userRow">
 
-				<h:outputLabel value="Themenbereich ID: " />
-				<h:inputText class="form-control" id="topicId"
-							 value="#{subcategoryMB.topicId}" 
-							 style="margin-left: 20px" />
-				<h:outputLabel value="" />
 
+				<h:outputLabel value="Themenbereich ID: " />
+				<h:outputText class="form-control" 
+							  value="#{userMB.topicId}" 
+							  style="margin-left: 20px" />
+				<h:inputHidden id="topicId" value="#{subcategoryMB.topicId}" />				
+				
 				<h:outputLabel value="Name: " />
 				<h:inputText class="form-control" id="name"
 							 value="#{subcategoryMB.name}" 

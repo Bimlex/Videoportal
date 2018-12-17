@@ -23,7 +23,7 @@
         
 <h:body>
 	<center>
-	<h:form id="userMenu">
+	<h:form id="subcategoryMenu">
 		<div class="centerPageElements">
 				
 				
@@ -42,7 +42,7 @@
 					<h:inputText id="searchField" value="#{subcategoryMB.searchField}"
 						style="max-width: 150px; display:inline" class="form-control" />
 					<h:commandButton class="btn btn-primary"
-						action="#{subcategoryMB.initialiseSubcategoryListByTopicId()}" update="subcategoryListView"
+						action="#{subcategoryMB.initialiseSubcategoryListByTopicId(userMB.topicId)}" update="subcategoryListView"
 						value="Suche" />					
 				</div>
 		</div>
@@ -90,7 +90,7 @@
 						rowClasses="panelFirstLine, panelNextLine">
 	
 						<h:commandButton immediate="true"
-							action="#{subcategoryMB.createSubcategory()}" value="Neue Unterkategorie"
+							action="#{subcategoryMB.createSubcategory(userMB.topicId)}" value="Neue Unterkategorie"
 							class="btn btn-primary"
 							style="width:200px;height:40px;margin-bottom: 10px">
 						</h:commandButton>
@@ -105,5 +105,28 @@
 				</div>
 		</h:form>
 	</center>
+	
+		<script language="javascript" type="text/javascript">
+				var text = document.getElementById("subcategoryMenu:searchField");
+				var form = document.getElementById("subcategoryMenu");
+				var timer;
+				text.onkeyup = function() { 
+					clearTimeout(timer);
+					timer=setTimeout(function validate(){form.submit();},300)
+				}	
+						
+				function moveCursorToEnd(el) {
+						 if (typeof el.selectionStart == "number") {
+						     el.selectionStart = el.selectionEnd = el.value.length;
+						 } else if (typeof el.createTextRange != "undefined") {
+						     el.focus();
+						     var range = el.createTextRange();
+						     range.collapse(false);
+						     range.select();
+						 }
+				}	
+				text.focus(moveCursorToEnd(text));							
+	</script>
+	
 </h:body>
 </html>

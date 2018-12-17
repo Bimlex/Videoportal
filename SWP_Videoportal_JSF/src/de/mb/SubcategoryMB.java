@@ -6,8 +6,6 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.component.html.HtmlDataTable;
 import javax.faces.context.FacesContext;
@@ -19,7 +17,6 @@ import javax.validation.constraints.Size;
 import de.awk.videoverwaltung.facade.ISubcategoryFacade;
 import de.awk.videoverwaltung.facade.ITopicFacade;
 import de.awk.videoverwaltung.model.Subcategory;
-import de.mb.util.SaveValue;
 
 @ManagedBean(name="subcategoryMB")
 @SessionScoped
@@ -37,12 +34,7 @@ public class SubcategoryMB implements Serializable{
 	
 	@EJB
 	ITopicFacade topicFacade;
-	
-
-	
-//	@ManagedProperty(value="#{saveValue}")
-//	private SaveValue saveValue;
-	
+		
 	@NotNull
 	@Digits(fraction = 0, integer = 6)
 	private int subcategoryId;
@@ -79,7 +71,11 @@ public class SubcategoryMB implements Serializable{
 			
 			switch (searchOption) {
 			case "ThemenbereichsID":
+				try {
 				subcategoryList = subcategoryFacade.findSubcategoriesByTopicId(Integer.parseInt(this.searchField));
+				} catch (Exception e) {
+					
+				}
 				break;
 			case "Name":
 				subcategoryList = subcategoryFacade.findSubcategoriesByName(this.searchField);
@@ -144,9 +140,9 @@ public class SubcategoryMB implements Serializable{
 		return "changeExistingSubcategory";
 	}
 	
-	public String createSubcategory() {
+	public String createSubcategory(int topicId) {
 		this.subcategoryId = this.getSubcategoryId();
-		this.topicId = 0;
+		this.topicId = topicId;
 		this.name = "";
 		this.description = "";
 		

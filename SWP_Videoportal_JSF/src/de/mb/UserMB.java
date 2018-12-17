@@ -5,7 +5,6 @@ import java.time.LocalDateTime;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
@@ -13,7 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import de.awk.userManagement.facade.IUserFacade;
 import de.awk.userManagement.model.User;
-import de.mb.util.SaveValue;
 
 @SessionScoped
 @ManagedBean(name="userMB")
@@ -24,7 +22,6 @@ public class UserMB {
 	@EJB
 	private IUserFacade userFacade;
 	
-	/*Änderung vom 17.12.2018*/
 	private int topicId = 0;
 	private String searchField = "";
 	

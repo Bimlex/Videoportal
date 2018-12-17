@@ -48,7 +48,7 @@ public class SubcategoryDAO extends GenericDAO<Subcategory>{
 		this.getEm().clear();
 		Map<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put("topicId", topicId);
-		parameters.put("name", name);
+		parameters.put("name", "%" + name + "%");
 		return (List<Subcategory>) this.findAllResult(Subcategory.FIND_SUBCATEGORYLIST_BY_TOPICID_AND_NAME, parameters);
 	}
 	
@@ -56,7 +56,7 @@ public class SubcategoryDAO extends GenericDAO<Subcategory>{
 		this.getEm().clear();
 		Map<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put("topicId", topicId);
-		parameters.put("description", description);
+		parameters.put("description", "%" + description + "%");
 		return (List<Subcategory>) this.findAllResult(Subcategory.FIND_SUBCATEGORYLIST_BY_TOPICID_AND_DESCRITPION, parameters);
 	}
 	

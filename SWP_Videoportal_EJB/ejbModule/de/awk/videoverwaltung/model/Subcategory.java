@@ -17,8 +17,8 @@ import javax.transaction.Transactional;
 	@NamedQuery(name="Subcategory.findListSubcategoriesByTopicId", query="SELECT s FROM Subcategory s WHERE s.topicId LIKE :topicId"),
 	@NamedQuery(name="Subcategory.findListSubcategoriesByName", query="SELECT s FROM Subcategory s WHERE s.name LIKE :name"),
 	@NamedQuery(name="Subcategory.findListSubcategoriesByDescription", query="SELECT s FROM Subcategory s WHERE s.description LIKE :description"),
-	@NamedQuery(name="Subcategory.findListSubcategoriesByTopicIdAndName", query="SELECT s FROM Subcategory s WHERE s.name = :name AND s.topicId = :topicId"),
-	@NamedQuery(name="Subcategory.findListSubcategoriesByTopicIdAndDescription", query="SELECT s FROM Subcategory s WHERE s.description = :description AND s.topicId = :topicId"),
+	@NamedQuery(name="Subcategory.findListSubcategoriesByTopicIdAndName", query="SELECT s FROM Subcategory s WHERE s.name LIKE :name AND s.topicId = :topicId"),
+	@NamedQuery(name="Subcategory.findListSubcategoriesByTopicIdAndDescription", query="SELECT s FROM Subcategory s WHERE s.description LIKE :description AND s.topicId = :topicId"),
 	@NamedQuery(name="Subcategory.findSubcategoryBySubcategoryId", query="SELECT s FROM Subcategory s WHERE s.subcategoryId = :subcategoryId"),
 	@NamedQuery(name="Subcategory.findSubcategoryByName", query="SELECT s FROM Subcategory s WHERE s.name = :name"),
 	@NamedQuery(name="Subcategory.deleteAllSubcategoriesByTopicId", query="DELETE FROM Subcategory s WHERE s.topicId = :topicId")
