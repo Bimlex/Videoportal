@@ -45,10 +45,15 @@ public class UserDataMB implements Serializable {
 	@EJB
 	private IUserFacade userFacade;
 
+	@Size(min=1, max=255)
 	private String username;
+	@Size(min=1, max=255)
 	private String password;
+	@Size(min=1, max=255)
 	private String prename;
+	@Size(min=1, max=255)
 	private String surname;
+	@Size(min=1, max=255)
 	private String rolename;
 
 	private List<User> userList = null;
