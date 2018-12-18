@@ -6,7 +6,7 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.component.html.HtmlDataTable;
 import javax.faces.context.FacesContext;
 import javax.validation.constraints.Digits;
@@ -15,10 +15,11 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import de.awk.videoverwaltung.facade.ISubcategoryFacade;
+import de.awk.videoverwaltung.facade.ITopicFacade;
 import de.awk.videoverwaltung.model.Subcategory;
 
 @ManagedBean(name="subcategoryMB")
-@RequestScoped
+@SessionScoped
 public class SubcategoryMB implements Serializable{
 
 	/**
@@ -31,6 +32,9 @@ public class SubcategoryMB implements Serializable{
 	@EJB
 	ISubcategoryFacade subcategoryFacade;
 	
+	@EJB
+	ITopicFacade topicFacade;
+		
 	@NotNull
 	@Digits(fraction = 0, integer = 6)
 	private int subcategoryId;
@@ -58,22 +62,20 @@ public class SubcategoryMB implements Serializable{
 	public List<Subcategory> initialiseSubcategoryList(){
 		this.subcategoryList = null;
 		
-		if (this.searchField == null) {
-			subcategoryList = subcategoryFacade.getAllSubcategories();
-		} else if (this.searchField.equals("")) {
+		if (this.searchField == null || this.searchField.equals("")) {
 			subcategoryList = subcategoryFacade.getAllSubcategories();
 		} else {
-			if (searchOption == null) {
-				searchOption = "ThemenbereichsID";
-			}
-			
-			if (searchOption.equals("")) {
+			if (searchOption == null || searchOption.equals("")) {
 				searchOption = "ThemenbereichsID";
 			}
 			
 			switch (searchOption) {
 			case "ThemenbereichsID":
+				try {
 				subcategoryList = subcategoryFacade.findSubcategoriesByTopicId(Integer.parseInt(this.searchField));
+				} catch (Exception e) {
+					
+				}
 				break;
 			case "Name":
 				subcategoryList = subcategoryFacade.findSubcategoriesByName(this.searchField);
@@ -86,44 +88,49 @@ public class SubcategoryMB implements Serializable{
 		return subcategoryList;
 	}
 		
-	public List<Subcategory> initialiseSubcategoryListByTopicId(){
-		this.subcategoryList = null;
+	public List<Subcategory> initialiseSubcategoryListByTopicId(int aTopicId){
 		
-		if (this.searchField == null) {
-			subcategoryList = subcategoryFacade.findSubcategoriesByTopicId(topicId);
-		} else if (this.searchField.equals("")) {
-			subcategoryList = subcategoryFacade.findSubcategoriesByTopicId(topicId);
+		List<Subcategory> subcategoryList = null;
+		
+		if (this.searchField == null || this.searchField.equals("")) {
+			subcategoryList = subcategoryFacade.findSubcategoriesByTopicId(aTopicId);
 		} else {
-			if (searchOption == null) {
-				searchOption = "Name";
-			}
-			
-			if (searchOption.equals("")) {
+			if (searchOption == null || searchOption.equals("")) {
 				searchOption = "Name";
 			}
 			
 			switch (searchOption) {
 			case "Name":
-				subcategoryList = subcategoryFacade.findSubcategoriesByNameAndTopicId(this.topicId, this.searchField);
+				this.subcategoryList = null;
+//				System.out.println("Dies ist die TopicId wenn man nach Name filtert = " + this.topicId);
+//				System.out.println("TOPICID = " + topicId + " --------------------------------- " +" SUCHFELD: " + this.searchField);
+				subcategoryList = subcategoryFacade.findSubcategoriesByNameAndTopicId(aTopicId, this.searchField);
 				break;
 			case "Description":
-				subcategoryList = subcategoryFacade.findSubcategoriesByDescriptionAndTopicId(this.topicId, this.searchField);
+				this.subcategoryList = null;
+//				System.out.println("Dies ist die TopicId wenn man nach Beschreibung filtert = " +topicId);
+//				System.out.println("TOPICID = " + topicId + " --------------------------------- " +" SUCHFELD: " + this.searchField);
+				subcategoryList = subcategoryFacade.findSubcategoriesByDescriptionAndTopicId(aTopicId, this.searchField);
 				break;
 			}
 		}
+//		System.out.println("*************** TopicId innerhalb der Methode *initialiseSubcategoryListByTopicId* "+ this.topicId);
+//		System.out.println(subcategoryList.toString());
 		return subcategoryList;
 	}
 	
-	public String setTopicIdForFilter(int aTopicId) {
-		
-		this.topicId = aTopicId;
-		
-		return "showSubcategories";
-	}
+//	public String setTopicIdForFilter(int aTopicId) {
+//		
+//		this.topicId = aTopicId;
+//		System.out.println("*******TOPICID in der Methode setTopicForFilter" + aTopicId);
+//		
+//		return "showSubcategories";
+//	}
 	
 	
 	public String editSubcategory(String name) {
 		Subcategory aSubcategory = this.subcategoryFacade.findSubcategoryByName(name);
+		System.out.println(aSubcategory);
 		
 		this.subcategoryId = aSubcategory.getSubcategoryId();
 		this.topicId = aSubcategory.getTopicId();
@@ -133,9 +140,9 @@ public class SubcategoryMB implements Serializable{
 		return "changeExistingSubcategory";
 	}
 	
-	public String createSubcategory() {
+	public String createSubcategory(int topicId) {
 		this.subcategoryId = this.getSubcategoryId();
-		this.topicId = 0;
+		this.topicId = topicId;
 		this.name = "";
 		this.description = "";
 		
@@ -150,6 +157,12 @@ public class SubcategoryMB implements Serializable{
 		
 		if (this.topicId == 0) {
 			sendInfoMessageToUser("Es wurde keine ThemenbereichsID zugewiesen");
+			return "";
+		}
+		
+		Object aObject = this.topicFacade.findTopicById(this.topicId);
+		if (aObject == null) {
+			sendInfoMessageToUser("Es gibt keinen Themenbereich mit der ID: '" + this.topicId + "'");
 			return "";
 		}
 		
@@ -169,7 +182,7 @@ public class SubcategoryMB implements Serializable{
 			
 			initialiseSubcategoryList();
 			
-			return "backToSubcategoryMenue";
+			return "backToSubcategoryMenu";
 		} else {
 			sendInfoMessageToUser("Unterkategorie mit dem Namen '" + this.name + " existiert bereits.");
 			return "";
@@ -179,6 +192,12 @@ public class SubcategoryMB implements Serializable{
 	public String updateSubcategory() {
 		if (this.topicId == 0) {
 			sendInfoMessageToUser("Es wurde keine ThemenbereichsID mit angebeben");
+			return "";
+		}
+		
+		Object aObject = this.topicFacade.findTopicById(this.topicId);
+		if (aObject == null) {
+			sendInfoMessageToUser("Es gibt keinen Themenbereich mit der ID: '" + this.topicId + "'");
 			return "";
 		}
 		
@@ -196,7 +215,7 @@ public class SubcategoryMB implements Serializable{
 		
 		initialiseSubcategoryList();
 		
-		return "backToSubcategoryMenue";
+		return "backToSubcategoryMenu";
 		
 	}
 	

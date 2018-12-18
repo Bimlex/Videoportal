@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:fmt="http://java.sun.com/jsp/jstl/fmt">
+      
+      
+<h:head>
+	
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="shortcut icon" type="image/x-icon" href="../../images/ico.png" />
+	<link rel="stylesheet"
+		  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+		  integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+		  crossorigin="anonymous" />
+	<link href="../../css/main.css" rel="stylesheet" type="text/css" />
+	<title>Themenbereiche</title>	
+	
+</h:head>
+        
+        
+<h:body>
+	<center>
+	
+		<h:messages layout="list" styleClass="messageStyleClassVP"
+			errorClass="errorMessageVP" infoClass="infoMessageVP" />
+	
+		<h:form id="topicMenu">
+			<div class="centerPageElements">				
+				
+				<h3>Verwaltung Themenbereiche</h3>
+				<br></br>								
+								
+					<div class="form-group" style="max-width: 400px;">
+						<h:selectOneRadio enabledClass="radio-inline" id="filterSelection"
+										  value="#{topicMB.searchOption}">
+										  
+							<f:selectItem itemValue="Name" 		  itemLabel="Name" style="margin-right:10px;" />
+							<f:selectItem itemValue="Description" itemLabel="Beschreibung" />
+							
+						</h:selectOneRadio>
+						
+						<h:inputText id="searchField" value="#{topicMB.searchField}"
+									 style="max-width: 150px; display:inline" 
+									 class="form-control" onfocus="this.value" />
+									 
+						<h:commandButton class="btn btn-primary"
+										 action="#{topicMB.initialiseTopicList()}" update="topicListView"
+										 value="Suche" />					
+					</div>			
+					
+			</div>
+			
+				
+			<div class="parent">
+			
+				<h:dataTable value="#{topicMB.initialiseTopicList()}" var="topic"
+							 id="topicListView" styleClass="table" headerClass="table-header"
+							 rowClasses="table-odd-row, table-even-row"
+							 columnClasses="topicColumnPlaceholder,topicColumn,topicColumn,topicColumn,topicColumnButtons">
+					
+					<h:column style="margin-left:10px;">
+						<f:facet name="header">ID</f:facet>
+						<h:outputText value="#{topic.topicId}" />
+					</h:column>
+						
+					<h:column style="margin-left:10px;">
+						<f:facet name="header">Name</f:facet>
+						<h:outputText value="#{topic.name}" />
+					</h:column>
+						
+					<h:column style="margin-left:10px;">
+						<f:facet name="header">Beschreibung</f:facet>
+						<h:outputText value="#{topic.description}" />
+					</h:column>
+						
+					<h:column>
+						<h:commandButton value="Auswahl" class="btn btn-primary"
+										 update="topicListView" name="Auswahl" id="Auswahl" style="width: 90px"
+										 action="#{topicMB.selectTopicId()}" >
+							<f:setPropertyActionListener 
+														 value="#{topic.topicId}" 
+														 target="#{userMB.topicId}">							
+							</f:setPropertyActionListener>
+						</h:commandButton>
+							&nbsp;	
+						<h:commandButton value="Anpassen" class="btn btn-primary"
+										 update="topicListView" name="Anpassen" id="Anpassen" style="width: 90px"
+										 action="#{topicMB.editTopic(topic.name)}" />	
+							&nbsp;	
+						<h:commandButton value="L&ouml;schen"
+										 class="btn btn-danger" name="Loeschen" id="Loeschen" style="width: 90px"
+										 actionListener="#{topicMB.deleteTopic(topic)}" />
+					</h:column>		
+						
+				</h:dataTable>
+					
+			</div>
+			
+			<br></br>
+				
+			<div class="centerPageElements">
+			
+				<h:panelGrid columns="1" styleClass="panelGrid"
+							 rowClasses="panelFirstLine, panelNextLine">
+	
+					<h:commandButton immediate="true"
+									 action="#{topicMB.createTopic()}" value="Neuer Themenbereich"
+									 class="btn btn-primary"
+									 style="width:200px;height:40px;margin-bottom: 10px" />												
+	
+					<h:commandButton immediate="true" action="backToStartPage"
+									 value="Zur&uuml;ck" class="btn btn-primary" 
+									 style="width:200px;height:40px" />
+	
+				</h:panelGrid>
+					
+			</div>			
+		</h:form>
+		
+	</center>
+	
+	<script language="javascript" type="text/javascript">
+				var text = document.getElementById("topicMenu:searchField");
+				var form = document.getElementById("topicMenu");
+				var timer;
+				text.onkeyup = function() { 
+					clearTimeout(timer);
+					timer=setTimeout(function validate(){form.submit();},300)
+				}	
+						
+				function moveCursorToEnd(el) {
+						 if (typeof el.selectionStart == "number") {
+						     el.selectionStart = el.selectionEnd = el.value.length;
+						 } else if (typeof el.createTextRange != "undefined") {
+						     el.focus();
+						     var range = el.createTextRange();
+						     range.collapse(false);
+						     range.select();
+						 }
+				}	
+				text.focus(moveCursorToEnd(text));							
+	</script>
+	
+</h:body>
+</html>

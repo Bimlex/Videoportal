@@ -52,9 +52,7 @@ public class SubcategoryFacadeImpl implements ISubcategoryFacade{
 	public Subcategory findSubcategoryByName(String name) {
 		return subcategoryDAO.findSubcategoryByName(name);
 	}
-	
-	
-	
+		
 	
 	public void saveSubcategory(int topicId, String name, String description) {
 		Subcategory aSubcategory = new Subcategory(topicId, name, description);
@@ -76,6 +74,10 @@ public class SubcategoryFacadeImpl implements ISubcategoryFacade{
 		} catch (Exception e) {
 			
 		}
+	}
+	
+	public void deleteAllSubcategoriesByTopicId(int topicId){
+		subcategoryDAO.deleteAllSubcategoriesByTopicId(topicId);
 	}
 	
 	

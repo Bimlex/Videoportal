@@ -33,19 +33,19 @@
 				<h:panelGrid columns="1" styleClass="panelGrid"
 					rowClasses="panelFirstLine, panelNextLine">
 
-					<h:commandButton value="Benutzerverwaltung" action="userMenue"
+					<h:commandButton value="Benutzerverwaltung" action="userMenu"
 						rendered="#{userMB.isUserAdmin()}"
 						style="min-width:250px; max-width: 550px; margin-bottom:10px; display:inline-block"
 						class="btn btn-primary">
 					</h:commandButton>
 
-					<h:commandButton value="Themenbereiche" action="topicMenue"
+					<h:commandButton value="Themenbereiche" action="topicMenu"
 						rendered="#{userMB.isUserAdmin()}"
 						style="min-width:250px; max-width: 550px; margin-bottom:10px; display:inline-block"
 						class="btn btn-primary">
 					</h:commandButton>
 					
-					<h:commandButton value="Unterkategorien" action="subcategoryMenue"
+					<h:commandButton value="Unterkategorien" action="subcategoryMenu"
 						rendered="#{userMB.isUserAdmin()}"
 						style="min-width:250px; max-width: 550px; margin-bottom:10px; display:inline-block"
 						class="btn btn-primary">

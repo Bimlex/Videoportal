@@ -67,7 +67,7 @@ public class UserDataMB implements Serializable {
 
 	@PostConstruct
 	public void init() {
-		// Fuellt Dropdown-Auswahl-Menue (Benutzer, Administrator)
+		// Fuellt Dropdown-Auswahl-Menu (Benutzer, Administrator)
 		roleSelection = this.userFacade.getRoleSelection();
 
 	}
@@ -187,7 +187,7 @@ public class UserDataMB implements Serializable {
 
 			initialiseUserList();			
 
-			return "backToUserMenue";
+			return "backToUserMenu";
 		} else {
 			sendInfoMessageToUser("User " + this.username + " existiert bereits.");
 			return "";
@@ -217,7 +217,7 @@ public class UserDataMB implements Serializable {
 
 		initialiseUserList();
 
-		return "backToUserMenue";
+		return "backToUserMenu";
 
 	}
 	

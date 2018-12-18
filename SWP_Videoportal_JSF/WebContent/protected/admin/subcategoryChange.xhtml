@@ -15,12 +15,12 @@
 		crossorigin="anonymous" />
 	<link rel="shortcut icon" type="image/x-icon"
 		href="../../images/ico.png" />
-	<title>Themenbereich &auml;ndern</title>
+	<title>Unterkategorie &auml;ndern</title>
 </h:head>
 
 <h:body>
 	<center>
-		<h3>Themenbereich &auml;ndern</h3>
+		<h3>Unterkategorie &auml;ndern</h3>
 		<h:messages layout="list" styleClass="messageStyleClassVP"
 			errorClass="errorMessageVP" infoClass="infoMessageVP" />
 
@@ -30,32 +30,38 @@
 			<br />
 			<h:panelGrid columns="3" id="User-Grid" styleClass="panelGrid"
 				rowClasses="userRow,userRow,userRow">
-
-
+			
+				<h:outputLabel value="Themenbereich ID: " />
+				<h:outputText class="form-control" 
+							  value="#{userMB.topicId}" 
+							  style="margin-left: 20px" />
+				<h:inputHidden id="topicId" value="#{subcategoryMB.topicId}" />
 
 				<h:outputLabel value="Name: " />
 				<h:inputText class="form-control" id="Name"
-							 value="#{topicMB.name}" 
+							 value="#{subcategoryMB.name}" 
 							 style="margin-left: 20px"/>
-				<h:inputHidden id="TOPICID" value="#{topicMB.topicId}" />			
+				<h:outputLabel value="" />		
 
 				<h:outputLabel value="Beschreibung: " />
 				<h:inputTextarea class="form-control" id="Description"
 								 cols="50" rows="7"
-								 value="#{topicMB.description}" 
+								 value="#{subcategoryMB.description}" 
 								 style="margin-left: 20px"/>
 				<h:outputLabel value="" />
+				
+				<h:inputHidden id="SubcategoryId" value="#{subcategoryMB.subcategoryId}" />
 
 			</h:panelGrid>
 			<br />
 
 			<h:panelGrid columns="1" styleClass="panelGrid"
 				rowClasses="panelFirstLine, panelNextLine">
-				<h:commandButton action="#{topicMB.updateTopic()}"
-					value="Kategorie anpassen" class="btn btn-primary"
+				<h:commandButton action="#{subcategoryMB.updateSubcategory()}"
+					value="Unterkategorie anpassen" class="btn btn-primary"
 					style="width:200px;height:40px;margin-bottom: 10px;">
 				</h:commandButton>
-				<h:button value="Zur&uuml;ck" outcome="backToTopicMenue"
+				<h:button value="Zur&uuml;ck" outcome="backToSubcategoryMenu"
 					class="btn btn-primary" style="width:200px;height:40px;margin-bottom: 10px" />
 			</h:panelGrid>
 

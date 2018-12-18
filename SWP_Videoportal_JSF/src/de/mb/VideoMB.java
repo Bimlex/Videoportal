@@ -75,7 +75,7 @@ public class VideoMB {
 
 		// initialiseVideoList();
 
-		return "zurueckZumVideoMenue";
+		return "zurueckZumVideoMenu";
 
 	}
 

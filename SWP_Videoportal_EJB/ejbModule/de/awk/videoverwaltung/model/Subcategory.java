@@ -8,17 +8,20 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.transaction.Transactional;
 
 @Entity
 @Table(name="swp_subcategory")
+@Transactional
 @NamedQueries({
 	@NamedQuery(name="Subcategory.findListSubcategoriesByTopicId", query="SELECT s FROM Subcategory s WHERE s.topicId LIKE :topicId"),
 	@NamedQuery(name="Subcategory.findListSubcategoriesByName", query="SELECT s FROM Subcategory s WHERE s.name LIKE :name"),
 	@NamedQuery(name="Subcategory.findListSubcategoriesByDescription", query="SELECT s FROM Subcategory s WHERE s.description LIKE :description"),
-	@NamedQuery(name="Subcategory.findListSubcategoriesByTopicIdAndName", query="SELECT s FROM Subcategory s WHERE s.name = :name AND s.topicId = :topicId"),
-	@NamedQuery(name="Subcategory.findListSubcategoriesByTopicIdAndDescription", query="SELECT s FROM Subcategory s WHERE s.description = :description AND s.topicId = :topicId"),
+	@NamedQuery(name="Subcategory.findListSubcategoriesByTopicIdAndName", query="SELECT s FROM Subcategory s WHERE s.name LIKE :name AND s.topicId = :topicId"),
+	@NamedQuery(name="Subcategory.findListSubcategoriesByTopicIdAndDescription", query="SELECT s FROM Subcategory s WHERE s.description LIKE :description AND s.topicId = :topicId"),
 	@NamedQuery(name="Subcategory.findSubcategoryBySubcategoryId", query="SELECT s FROM Subcategory s WHERE s.subcategoryId = :subcategoryId"),
-	@NamedQuery(name="Subcategory.findSubcategoryByName", query="SELECT s FROM Subcategory s WHERE s.name = :name")	
+	@NamedQuery(name="Subcategory.findSubcategoryByName", query="SELECT s FROM Subcategory s WHERE s.name = :name"),
+	@NamedQuery(name="Subcategory.deleteAllSubcategoriesByTopicId", query="DELETE FROM Subcategory s WHERE s.topicId = :topicId")
 })
 public class Subcategory {
 
@@ -29,6 +32,7 @@ public class Subcategory {
 	public static final String FIND_SUBCATEGORYLIST_BY_TOPICID_AND_DESCRITPION = "Subcategory.findListSubcategoriesByTopicIdAndDescription";
 	public static final String FIND_SUBCATEGORY_BY_SUBCATEGORYID = "Subcategory.findSubcategoryBySubcategoryId";
 	public static final String FIND_SUBCATEGORY_BY_NAME = "Subcategory.findSubcategoryByName";
+	public static final String DELETE_ALL_SUBCATEGORIES_BY_TOPICID = "Subcategory.deleteAllSubcategoriesByTopicId";
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="SEQ_SUBCATEGORY_ID")

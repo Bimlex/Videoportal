@@ -14,7 +14,9 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import de.awk.videoverwaltung.facade.ISubcategoryFacade;
 import de.awk.videoverwaltung.facade.ITopicFacade;
+import de.awk.videoverwaltung.model.Subcategory;
 import de.awk.videoverwaltung.model.Topic;
 
 @ManagedBean(name="topicMB")
@@ -29,7 +31,10 @@ public class TopicMB implements Serializable{
 	private Topic topic;
 	
 	@EJB
-	ITopicFacade topicFacade;	
+	ITopicFacade topicFacade;
+	
+	@EJB
+	ISubcategoryFacade subcategoryFacade;
 	
 	@NotNull 
 	@Digits(fraction = 0, integer = 6) 
@@ -51,11 +56,13 @@ public class TopicMB implements Serializable{
 	private String searchOption;
 	
 	
+	public String selectTopicId() {
+		return "showSubcategories";
+	}
+	
 	public List<Topic> initialiseTopicList() {
 		
-		if (this.searchField == null) {
-			topicList = topicFacade.getAllTopics();
-		} else if (this.searchField.equals("")) {
+		if (this.searchField == null || this.searchField.equals("")) {
 			topicList = topicFacade.getAllTopics();
 		} else {
 			if(searchOption == null) {
@@ -98,7 +105,27 @@ public class TopicMB implements Serializable{
 	}	
 	
 	public void deleteTopic(Topic aTopic) {
-		this.topicFacade.deleteTopic(aTopic.getTopicId());
+		
+		/*Variante 1 (funktioniert)*/
+		List<Subcategory> list = subcategoryFacade.findSubcategoriesByTopicId(aTopic.getTopicId());
+
+		if (list.isEmpty() == true) {
+			this.topicFacade.deleteTopic(aTopic.getTopicId());
+		} else {
+			sendInfoMessageToUser("Themenbereich '" + aTopic.getName() + "' hat Unterkategorien!" + "\n" + 
+								  "Zuvor alle zugehörigen Unterkategorien löschen!");
+		}		
+		
+		/*Variante 2 (funktioniert nicht) Fehler = Delete-Query kann nicht ausgeführt werden*/		 
+//		List<Subcategory> list = subcategoryFacade.findSubcategoriesByTopicId(aTopic.getTopicId());
+//		
+//		if (list.isEmpty() == true) {
+//			this.topicFacade.deleteTopic(aTopic.getTopicId());
+//		} else {
+//			this.topicFacade.deleteTopic(aTopic.getTopicId());
+//			subcategoryFacade.deleteAllSubcategoriesByTopicId(aTopic.getTopicId());
+//		}
+
 	}
 	
 	public String saveTopic() {
@@ -119,7 +146,7 @@ public class TopicMB implements Serializable{
 			
 			initialiseTopicList();
 			
-			return "backToTopicMenue";
+			return "backToTopicMenu";
 		} else {
 			sendInfoMessageToUser("Themenbereich mit dem Namen  '" + this.name + "  existiert bereits.");
 			return "";
@@ -143,7 +170,7 @@ public class TopicMB implements Serializable{
 	
 		initialiseTopicList();
 		
-		return "backToTopicMenue";
+		return "backToTopicMenu";
 	}
 	
 	private void sendInfoMessageToUser(String message) {

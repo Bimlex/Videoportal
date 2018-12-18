@@ -15,32 +15,35 @@
 		crossorigin="anonymous" />
 	<link rel="shortcut icon" type="image/x-icon"
 		href="../../images/ico.png" />
-	<title>Themenbereich anlegen</title>
+	<title>Themenbereich &auml;ndern</title>
 </h:head>
 
 <h:body>
 	<center>
-		<h3>Themenbereich anlegen</h3>
+		<h3>Themenbereich &auml;ndern</h3>
 		<h:messages layout="list" styleClass="messageStyleClassVP"
 			errorClass="errorMessageVP" infoClass="infoMessageVP" />
 
 		<h:form id="User-Formular">
+
 			<br />
 			<br />
 			<h:panelGrid columns="3" id="User-Grid" styleClass="panelGrid"
-				rowClasses="userRow,userRow,userRow,userRow,userRow,userRow">
+				rowClasses="userRow,userRow,userRow">
+
+
 
 				<h:outputLabel value="Name: " />
-				<h:inputText class="form-control" id="name"
+				<h:inputText class="form-control" id="Name"
 							 value="#{topicMB.name}" 
-							 style="margin-left: 20px" />
-				<h:outputLabel value="" />
+							 style="margin-left: 20px"/>
+				<h:inputHidden id="TOPICID" value="#{topicMB.topicId}" />			
 
-				<h:outputLabel value="Beschreibung: " style="vertical-align:text-top"/>
-				<h:inputTextarea cols="50" rows="7" 
-								 value="#{topicMB.description}" id="description"
-								 class="form-control"
-								 style="margin-left: 20px" />
+				<h:outputLabel value="Beschreibung: " />
+				<h:inputTextarea class="form-control" id="Description"
+								 cols="50" rows="7"
+								 value="#{topicMB.description}" 
+								 style="margin-left: 20px"/>
 				<h:outputLabel value="" />
 
 			</h:panelGrid>
@@ -48,10 +51,11 @@
 
 			<h:panelGrid columns="1" styleClass="panelGrid"
 				rowClasses="panelFirstLine, panelNextLine">
-				<h:commandButton action="#{topicMB.saveTopic()}"
-					value="Themenbereich anlegen" class="btn btn-primary"
-					style="width:200px;height:40px;margin-bottom: 10px;" />
-				<h:button value="Zur&uuml;ck" outcome="backToTopicMenue"
+				<h:commandButton action="#{topicMB.updateTopic()}"
+					value="Kategorie anpassen" class="btn btn-primary"
+					style="width:200px;height:40px;margin-bottom: 10px;">
+				</h:commandButton>
+				<h:button value="Zur&uuml;ck" outcome="backToTopicMenu"
 					class="btn btn-primary" style="width:200px;height:40px;margin-bottom: 10px" />
 			</h:panelGrid>
 

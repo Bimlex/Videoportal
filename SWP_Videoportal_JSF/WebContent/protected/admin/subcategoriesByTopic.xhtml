@@ -23,11 +23,11 @@
         
 <h:body>
 	<center>
-	<h:form id="userMenue">
+	<h:form id="subcategoryMenu">
 		<div class="centerPageElements">
 				
 				
-				<h3>Unterkategorien Men&uuml;</h3>
+				<h3>Unterkategorien zum Themenbereich</h3>
 
 			
 				<br></br>
@@ -42,13 +42,13 @@
 					<h:inputText id="searchField" value="#{subcategoryMB.searchField}"
 						style="max-width: 150px; display:inline" class="form-control" />
 					<h:commandButton class="btn btn-primary"
-						action="#{subcategoryMB.initialiseSubcategoryListByTopicId()}" update="subcategoryListView"
+						action="#{subcategoryMB.initialiseSubcategoryListByTopicId(userMB.topicId)}" update="subcategoryListView"
 						value="Suche" />					
 				</div>
 		</div>
 				
 				<div class="parent">
-					<h:dataTable value="#{subcategoryMB.initialiseSubcategoryListByTopicId()}" var="subcategory"
+					<h:dataTable value="#{subcategoryMB.initialiseSubcategoryListByTopicId(userMB.topicId)}" var="subcategory"
 					id="subcategoryListView" styleClass="table" headerClass="table-header"
 					rowClasses="table-odd-row, table-even-row"
 					columnClasses="subcategoryColumnPlaceholder,subcategoryColumn,subcategoryColumn,subcategoryColumn,subcategoryColumnButtons">
@@ -90,14 +90,14 @@
 						rowClasses="panelFirstLine, panelNextLine">
 	
 						<h:commandButton immediate="true"
-							action="#{subcategoryMB.createSubcategory()}" value="Neue Unterkategorie"
+							action="#{subcategoryMB.createSubcategory(userMB.topicId)}" value="Neue Unterkategorie"
 							class="btn btn-primary"
 							style="width:200px;height:40px;margin-bottom: 10px">
 						</h:commandButton>
 												
 	
-						<h:commandButton immediate="true" action="backToStartPage"
-							class="btn btn-primary" value="Zur&uuml;ck"
+						<h:commandButton immediate="true" action="backToTopicMenu"
+							class="btn btn-primary" value="Zur&uuml;ck zu Themenbereiche"
 							style="width:200px;height:40px;margin-bottom: 10px">
 						</h:commandButton>
 	
@@ -105,5 +105,28 @@
 				</div>
 		</h:form>
 	</center>
+	
+		<script language="javascript" type="text/javascript">
+				var text = document.getElementById("subcategoryMenu:searchField");
+				var form = document.getElementById("subcategoryMenu");
+				var timer;
+				text.onkeyup = function() { 
+					clearTimeout(timer);
+					timer=setTimeout(function validate(){form.submit();},300)
+				}	
+						
+				function moveCursorToEnd(el) {
+						 if (typeof el.selectionStart == "number") {
+						     el.selectionStart = el.selectionEnd = el.value.length;
+						 } else if (typeof el.createTextRange != "undefined") {
+						     el.focus();
+						     var range = el.createTextRange();
+						     range.collapse(false);
+						     range.select();
+						 }
+				}	
+				text.focus(moveCursorToEnd(text));							
+	</script>
+	
 </h:body>
 </html>

@@ -22,7 +22,9 @@ public class UserMB {
 	@EJB
 	private IUserFacade userFacade;
 	
-
+	private int topicId = 0;
+	private String searchField = "";
+	
 	public User getUser(){
 		if(user == null){
 			ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
@@ -54,5 +56,22 @@ public class UserMB {
 	private HttpServletRequest getRequest() {
 		return (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
 	}
+
+	public int getTopicId() {
+		return topicId;
+	}
+
+	public void setTopicId(int topicId) {
+		this.topicId = topicId;
+	}
+
+	public String getSearchField() {
+		return searchField;
+	}
+
+	public void setSearchField(String searchField) {
+		this.searchField = searchField;
+	}
+	
 	
 }
