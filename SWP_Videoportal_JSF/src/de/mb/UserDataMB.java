@@ -48,10 +48,12 @@ public class UserDataMB implements Serializable {
 	@Size(min=1, max=255)
 	private String username;
 	
+	@Size(min=0, max=255)
 	private String password;
 	
 	@Size(min=1, max=255)
 	private String prename;
+	
 	@Size(min=1, max=255)
 	private String surname;
 	

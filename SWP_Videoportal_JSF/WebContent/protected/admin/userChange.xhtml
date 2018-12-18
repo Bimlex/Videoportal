@@ -33,11 +33,11 @@
 
 				<h:outputLabel value="Username " />
 				<h:outputText value="#{userDataMB.username}" />
-				<h:inputHidden id="Username" value="#{userDataMB.username}" />
+				<h:inputHidden id="Username" value="#{userDataMB.username}" name="Username"/>
 
 				<h:outputLabel value="Passwort " />
 				<h:inputText class="form-control" id="Passwort"
-					value="#{userDataMB.password}" />
+					value="#{userDataMB.password}" name="Passwort"/>
 				<h:outputLabel value="" />
 
 				<h:outputLabel value="" />
@@ -54,12 +54,12 @@
 
 				<h:outputLabel value="Vorname " />
 				<h:inputText class="form-control" id="Vorname"
-					value="#{userDataMB.prename}" />
+					value="#{userDataMB.prename}" name="Vorname"/>
 				<h:outputLabel value="" />
 
 				<h:outputLabel value="Nachname " />
 				<h:inputText class="form-control" id="Nachname"
-					value="#{userDataMB.surname}" />
+					value="#{userDataMB.surname}" name="Nachname"/>
 				<h:outputLabel value="" />
 
 
