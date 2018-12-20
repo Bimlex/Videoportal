@@ -37,16 +37,13 @@
 				<h:inputText id="name" class="form-control" value="#{videoMB.name}" style="width: 200"/>
 				<h:outputLabel value="" />
 				
-				<h:outputLabel value="Themenbereich: " />
-				<h:inputText id="topic" class="form-control" value="#{videoMB.topic}" style="width: 200"/>
-				<h:outputLabel value="" />		
-				
-				<h:outputLabel value="Kategorie" />
-				<h:inputText id="category" class="form-control" value="#{videoMB.subcategory}" style="width: 200"/>
+				<h:outputLabel value="Kategorie: " />
+				<h:inputText id="category" class="form-control" value="#{videoMB.subcategoryId}" style="width: 200"/>
 				<h:outputLabel value="" />	
 				
-				<h:outputLabel value="Beschreibung" />
-				<h:inputText id="description" class="form-control" value="#{videoMB.description}" style="width: 200"/>
+				<h:outputLabel value="Beschreibung: " />
+				<h:inputText id="description" class="form-control" value="#{videoMB.description}" 
+				style="max-width: 220px; min-height: 200px; max-height: 400px;  display:inline"/>
 				<h:outputLabel value="" />
 
 			</h:panelGrid>
