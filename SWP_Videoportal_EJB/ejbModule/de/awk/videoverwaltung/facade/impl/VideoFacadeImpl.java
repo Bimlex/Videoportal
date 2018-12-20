@@ -36,23 +36,23 @@ public class VideoFacadeImpl implements IVideoFacade {
 	Converter converter = new Converter();
 
 	@Override
-	public void updateVideo(Integer aVideoId, String aVideoname, String topic, String subcategory, String description) {
+	public void updateVideo(Integer aVideoId, String aVideoname, /*String topic,*/ Integer subcategoryId, String description) {
 		Video aVideo = this.findVideoById(aVideoId);
 		aVideo.setVideoId(aVideoId);
 		aVideo.setName(aVideoname);
-		aVideo.setTopic(topic);
-		aVideo.setSubcategory(subcategory);
+//		aVideo.setTopic(topic);
+		aVideo.setSubcategoryId(subcategoryId);
 		aVideo.setDescription(description);
 		videoDAO.save(aVideo);
 	}
 
 	// Paul
 	@Override
-	public boolean uploadVideo(File file, Part fileToUpload, String name, String description, String subcategory) {
+	public boolean uploadVideo(File file, Part fileToUpload, String name, String description, int subcategoryId) {
 		boolean ok = false;
 		try {
 			if (converter.uploadNewVideo(file, fileToUpload)) {
-				Video video = new Video(name, "topic", subcategory, description, converter.getVideoPath());
+				Video video = new Video(name,/* "topic,"*/ subcategoryId, description, converter.getVideoPath());
 				videoDAO.save(video);
 				System.out.println("Ein Bier trinken");
 				ok = true;
@@ -91,6 +91,26 @@ public class VideoFacadeImpl implements IVideoFacade {
 
 	public void setVideoDAO(VideoDAO videoDAO) {
 		this.videoDAO = videoDAO;
+	}
+
+	@Override
+	public List<Video> findVideosBySubcategoryId(int subcategoryId) {
+		return videoDAO.findVideosBySubcategoryId(subcategoryId);
+	}
+
+	@Override
+	public List<Video> findVideosByNameAndSubcategoryId(int subcategoryId, String name) {
+		return videoDAO.findVideosByNameAndSubcategoryId(subcategoryId,name);
+	}
+
+	@Override
+	public List<Video> findVideosByDescriptionAndSubcategoryId(int subcategoryId, String description) {
+		return videoDAO.findVideosByDescriptionAndSubcategoryId(subcategoryId, description);
+	}
+
+	@Override
+	public List<Video> findVideosBySearchInput(String searchField) {
+		return videoDAO.findVideosBySearchInput(searchField);
 	}
 
 }

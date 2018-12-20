@@ -2,37 +2,54 @@ package de.mb;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.Part;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+
+import de.awk.userManagement.model.User;
 import de.awk.videoverwaltung.facade.IVideoFacade;
 import de.awk.videoverwaltung.model.Video;
 
-@SessionScoped
+@RequestScoped
 @ManagedBean(name = "videoMB")
-public class VideoMB {
+public class VideoMB implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8157369186196474832L;
 
 	private Video video;
 
 	// private Integer videoId;
 	// private String name;
-	private String topic;
-	private String subcategory;
+	// private String topic;
+	// private String subcategory;
 	// private String description;
 	// private String path;
-
+	
+	private String searchOption;
+	
+	@ManagedProperty(value="#{searchField}" )
+	private String searchField;
+	
 	private List<Video> videoList = null;
 	@EJB
 	private IVideoFacade videoFacade;
+
+	@NotNull
+	@Digits(fraction = 0, integer = 6)
+	private Integer subcategoryId;
 
 	// public Video getVideo(){
 	// if(video == null){
@@ -44,6 +61,134 @@ public class VideoMB {
 	// }
 	// return video;
 	// }
+
+	// public String setVideoIdForVideoView(int aVideoId) {
+	//
+	// this.videoId = aVideoId;
+	//
+	// return "videoWatch";
+	// }
+	
+	public String setVideoIdForVideoWatch(int aVideoId) {
+		System.out.println("die gewählte videoId ist "+ aVideoId);
+		
+		Video aVideo = this.videoFacade.findVideoById(aVideoId);
+		
+		if(aVideo != null) {
+			this.videoId = aVideo.getVideoId();
+			this.name = aVideo.getName();
+			this.description = aVideo.getDescription();
+			this.subcategoryId = aVideo.getSubcategoryId();
+	
+			System.out.println("folgendes Video wurde gewählt: VideoID ist: "+ this.getVideoId() +" beschreibung:  "+ this.getDescription() +" name:  "+ this.getName());
+			
+			return "videoWatch";
+		}
+		return "";
+		
+		
+	}
+
+	public List<Video> initialiseVideoListBySubcategoryList() {
+		this.videoList = null;
+
+		if (this.searchField == null || this.searchField.equals("")) {
+			videoList = videoFacade.getAllVideos();
+		} else {
+			if (searchOption == null || searchOption.equals("")) {
+				searchOption = "VideosID";
+			}
+
+			switch (searchOption) {
+			case "VideosID":
+				videoList = videoFacade.findVideosBySubcategoryId(Integer.parseInt(this.searchField));
+				break;
+			}
+		}
+		System.out.println(subcategoryId);
+		return videoList;
+	}
+
+	public List<Video> initialiseVideoListBySubcategoryId() {
+		this.videoList = null;
+
+		if (this.searchField == null || this.searchField.equals("")) {
+			videoList = videoFacade.findVideosBySubcategoryId(this.subcategoryId);
+		} else {
+			if (searchOption == null || searchOption.equals("")) {
+				searchOption = "Name";
+			}
+
+			switch (searchOption) {
+			case "Name":
+				this.videoList = null;
+				System.out.println("Dies ist die subId wenn man nach Name filtert = " + subcategoryId);
+				System.out.println("subcategory = " + subcategoryId + " --------------------------------- " + " SUCHFELD: "
+						+ this.searchField);
+				videoList = videoFacade.findVideosByNameAndSubcategoryId(this.subcategoryId, this.searchField);
+				break;
+			case "Description":
+				this.videoList = null;
+				System.out.println("Dies ist die TopicId wenn man nach Beschreibung filtert = " + subcategoryId);
+				System.out.println("TOPICID = " + subcategoryId + " --------------------------------- " + " SUCHFELD: "
+						+ this.searchField);
+				videoList = videoFacade.findVideosByDescriptionAndSubcategoryId(this.subcategoryId, this.searchField);
+				break;
+			}
+		}
+		System.out.println(subcategoryId);
+		return videoList;
+	}
+
+	// public List<Video> initialiseVideoListBySubcategoryId(){
+	// this.videoList = null;
+	//
+	//
+	//
+	//
+	// if (this.searchField == null) {
+	// videoList = videoFacade.findVideosBySubcategoryId(this.subcategoryId);
+	// } else if (this.searchField.equals("")) {
+	// videoList = videoFacade.findVideosBySubcategoryId(this.subcategoryId);
+	// } else {
+	// if (searchOption == null) {
+	// searchOption = "Name";
+	// }
+	//
+	// if (searchOption.equals("")) {
+	// searchOption = "Name";
+	// }
+	//
+	// switch (searchOption) {
+	// case "Name":
+	// videoList = videoFacade.findVideosByNameAndSubcategoryId(this.subcategoryId,
+	// this.searchField);
+	// break;
+	// case "Description":
+	// videoList =
+	// videoFacade.findVideosByDescriptionAndSubcategoryId(this.subcategoryId,
+	// this.searchField);
+	// break;
+	// }
+	// }
+	// System.out.println("erstes video der liste: "+ videoList.get(0)+"-----
+	// zweites: "+ videoList.get(1));
+	// return videoList;
+	// }
+	//
+
+	public void printTestNachricht() {
+		System.out.println("xkjsahdfkls--------------------------------------jhadflksajhdflsakjhfdlaksdf");	
+	}
+	
+	public String setSubcategoryIdForVideoSearch(int aTopicId, int aSubcategoryId) {
+
+		System.out.println("++++++++++############ gewaehlte SubcategoryId ist: " + aSubcategoryId + "\n"+ 
+		"+++++++++########### ausgewaehlte topicID "+aTopicId+"\n");
+		this.subcategoryId = aSubcategoryId;
+		System.out.println("++++++++++############ gewaehlte SubcategoryId ist: " + aSubcategoryId + "\n");
+		return "videoSearchVideo";
+	}
 
 	public String updateVideo() {
 
@@ -57,11 +202,11 @@ public class VideoMB {
 			return "";
 		}
 
-		if (this.topic.isEmpty()) {
-			sendInfoMessageToUser("Es wurde kein Themenbereich vergeben");
-			return "";
-		}
-		if (this.subcategory.isEmpty()) {
+		// if (this.topic.isEmpty()) {
+		// sendInfoMessageToUser("Es wurde kein Themenbereich vergeben");
+		// return "";
+		// }
+		if (!(this.subcategoryId == null)) {
 			sendInfoMessageToUser("Es wurde kein Kategorie vergeben");
 			return "";
 		}
@@ -71,53 +216,37 @@ public class VideoMB {
 			return "";
 		}
 
-		videoFacade.updateVideo(this.videoId, this.name, this.topic, this.subcategory, this.description);
+		videoFacade.updateVideo(this.videoId, this.name, /* this.topic, */ this.subcategoryId, this.description);
 
 		// initialiseVideoList();
 
-		return "zurueckZumVideoMenu";
+		return "zurueckZumVideoMenue";
 
 	}
 
-	// private void initialiseVideoList() {
-	//
-	// if (this.searchField == null) {
-	// videoList = videoFacade.getAllVideos();
-	// } else if (this.searchField.equals("")) {
-	// videoList = videoFacade.getAllVideos();
-	// } else {
-	// if(searchOption == null) {
-	// searchOption = "Username";
-	// }
-	//
-	// if(searchOption.equals("")) {
-	// searchOption = "Username";
-	// }
-	//
-	// switch (searchOption) {
-	// case "Username":
-	// videoList = videoFacade.findVideoByName(this.searchField);
-	// break;
-	// case "Vorname":
-	// videoList = videoFacade.findVideoByName(this.searchField);
-	// break;
-	// case "Nachname":
-	// videoList = videoFacade.findVideoByName(this.searchField);
-	// break;
-	// }
-	//
-	// }
-	//
-	// for (User aUser : userList) {
-	// aUser.setPassword("*********");
-	// }
-	//
-	// return userList;
-	// }
+	 public List<Video> initialiseVideoList() {
+		 this.videoList = null;
 
-	public void setTopic(String topic) {
-		this.topic = topic;
-	}
+		 //this.searchField ="apfel";
+				 
+		 if (this.searchField == null || this.searchField.equals("")) {
+			 videoList = videoFacade.getAllVideos();
+		 } else {
+			 System.out.println("Das ist das ********* das SearchValue : " +searchField);
+			 videoList = videoFacade.findVideosBySearchInput(this.searchField);	
+			
+		 }
+		 System.out.println("es wurden "+videoList.size()+" videos gefunden");
+		 System.out.println("*************" +this.searchField);
+	
+	 return videoList;
+	 }
+
+
+	 
+	// public void setTopic(String topic) {
+	// this.topic = topic;
+	// }
 
 	private void sendInfoMessageToUser(String message) {
 		FacesContext context = getContext();
@@ -127,10 +256,6 @@ public class VideoMB {
 	private FacesContext getContext() {
 		FacesContext context = FacesContext.getCurrentInstance();
 		return context;
-	}
-
-	private HttpServletRequest getRequest() {
-		return (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
 	}
 
 	public List<Video> getAllVideos() {
@@ -146,8 +271,8 @@ public class VideoMB {
 		this.videoId = aVideo.getVideoId();
 		this.name = aVideo.getName();
 		this.description = aVideo.getDescription();
-		this.topic = aVideo.getTopic();
-		this.subcategory = aVideo.getSubcategory();
+		// this.topic = aVideo.getTopic();
+		this.subcategoryId = aVideo.getSubcategoryId();
 
 		return "bestehendesVideoAendern";
 	}
@@ -160,13 +285,13 @@ public class VideoMB {
 	// return videoId;
 	// }
 
-	public String getTopic() {
-		return topic;
-	}
+	// public String getTopic() {
+	// return topic;
+	// }
 
-	public String getSubcategory() {
-		return subcategory;
-	}
+	// public String getSubcategory() {
+	// return subcategory;
+	// }
 
 	// public String getDescription() {
 	// return description;
@@ -209,7 +334,7 @@ public class VideoMB {
 	private File file;
 
 	public boolean upload() throws IOException {
-		if (videoFacade.uploadVideo(this.file, this.fileToUpload, this.name, this.description,this.subcategory))
+		if (videoFacade.uploadVideo(this.file, this.fileToUpload, this.name, this.description, this.subcategoryId))
 			return true;
 		else {
 			return false;
@@ -279,4 +404,29 @@ public class VideoMB {
 		this.description = description;
 	}
 
+	public String getSearchField() {
+		return searchField;
+	}
+
+	public void setSearchField(String searchField) {
+		this.searchField = searchField;
+	}
+
+	public String getSearchOption() {
+		return searchOption;
+	}
+
+	public void setSearchOption(String searchOption) {
+		this.searchOption = searchOption;
+	}
+
+	public Integer getSubcategoryId() {
+		return subcategoryId;
+	}
+
+	public void setSubcategoryId(Integer subcategoryId) {
+		this.subcategoryId = subcategoryId;
+	}
+
+	
 }

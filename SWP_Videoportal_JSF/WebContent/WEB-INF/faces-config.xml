@@ -55,8 +55,8 @@
    <to-view-id>/protected/admin/videoAdministration.xhtml</to-view-id>
   </navigation-case>
   <navigation-case>
-   <from-outcome>videoSuche</from-outcome>
-   <to-view-id>/protected/admin/videoSuche.xhtml</to-view-id>
+   <from-outcome>videoSearchAll</from-outcome>
+   <to-view-id>/protected/public/videoSearchAll.xhtml</to-view-id>
   </navigation-case>
   <navigation-case>
    <from-outcome>zurueckZurStartseite</from-outcome>
@@ -64,14 +64,14 @@
   </navigation-case>
  </navigation-rule>
  <navigation-rule>
-  <from-view-id>/protected/admin/videoSuche.xhtml</from-view-id>
+  <from-view-id>/protected/public/videoSearchAll.xhtml</from-view-id>
   <navigation-case>
-   <from-outcome>videoSuche</from-outcome>
-   <to-view-id>/protected/admin/videoSicht.xhtml</to-view-id>
+   <from-outcome>videoWatch</from-outcome>
+   <to-view-id>/protected/public/videoWatch.xhtml</to-view-id>
   </navigation-case>
   <navigation-case>
-   <from-outcome>zurueckZurVideoverwaltung</from-outcome>
-   <to-view-id>/protected/admin/videoVerwaltung.xhtml</to-view-id>
+   <from-outcome>backToStartPage</from-outcome>
+   <to-view-id>/protected/public/startseite.xhtml</to-view-id>
   </navigation-case>
  </navigation-rule>
  <navigation-rule>

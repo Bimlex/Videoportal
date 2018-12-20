@@ -19,7 +19,14 @@ import javax.persistence.Table;
 @NamedQueries({
 	@NamedQuery(name="Video.findVideoByName", query="SELECT v FROM Video v WHERE v.name = :videoname"),
 	@NamedQuery(name="Video.findVideoById", query="SELECT v FROM Video v WHERE v.videoId = :videoId"),
+	@NamedQuery(name="Video.findListVideosBySubcategoryId", query="SELECT v FROM Video v WHERE v.subcategoryId = :subcategoryId"),
+	@NamedQuery(name="Video.findListVideosbySubcategoryIdAndName", query="SELECT v FROM Video v WHERE v.subcategoryId = :subcategoryId AND v.name= :name"),
+	@NamedQuery(name="Video.findListVideosBySubcategoryIdAndDescription", query="SELECT v FROM Video v WHERE v.subcategoryId = :subcategoryId AND v.description= :description"),
+	
+	@NamedQuery(name="Video.findListVideosBySearchfieldInput", query="SELECT v FROM Video v, Subcategory s, Topic t WHERE v.subcategoryId=s.subcategoryId AND s.topicId= t.topicId AND (v.name like :name OR v.description like :description OR s.name like :name OR s.description like :description OR t.name like :name OR t.description like :description) group by v.videoId")
+	
 
+	
 })
 public class Video implements Serializable {
 
@@ -28,10 +35,12 @@ public class Video implements Serializable {
 	 * 
 	 */
 
-	
-
 	public static final String FIND_BY_VIDEONAME = "Video.findVideoByName";
 	public static final String FIND_VIDEO_BY_ID = "Video.findVideoById";
+	public static final String FIND_LIST_VIDEOS_BY_SUBCATEGORYID = "Video.findListVideosBySubcategoryId";
+	public static final String FIND_LIST_VIDEOS_BY_SUBCATEGORYID_AND_NAME = "Video.findListVideosbySubcategoryIdAndName";
+	public static final String FIND_LIST_VIDEOS_BY_SUBCATEGORYID_AND_DESCRIPTION = "Video.findListVideosBySubcategoryIdAndDescription";
+	public static final String FIND_LIST_VIDEOS_BY_SEARCHFIELDINPUT = "Video.findListVideosBySearchfieldInput";
 	
 	
 	@Id
@@ -39,17 +48,17 @@ public class Video implements Serializable {
 	@SequenceGenerator(name="SEQ_VIDEO_ID", sequenceName="SEQ_VIDEO_ID", allocationSize = 1)
 	private Integer videoId;
 	private String name;
-	private String topic;
-	private String subcategory;
+//	private String topic;
+	private Integer subcategoryId;
 	private String description;
 	private String path;
 	
 	public Video () {}
 
-	public Video(String name, String topic, String subcategory, String description, String path) {
+	public Video(String name, /*String topic,*/ Integer subcategoryId, String description, String path) {
 		this.setName(name);
-		this.setTopic(topic);
-		this.setSubcategory(subcategory);
+	//	this.setTopic(topic);
+		this.setSubcategoryId(subcategoryId);
 		this.setDescription(description);
 		this.setPath(path);
 	}
@@ -83,31 +92,35 @@ public class Video implements Serializable {
 		this.path = path;
 	}
 
-	public String getTopic() {
-		return topic;
-	}
-
-	public void setTopic(String topic) {
-		this.topic = topic;
-	}
-
-	public String getSubcategory() {
-		return subcategory;
-	}
-
-	public void setSubcategory(String subcategory) {
-		this.subcategory = subcategory;
-	}
+//	public String getTopic() {
+//		return topic;
+//	}
+//
+//	public void setTopic(String topic) {
+//		this.topic = topic;
+//	}
+//
+//	public String getSubcategory() {
+//		return subcategory;
+//	}
+//
+//	public void setSubcategory(String subcategory) {
+//		this.subcategory = subcategory;
+//	}
 
 	public void setVideoId(Integer videoId) {
 		this.videoId = videoId;
 	}
 
-	
+	public Integer getSubcategoryId() {
+		return subcategoryId;
+	}
+
+	public void setSubcategoryId(Integer subcategoryId) {
+		this.subcategoryId = subcategoryId;
+	}
 
 	
-
-
 	
 
 

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:fmt="http://java.sun.com/jsp/jstl/fmt">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="shortcut icon" type="image/x-icon"
+		href="../../images/ico.png" />
+
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+		integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+		crossorigin="anonymous" />
+	<link href="../../css/main.css" rel="stylesheet" type="text/css" />
+	<title>Videos</title>	
+</h:head>
+	<h:body>
+		<center>
+		<h:form id="videoSearchMenue">
+		<div class="centerPageElements">
+	
+			<h3>Videosuche</h3>
+			<div style="background-color: #f2f2f2; margin-left: 10px; margin-right: 10px; padding: 20px; max-width: 400px; min-width: 250px; border-radius: 5px">
+				
+					<h:outputLabel value="Videosuche" />
+						 <table border="0">
+			    		</table>
+			       	<br></br>
+		
+<!-- 						<div> -->
+<!-- 							<h:inputText id="searchField" -->
+<!-- 								value="#{videoMB.searchField}" -->
+<!-- 								style="max-width: 150px; display:inline" class="form-control" /> -->
+<!-- 							<h:commandButton class="btn btn-primary" -->
+<!-- 								update="videoListView" value="Suche" -->
+<!-- 								action="#{videoMB.initialiseVideoList()}"> -->
+<!-- 									<f:setPropertyActionListener  -->
+<!-- 										value="#{searchField}"  -->
+<!-- 										target="{videoMB.searchField}"> -->
+<!-- 									</f:setPropertyActionListener> -->
+<!-- 							</h:commandButton> -->
+			
+<!-- 						</div>	 -->
+							
+						<div class="form-group" style="max-width: 400px;">
+						
+							
+							<h:inputText id="searchField" value="#{videoMB.searchField}"
+										 style="max-width: 150px; display:inline" 
+										 class="form-control" onfocus="this.value" />
+										 
+							<h:commandButton class="btn btn-primary"
+											 action="#{videoMB.initialiseVideoList()}" update="videoListView"
+											 value="Suche" />					
+						</div>	
+						
+					
+
+												
+						
+				</div>
+
+				<div class="parent">
+						<h:dataTable value="#{videoMB.initialiseVideoList()}" var="video"
+						id="videoListView" styleClass="table" headerClass="table-header"
+						rowClasses="table-odd-row, table-even-row"
+						columnClasses="videoColumnPlaceholder,videoColumn,videoColumn,videoColumn,videoColumnButtons">
+																	
+								
+						<h:column style="margin-left:10px;">
+						</h:column>
+	
+						<h:column>
+							<f:facet name="header">ID</f:facet>
+							<h:outputText value="#{video.videoId}" />
+						</h:column>
+	
+						<h:column>
+							<f:facet name="header">Kategorie</f:facet>
+							<h:outputText value="#{video.subcategoryId}" />
+						</h:column>
+	
+						<h:column>
+							<f:facet name="header">Titel</f:facet>
+							<h:outputText value="#{video.name}" />
+						</h:column>
+					
+						<h:column>
+							<h:commandButton value="Auswählen" class="btn btn-primary"
+								name="Auswaehlen" id="AuswaehlenTopic" style="width: 90px" 
+								action="#{videoMB.setVideoIdForVideoWatch(video.videoId)}" />
+						</h:column>
+						<br>
+						</br>
+									
+					</h:dataTable>
+					
+				</div>
+				<br/>
+								
+			<div class="centerPageElements">
+				<h:panelGrid columns="1" styleClass="panelGrid"
+					rowClasses="panelFirstLine, panelNextLine">
+														
+		
+					<h:commandButton  action="backToStartPage"
+						class="btn btn-primary" value="Zur&uuml;ck zur Startseite"
+						style="width:200px;height:40px;margin-bottom: 10px">
+					</h:commandButton>
+		
+				</h:panelGrid>
+			</div>
+						
+	
+		</div>
+		</h:form>
+		</center>
+		
+		<script language="javascript" type="text/javascript">
+				var text = document.getElementById("videoSearchMenue:searchField");
+				var form = document.getElementById("videoSearchMenue");
+				var timer;
+				text.onkeyup = function() { 
+					clearTimeout(timer);
+					timer=setTimeout(function validate(){form.submit();},300)
+				}	
+						
+				function moveCursorToEnd(el) {
+						 if (typeof el.selectionStart == "number") {
+						     el.selectionStart = el.selectionEnd = el.value.length;
+						 } else if (typeof el.createTextRange != "undefined") {
+						     el.focus();
+						     var range = el.createTextRange();
+						     range.collapse(false);
+						     range.select();
+						 }
+				}	
+				text.focus(moveCursorToEnd(text));							
+	</script>
+	
+	</h:body> 
+</html>	 

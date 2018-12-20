@@ -56,6 +56,12 @@
 						style="min-width:250px; max-width: 550px; margin-bottom:10px; display:inline-block"
 						class="btn btn-primary">
 					</h:commandButton>
+					
+					<h:commandButton value="Videos suchen" action="videoSearchAll"
+						rendered="#{userMB.isUserUser()}"
+						style="min-width:250px; max-width: 550px; margin-bottom:10px; display:inline-block"
+						class="btn btn-primary">
+					</h:commandButton>
 
 					<h:commandButton action="#{ userMB.logOut() }" value="Abmelden"
 						style="min-width:250px; max-width: 550px; margin-bottom:10px; display:inline-block"

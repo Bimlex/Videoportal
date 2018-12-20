@@ -6,6 +6,8 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.component.html.HtmlDataTable;
 import javax.faces.context.FacesContext;
@@ -17,6 +19,7 @@ import javax.validation.constraints.Size;
 import de.awk.videoverwaltung.facade.ISubcategoryFacade;
 import de.awk.videoverwaltung.facade.ITopicFacade;
 import de.awk.videoverwaltung.model.Subcategory;
+
 
 @ManagedBean(name="subcategoryMB")
 @SessionScoped
@@ -34,7 +37,12 @@ public class SubcategoryMB implements Serializable{
 	
 	@EJB
 	ITopicFacade topicFacade;
-		
+	
+
+	
+//	@ManagedProperty(value="#{saveValue}")
+//	private SaveValue saveValue;
+	
 	@NotNull
 	@Digits(fraction = 0, integer = 6)
 	private int subcategoryId;
