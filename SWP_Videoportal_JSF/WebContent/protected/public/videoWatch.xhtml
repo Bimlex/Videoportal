@@ -5,7 +5,8 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:fmt="http://java.sun.com/jsp/jstl/fmt">
+	xmlns:fmt="http://java.sun.com/jsp/jstl/fmt"
+	xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -21,7 +22,7 @@
 </h:head>
 	<h:body>
 	<center>
-		<h3>User &auml;ndern</h3>
+		<h3>Videosicht</h3>
 		<h:messages layout="list" styleClass="messageStyleClassVP"
 			errorClass="errorMessageVP" infoClass="infoMessageVP" />
 
@@ -30,8 +31,13 @@
 			<br />
 			<br />
 			<h:panelGrid columns="2" id="User-Grid" styleClass="panelGrid"
-				rowClasses="videoRow,videoRow,videoRow,videoRow,videoRow">
+				rowClasses="videoColumn,videoColumn,videoColumn,videoColumn,videoColumn,videoColumnPlaceholder">
 
+				<h:outputLabel value="Videopath " />
+				<h:outputText value="#{videoMB.path}" />
+				
+				
+				
 				<h:outputLabel value="Videoname " />
 				<h:outputText value="#{videoMB.name}" />
 			
@@ -45,15 +51,21 @@
 				<h:outputText value="#{videoMB.subcategoryId}" />
 				
 				<h:outputLabel value="" />
+ 
 
-
+			
 			</h:panelGrid>
-			<br />
+			
+		
+			 <h:form>
+				<input class="btn btn-primary" type="button" value="Video Ansehen" onclick="window.location.href='../../protected/public/190102005033757807255617536.mp4'"/>
+			</h:form> 
 
 
 				<h:button value="Zur&uuml;ck" outcome="backToVideoSearchAll"
 					class="btn btn-primary" style="width:200px;height:40px;margin-bottom: 10px" />
 			
+				
 
 		</h:form>
 	</center>

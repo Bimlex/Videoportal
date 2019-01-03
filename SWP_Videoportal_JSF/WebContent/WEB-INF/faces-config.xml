@@ -92,15 +92,15 @@
  <navigation-rule>
   <from-view-id>/protected/admin/videoAendern.xhtml</from-view-id>
   <navigation-case>
-   <from-outcome>zurueckZurVideoverwaltung</from-outcome>
-   <to-view-id>/protected/admin/videoVerwaltung.xhtml</to-view-id>
+   <from-outcome>backToVideoAdministration</from-outcome>
+   <to-view-id>/protected/admin/videoAdministration.xhtml</to-view-id>
   </navigation-case>
  </navigation-rule>
  <navigation-rule>
-  <from-view-id>/protected/admin/videoSicht.xhtml</from-view-id>
+  <from-view-id>/protected/public/videoWatch.xhtml</from-view-id>
   <navigation-case>
-   <from-outcome>zurueckZurVideoverwaltung</from-outcome>
-   <to-view-id>/protected/admin/videoVerwaltung.xhtml</to-view-id>
+   <from-outcome>backToVideoSearchAll</from-outcome>
+   <to-view-id>/protected/public/videoSearchAll.xhtml</to-view-id>
   </navigation-case>
  </navigation-rule>
  <navigation-rule>

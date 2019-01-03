@@ -23,7 +23,7 @@ import javax.persistence.Table;
 	@NamedQuery(name="Video.findListVideosbySubcategoryIdAndName", query="SELECT v FROM Video v WHERE v.subcategoryId = :subcategoryId AND v.name= :name"),
 	@NamedQuery(name="Video.findListVideosBySubcategoryIdAndDescription", query="SELECT v FROM Video v WHERE v.subcategoryId = :subcategoryId AND v.description= :description"),
 	
-	@NamedQuery(name="Video.findListVideosBySearchfieldInput", query="SELECT v FROM Video v, Subcategory s, Topic t WHERE v.subcategoryId=s.subcategoryId AND s.topicId= t.topicId AND (v.name like :name OR v.description like :description OR s.name like :name OR s.description like :description OR t.name like :name OR t.description like :description) group by v.videoId")
+	@NamedQuery(name="Video.findListVideosBySearchfieldInput", query="SELECT v FROM Video v, Subcategory s, Topic t WHERE v.subcategoryId=s.subcategoryId AND s.topicId= t.topicId AND (v.name LIKE :name OR v.description LIKE :description OR s.name LIKE :name OR s.description LIKE :description OR t.name LIKE :name OR t.description LIKE :description) group by v.videoId")
 	
 
 	

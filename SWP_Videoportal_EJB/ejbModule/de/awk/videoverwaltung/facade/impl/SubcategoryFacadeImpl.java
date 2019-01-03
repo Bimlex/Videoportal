@@ -1,5 +1,6 @@
 package de.awk.videoverwaltung.facade.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -79,6 +80,7 @@ public class SubcategoryFacadeImpl implements ISubcategoryFacade{
 	public void deleteAllSubcategoriesByTopicId(int topicId){
 		subcategoryDAO.deleteAllSubcategoriesByTopicId(topicId);
 	}
+
 	
 	
 }

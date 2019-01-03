@@ -17,6 +17,7 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import de.awk.userManagement.model.User;
+import de.awk.videoverwaltung.facade.ISubcategoryFacade;
 import de.awk.videoverwaltung.facade.IVideoFacade;
 import de.awk.videoverwaltung.model.Video;
 
@@ -47,6 +48,10 @@ public class VideoMB implements Serializable {
 	@EJB
 	private IVideoFacade videoFacade;
 
+	@EJB
+	private ISubcategoryFacade subcategoryFacade;
+
+	
 	@NotNull
 	@Digits(fraction = 0, integer = 6)
 	private Integer subcategoryId;
@@ -79,8 +84,10 @@ public class VideoMB implements Serializable {
 			this.name = aVideo.getName();
 			this.description = aVideo.getDescription();
 			this.subcategoryId = aVideo.getSubcategoryId();
+			this.path= aVideo.getPath();
+
 	
-			System.out.println("folgendes Video wurde gewählt: VideoID ist: "+ this.getVideoId() +" beschreibung:  "+ this.getDescription() +" name:  "+ this.getName());
+			System.out.println("folgendes Video wurde gewählt: VideoID ist: "+ this.getVideoId() +" beschreibung:  "+ this.getDescription() +" name:  "+ this.getName()+" path: "+this.getPath());
 			
 			return "videoWatch";
 		}
@@ -206,7 +213,7 @@ public class VideoMB implements Serializable {
 		// sendInfoMessageToUser("Es wurde kein Themenbereich vergeben");
 		// return "";
 		// }
-		if (!(this.subcategoryId == null)) {
+		if ((this.subcategoryId == null)) {
 			sendInfoMessageToUser("Es wurde kein Kategorie vergeben");
 			return "";
 		}
@@ -220,7 +227,7 @@ public class VideoMB implements Serializable {
 
 		// initialiseVideoList();
 
-		return "zurueckZumVideoMenue";
+		return "backToVideoAdministration";
 
 	}
 
@@ -318,23 +325,25 @@ public class VideoMB implements Serializable {
 	@NotNull
 	@Size(min = 1, max = 200)
 	@Pattern(regexp = "[A-Za-z ]*")
-	private String videoPath;
+	private String path;
 
 	@NotNull
 	@Size(min = 1, max = 200)
-	@Pattern(regexp = "[A-Za-z ]*")
+	@Pattern(regexp = "[A-Za-z0-9_äÄöÖüÜß ]*")
 	private String name;
 
 	@NotNull
 	@Size(min = 1, max = 300)
-	@Pattern(regexp = "[A-Za-z ]*")
+	@Pattern(regexp = "[A-Za-z0-9_äÄöÖüÜß ]*")
 	private String description;
 
 	private Part fileToUpload;
 	private File file;
 
 	public boolean upload() throws IOException {
-		if (videoFacade.uploadVideo(this.file, this.fileToUpload, this.name, this.description, this.subcategoryId))
+		System.out.println("methide upload() gestartet");
+//		System.out.println(subcategoryFacade.findSubcategoryByName(name).getSubcategoryId());
+		if (videoFacade.uploadVideo(this.file, this.fileToUpload, this.name, this.description, 1))
 			return true;
 		else {
 			return false;
@@ -380,12 +389,12 @@ public class VideoMB implements Serializable {
 		this.videoId = videoId;
 	}
 
-	public String getVideoPath() {
-		return videoPath;
+	public String getPath() {
+		return path;
 	}
 
-	public void setVideoPath(String videoPath) {
-		this.videoPath = videoPath;
+	public void setPath(String path) {
+		this.path = path;
 	}
 
 	public String getName() {

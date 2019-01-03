@@ -1,8 +1,10 @@
 package de.mb;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -66,6 +68,24 @@ public class SubcategoryMB implements Serializable{
 	private String searchField;
 	private String searchOption;
 	
+	private List<String> subcategorySelection = new ArrayList<String>();
+
+	
+	public List <String> initialiseSubcategorySelection() {
+			List<Subcategory> rs= new ArrayList<Subcategory>(this.subcategoryFacade.getAllSubcategories());
+			for(Subcategory i :rs) {
+			subcategorySelection.add(i.getName());
+		}
+		return subcategorySelection;
+	}
+	
+	public void setSubcategorySelection(List<String> subcategorySelection) {
+		this.subcategorySelection = subcategorySelection;
+	}
+
+	public List<String> getSubcategorySelection() {
+		return subcategorySelection;
+	}
 	
 	public List<Subcategory> initialiseSubcategoryList(){
 		this.subcategoryList = null;

@@ -86,5 +86,7 @@ public class SubcategoryDAO extends GenericDAO<Subcategory>{
 		this.findAllResult(Subcategory.DELETE_ALL_SUBCATEGORIES_BY_TOPICID, parameters);
 	}
 	
+
+	
 	
 }

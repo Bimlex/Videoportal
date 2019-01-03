@@ -63,8 +63,8 @@ public class VideoDAO  extends GenericDAO<Video> {
 	public List<Video> findVideosBySearchInput(String searchField) {
 		this.getEm().clear();
 		Map<String, Object> parameters = new HashMap<String, Object>();
-		parameters.put("name", searchField );
-		parameters.put("description", searchField);		
+		parameters.put("name", "%" + searchField + "%");
+		parameters.put("description", "%" + searchField + "%");		
 
 		return (List<Video>) this.findAllResult(Video.FIND_LIST_VIDEOS_BY_SEARCHFIELDINPUT, parameters);
 	}

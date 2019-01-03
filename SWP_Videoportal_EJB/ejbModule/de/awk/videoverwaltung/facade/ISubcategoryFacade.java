@@ -24,5 +24,5 @@ public interface ISubcategoryFacade {
 	public abstract void updateSubcategory(int subcategoryId, int topicId, String name, String description);
 	
 	public abstract void deleteAllSubcategoriesByTopicId(int topicId);
-	
+
 }

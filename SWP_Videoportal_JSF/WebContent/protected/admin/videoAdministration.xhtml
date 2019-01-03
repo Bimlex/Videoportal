@@ -1,30 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:fmt="http://java.sun.com/jsp/jstl/fmt">
+
 <h:head>
+
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<link rel="shortcut icon" type="image/x-icon"
 		href="../../images/ico.png" />
 	<link rel="stylesheet"
 		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
 		integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
 		crossorigin="anonymous" />
+	<link href="../../css/main.css" rel="stylesheet" type="text/css" />
 	<title>Videoadministration</title>
 </h:head>
 <h:body>
 	<center>
+	<h:form id="videoAdministrationMenue">
+		<div class="centerPageElements">
+	
 		<h3>Videoadministration</h3>
 
-		<h:form>
+		
+		
+						<div class="form-group" style="max-width: 400px;">
+						
+							
+							<h:inputText id="searchField" value="#{videoMB.searchField}"
+										 style="max-width: 150px; display:inline" 
+										 class="form-control" onfocus="this.value" />
+										 
+							<h:commandButton class="btn btn-primary"
+											 action="#{videoMB.initialiseVideoList()}" update="videoListView"
+											 value="Suche" />					
+						</div>	
+						
+			
 			<div class="parent">
-				<h:dataTable value="#{videoMB.getAllVideos()}" var="video"
-					styleClass="table" headerClass="table-header"
+				<h:dataTable value="#{videoMB.initialiseVideoList()}" var="video"
+					id="videoListView" styleClass="table" headerClass="table-header"
 					rowClasses="table-odd-row, table-even-row"
-					columnClasses="userColumn,userColumn,userColumn,userColumn,userColumn">
+					columnClasses="videoColumnPlaceholder, videoColumn,videoColumn,videoColumn,videoColumn,videoColumnButtons, videoColumnButtons">
 
 					<h:column style="margin-left:10px;">
 					</h:column>
@@ -35,13 +58,8 @@
 					</h:column>
 
 					<h:column>
-						<f:facet name="header">Thema</f:facet>
-						<h:outputText value="#{video.topic}" />
-					</h:column>
-
-					<h:column>
 						<f:facet name="header">Kategorie</f:facet>
-						<h:outputText value="#{video.subcategory}" />
+						<h:outputText value="#{video.subcategoryId}" />
 					</h:column>
 
 					<h:column>
@@ -66,7 +84,8 @@
 
 				</h:dataTable>
 			</div>
-		</h:form>
+		</div>
+	</h:form>
 		<br />
 
 		<div
@@ -76,6 +95,15 @@
 					<h:inputText id="name" value="#{videoMB.name}" required="true"
 						style="max-width: 220px; display:inline" class="form-control" />
 					<br />
+					
+					<h:outputLabel value="Unterkategorie " />
+					<h:selectOneMenu id="Unterkategorie" value="#{subcategoryMB.name}" required="true"
+							style="max-width: 220px; display:inline" class="form-control">
+						<f:selectItems value="#{subcategoryMB.initialiseSubcategorySelection()}" />
+					</h:selectOneMenu>
+					<h:outputLabel value="" />
+					<br />
+					
 					<h:inputText id="description" value="#{videoMB.description}"
 						required="true"
 						style="max-width: 220px; min-height: 200px; max-height: 400px;  display:inline"
@@ -95,7 +123,7 @@
 					<br />
 				</h:panelGrid>
 
-			</h:form>
+			
 
 			<h:button value="Zur&uuml;ck zur Videoverwaltung"
 				outcome="zurueckZurVideoverwaltung"
@@ -103,8 +131,32 @@
 						margin-bottom:10px; display:inline-block"
 				class="btn btn-primary" />
 
+		
+			</h:form>
 		</div>
 	</center>
+	
+			<script language="javascript" type="text/javascript">
+				var text = document.getElementById("videoAdministrationMenue:searchField");
+				var form = document.getElementById("videoAdministrationMenue");
+				var timer;
+				text.onkeyup = function() { 
+					clearTimeout(timer);
+					timer=setTimeout(function validate(){form.submit();},300)
+				}	
+						
+				function moveCursorToEnd(el) {
+						 if (typeof el.selectionStart == "number") {
+						     el.selectionStart = el.selectionEnd = el.value.length;
+						 } else if (typeof el.createTextRange != "undefined") {
+						     el.focus();
+						     var range = el.createTextRange();
+						     range.collapse(false);
+						     range.select();
+						 }
+				}	
+				text.focus(moveCursorToEnd(text));							
+	</script>
 
-</h:body>
+	</h:body>
 </html>
