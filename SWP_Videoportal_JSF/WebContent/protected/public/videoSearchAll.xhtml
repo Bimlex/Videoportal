@@ -17,94 +17,104 @@
 		integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
 		crossorigin="anonymous" />
 	<link href="../../css/main.css" rel="stylesheet" type="text/css" />
-	<title>Videos</title>	
+	<title>Videos</title>
 </h:head>
-	<h:body>
-		<center>
+<h:body>
+	<center>
 		<h:form id="videoSearchMenue">
-		<div class="centerPageElements">
-	
-			<h3>Videosuche</h3>
-			<div style="background-color: #f2f2f2; margin-left: 10px; margin-right: 10px; padding: 20px; max-width: 400px; min-width: 250px; border-radius: 5px">
-				
-					<h:outputLabel value="Videosuche" />
-						 <table border="0">
-			    		</table>
-			       	<br></br>
+			<div class="centerPageElements">
 
-							
-						<div class="form-group" style="max-width: 400px;">
-						
-							
-							<h:inputText id="searchField" value="#{videoMB.searchField}"
-										 style="max-width: 150px; display:inline" 
-										 class="form-control" onfocus="this.value" />
-										 
-							<h:commandButton class="btn btn-primary"
-											 action="#{videoMB.initialiseVideoList()}" update="videoListView"
-											 value="Suche" />					
-						</div>	
-						
-				
+				<h3>Videosuche</h3>
+				<div
+					style="background-color: #f2f2f2; margin-left: 10px; margin-right: 10px; padding: 20px; max-width: 400px; min-width: 250px; border-radius: 5px">
+
+					<h:outputLabel value="Videosuche" />
+					<table border="0">
+					</table>
+					<br></br>
+
+
+					<div class="form-group" style="max-width: 400px;">
+
+
+						<h:inputText id="searchField" value="#{videoMB.searchField}"
+							style="max-width: 150px; display:inline" class="form-control"
+							onfocus="this.value" />
+
+						<h:commandButton class="btn btn-primary"
+							action="#{videoMB.initialiseVideoList()}" update="videoListView"
+							value="Suche" />
+					</div>
+
+
 				</div>
 
 				<div class="parent">
-						<h:dataTable value="#{videoMB.initialiseVideoList()}" var="video"
+					<h:dataTable value="#{videoMB.initialiseVideoList()}" var="video"
 						id="videoListView" styleClass="table" headerClass="table-header"
 						rowClasses="table-odd-row, table-even-row"
 						columnClasses="videoColumnPlaceholder,videoColumn,videoColumn,videoColumn,videoColumnButtons">
-																	
-								
+
+
 						<h:column style="margin-left:10px;">
 						</h:column>
-	
+
 						<h:column>
 							<f:facet name="header">ID</f:facet>
 							<h:outputText value="#{video.videoId}" />
 						</h:column>
-	
+
 						<h:column>
 							<f:facet name="header">Kategorie</f:facet>
 							<h:outputText value="#{video.subcategoryId}" />
 						</h:column>
-	
+
 						<h:column>
 							<f:facet name="header">Titel</f:facet>
 							<h:outputText value="#{video.name}" />
 						</h:column>
-					
+
+						<h:column>
+							<h:outputLabel value="Videopath " />
+							<h:outputText value="../../../../../#{video.path}" />
+						</h:column>
 						<h:column>
 							<h:commandButton value="Auswählen" class="btn btn-primary"
-								name="Auswaehlen" id="AuswaehlenTopic" style="width: 90px" 
+								name="Auswaehlen" id="AuswaehlenTopic" style="width: 90px"
 								action="#{videoMB.setVideoIdForVideoWatch(video.videoId)}" />
 						</h:column>
-						<br>
-						</br>
-									
+						<h:column>
+							<video src="../../../../../#{video.path}" controls="controls"> </video>
+						</h:column>
+
+
+
+						<br> </br>
+
 					</h:dataTable>
-					
+
 				</div>
-				<br/>
-								
-			<div class="centerPageElements">
-				<h:panelGrid columns="1" styleClass="panelGrid"
-					rowClasses="panelFirstLine, panelNextLine">
-														
-		
-					<h:commandButton  action="backToStartPage"
-						class="btn btn-primary" value="Zur&uuml;ck zur Startseite"
-						style="width:200px;height:40px;margin-bottom: 10px">
-					</h:commandButton>
-		
-				</h:panelGrid>
+				<br />
+
+				<div class="centerPageElements">
+					<h:panelGrid columns="1" styleClass="panelGrid"
+						rowClasses="panelFirstLine, panelNextLine">
+
+
+						<h:commandButton action="backToStartPage" class="btn btn-primary"
+							value="Zur&uuml;ck zur Startseite"
+							style="width:200px;height:40px;margin-bottom: 10px">
+						</h:commandButton>
+
+					</h:panelGrid>
+				</div>
+
+
 			</div>
-						
-	
-		</div>
 		</h:form>
-		</center>
-		
-		<script language="javascript" type="text/javascript">
+	</center>
+
+	<script language="javascript" type="text/javascript">
 				var text = document.getElementById("videoSearchMenue:searchField");
 				var form = document.getElementById("videoSearchMenue");
 				var timer;
@@ -125,6 +135,6 @@
 				}	
 				text.focus(moveCursorToEnd(text));							
 	</script>
-	
-	</h:body> 
-</html>	 
+
+</h:body>
+</html>
