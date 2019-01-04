@@ -2,7 +2,11 @@ package de.mb;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -21,6 +25,10 @@ import javax.validation.constraints.Size;
 import de.awk.videoverwaltung.facade.ISubcategoryFacade;
 import de.awk.videoverwaltung.facade.ITopicFacade;
 import de.awk.videoverwaltung.model.Subcategory;
+
+
+
+
 
 
 @ManagedBean(name="subcategoryMB")
@@ -68,23 +76,27 @@ public class SubcategoryMB implements Serializable{
 	private String searchField;
 	private String searchOption;
 	
-	private List<String> subcategorySelection = new ArrayList<String>();
+	private  Map <Integer,String> subcategorySelection = new HashMap<Integer, String>();
 
 	
-	public List <String> initialiseSubcategorySelection() {
+	public Set<Entry<Integer, String>> initialiseSubcategorySelection() throws Exception  {
 			List<Subcategory> rs= new ArrayList<Subcategory>(this.subcategoryFacade.getAllSubcategories());
+			
 			for(Subcategory i :rs) {
-			subcategorySelection.add(i.getName());
+			
+		    subcategorySelection.put(i.getSubcategoryId(),i.getName());
+
 		}
-		return subcategorySelection;
+		return subcategorySelection.entrySet();
 	}
 	
-	public void setSubcategorySelection(List<String> subcategorySelection) {
-		this.subcategorySelection = subcategorySelection;
+		
+	public Map<Integer, String> getSubcategorySelection() {
+		return subcategorySelection;
 	}
 
-	public List<String> getSubcategorySelection() {
-		return subcategorySelection;
+	public void setSubcategorySelection(Map<Integer, String> subcategorySelection) {
+		this.subcategorySelection = subcategorySelection;
 	}
 	
 	public List<Subcategory> initialiseSubcategoryList(){

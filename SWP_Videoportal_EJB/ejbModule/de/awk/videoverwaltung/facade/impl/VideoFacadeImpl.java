@@ -6,14 +6,9 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.servlet.http.Part;
-
-import com.sun.org.apache.regexp.internal.recompile;
-
 import de.awk.videoverwaltung.dao.VideoDAO;
 import de.awk.videoverwaltung.facade.IVideoFacade;
 import de.awk.videoverwaltung.facade.impl.util.Converter;
-import de.awk.videoverwaltung.facade.impl.util.Directory;
-import de.awk.videoverwaltung.facade.impl.util.IdGen;
 import de.awk.videoverwaltung.model.Video;
 
 @Stateless
@@ -48,11 +43,12 @@ public class VideoFacadeImpl implements IVideoFacade {
 
 	// Paul
 	@Override
-	public boolean uploadVideo(File file, Part fileToUpload, String name, String description, int subcategoryId) {
+	public boolean uploadVideo(File file, Part fileToUpload, String name, String description, int subcategoryId,
+			String output, String typ) {
 		boolean ok = false;
 		try {
-			if (converter.uploadNewVideo(file, fileToUpload)) {
-				Video video = new Video(name,/* "topic,"*/ subcategoryId, description, converter.getVideoPath());
+			if (converter.uploadNewVideo(file, fileToUpload,output,typ)) {
+				Video video = new Video(name,subcategoryId, description, converter.getVideoPath());
 				videoDAO.save(video);
 				System.out.println("Ein Bier trinken");
 				ok = true;

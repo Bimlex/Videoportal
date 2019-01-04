@@ -38,12 +38,12 @@ public class VideoMB implements Serializable {
 	// private String subcategory;
 	// private String description;
 	// private String path;
-	
+
 	private String searchOption;
-	
-	@ManagedProperty(value="#{searchField}" )
+
+	@ManagedProperty(value = "#{searchField}")
 	private String searchField;
-	
+
 	private List<Video> videoList = null;
 	@EJB
 	private IVideoFacade videoFacade;
@@ -51,7 +51,6 @@ public class VideoMB implements Serializable {
 	@EJB
 	private ISubcategoryFacade subcategoryFacade;
 
-	
 	@NotNull
 	@Digits(fraction = 0, integer = 6)
 	private Integer subcategoryId;
@@ -73,27 +72,26 @@ public class VideoMB implements Serializable {
 	//
 	// return "videoWatch";
 	// }
-	
+
 	public String setVideoIdForVideoWatch(int aVideoId) {
-		System.out.println("die gewählte videoId ist "+ aVideoId);
-		
+		System.out.println("die gewählte videoId ist " + aVideoId);
+
 		Video aVideo = this.videoFacade.findVideoById(aVideoId);
-		
-		if(aVideo != null) {
+
+		if (aVideo != null) {
 			this.videoId = aVideo.getVideoId();
 			this.name = aVideo.getName();
 			this.description = aVideo.getDescription();
 			this.subcategoryId = aVideo.getSubcategoryId();
-			this.path= aVideo.getPath();
+			this.path = aVideo.getPath();
 
-	
-			System.out.println("folgendes Video wurde gewählt: VideoID ist: "+ this.getVideoId() +" beschreibung:  "+ this.getDescription() +" name:  "+ this.getName()+" path: "+this.getPath());
-			
+			System.out.println("folgendes Video wurde gewählt: VideoID ist: " + this.getVideoId() + " beschreibung:  "
+					+ this.getDescription() + " name:  " + this.getName() + " path: " + this.getPath());
+
 			return "videoWatch";
 		}
 		return "";
-		
-		
+
 	}
 
 	public List<Video> initialiseVideoListBySubcategoryList() {
@@ -130,8 +128,8 @@ public class VideoMB implements Serializable {
 			case "Name":
 				this.videoList = null;
 				System.out.println("Dies ist die subId wenn man nach Name filtert = " + subcategoryId);
-				System.out.println("subcategory = " + subcategoryId + " --------------------------------- " + " SUCHFELD: "
-						+ this.searchField);
+				System.out.println("subcategory = " + subcategoryId + " --------------------------------- "
+						+ " SUCHFELD: " + this.searchField);
 				videoList = videoFacade.findVideosByNameAndSubcategoryId(this.subcategoryId, this.searchField);
 				break;
 			case "Description":
@@ -185,13 +183,13 @@ public class VideoMB implements Serializable {
 	//
 
 	public void printTestNachricht() {
-		System.out.println("xkjsahdfkls--------------------------------------jhadflksajhdflsakjhfdlaksdf");	
+		System.out.println("xkjsahdfkls--------------------------------------jhadflksajhdflsakjhfdlaksdf");
 	}
-	
+
 	public String setSubcategoryIdForVideoSearch(int aTopicId, int aSubcategoryId) {
 
-		System.out.println("++++++++++############ gewaehlte SubcategoryId ist: " + aSubcategoryId + "\n"+ 
-		"+++++++++########### ausgewaehlte topicID "+aTopicId+"\n");
+		System.out.println("++++++++++############ gewaehlte SubcategoryId ist: " + aSubcategoryId + "\n"
+				+ "+++++++++########### ausgewaehlte topicID " + aTopicId + "\n");
 		this.subcategoryId = aSubcategoryId;
 		System.out.println("++++++++++############ gewaehlte SubcategoryId ist: " + aSubcategoryId + "\n");
 		return "videoSearchVideo";
@@ -231,26 +229,24 @@ public class VideoMB implements Serializable {
 
 	}
 
-	 public List<Video> initialiseVideoList() {
-		 this.videoList = null;
+	public List<Video> initialiseVideoList() {
+		this.videoList = null;
 
-		 //this.searchField ="apfel";
-				 
-		 if (this.searchField == null || this.searchField.equals("")) {
-			 videoList = videoFacade.getAllVideos();
-		 } else {
-			 System.out.println("Das ist das ********* das SearchValue : " +searchField);
-			 videoList = videoFacade.findVideosBySearchInput(this.searchField);	
-			
-		 }
-		 System.out.println("es wurden "+videoList.size()+" videos gefunden");
-		 System.out.println("*************" +this.searchField);
-	
-	 return videoList;
-	 }
+		// this.searchField ="apfel";
 
+		if (this.searchField == null || this.searchField.equals("")) {
+			videoList = videoFacade.getAllVideos();
+		} else {
+			System.out.println("Das ist das ********* das SearchValue : " + searchField);
+			videoList = videoFacade.findVideosBySearchInput(this.searchField);
 
-	 
+		}
+		System.out.println("es wurden " + videoList.size() + " videos gefunden");
+		System.out.println("*************" + this.searchField);
+
+		return videoList;
+	}
+
 	// public void setTopic(String topic) {
 	// this.topic = topic;
 	// }
@@ -340,10 +336,14 @@ public class VideoMB implements Serializable {
 	private Part fileToUpload;
 	private File file;
 
+	private String output;
+	private String typ = "mp4";
+
 	public boolean upload() throws IOException {
 		System.out.println("methide upload() gestartet");
-//		System.out.println(subcategoryFacade.findSubcategoryByName(name).getSubcategoryId());
-		if (videoFacade.uploadVideo(this.file, this.fileToUpload, this.name, this.description, 1))
+		// System.out.println(subcategoryFacade.findSubcategoryByName(name).getSubcategoryId());
+		if (videoFacade.uploadVideo(this.file, this.fileToUpload, this.name, this.description, this.subcategoryId,
+				this.output, this.typ))
 			return true;
 		else {
 			return false;
@@ -437,5 +437,24 @@ public class VideoMB implements Serializable {
 		this.subcategoryId = subcategoryId;
 	}
 
-	
+	public String getTyp() {
+		return typ;
+	}
+
+	public void setTyp(String typ) {
+		this.typ = typ;
+	}
+
+	public void setVideoList(List<Video> videoList) {
+		this.videoList = videoList;
+	}
+
+	public String getOutput() {
+		return output;
+	}
+
+	public void setOutput(String output) {
+		this.output = output;
+	}
+
 }

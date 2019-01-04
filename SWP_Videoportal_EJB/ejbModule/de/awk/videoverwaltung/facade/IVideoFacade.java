@@ -20,7 +20,7 @@ public interface IVideoFacade {
 	public abstract void updateVideo(Integer aVideoId, String aVideoname, /*String topic,*/ Integer subcategoryId, String description);
 
 	// Paul
-	public abstract boolean uploadVideo(File file,Part fileToUpload, String name, String description,int subcategoryId);
+	public abstract boolean uploadVideo(File file,Part fileToUpload, String name, String description,int subcategoryId,String output, String typ);
 
 	public abstract void deleteVideo(int id);
 

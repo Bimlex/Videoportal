@@ -7,27 +7,28 @@ import javax.servlet.http.Part;
 
 public class Converter {
 
-	public Converter() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
 	private Directory directory = new Directory();
 	IdGen idGen = new IdGen();
 	private String videoPath;
 
 	private Part fileToUpload;
 	private File file;
+	private String output;
+	private String typ;
 
-	private String video_typ = "." + "mp4";
-	private String saveVideoFolder = "Videoportal";
+	// private String video_typ = "." + "mp4";
+	// private String saveVideoFolder = "Videoportal";
 
 	public String unique_id() {
 		String id = idGen.unique_id();
 		return id;
 	}
 
-	public boolean uploadNewVideo(File file, Part fileToUpload) throws IOException {
+	public boolean uploadNewVideo(File file, Part fileToUpload, String output, String typ) throws IOException {
+		System.out.println(output + typ);
+		this.output = output;
+		this.typ = "." + typ;
+
 		this.fileToUpload = fileToUpload;
 		try {
 			if (upload()) {
@@ -80,11 +81,10 @@ public class Converter {
 
 	private Boolean converter(String path) throws IOException {
 		String id = unique_id();
-		String output_folder = directory.output_folder(saveVideoFolder);
+		String output_folder = directory.output_folder(output);
 		String full_path_of_output_video = output_folder + id;
-		setVideoPath(full_path_of_output_video + video_typ);
-		String command = "cmd /c ffmpeg.exe -i \"" + path + "\" -y \"" + full_path_of_output_video + video_typ
-				+ "\" -loglevel quiet";
+		setVideoPath(full_path_of_output_video + typ);
+		String command = "ffmpeg -i \"" + path + "\" -y \"" + videoPath + "\" -loglevel quiet";
 		System.out.println(command);
 		try {
 			executeProcess(command);
@@ -120,20 +120,20 @@ public class Converter {
 		this.directory = directory;
 	}
 
-	public String getVideo_typ() {
-		return video_typ;
+	public String getOutput() {
+		return output;
 	}
 
-	public void setVideo_typ(String video_typ) {
-		this.video_typ = video_typ;
+	public void setOutput(String output) {
+		this.output = output;
 	}
 
-	public String getSaveVideoFolder() {
-		return saveVideoFolder;
+	public String getTyp() {
+		return typ;
 	}
 
-	public void setSaveVideoFolder(String saveVideoFolder) {
-		this.saveVideoFolder = saveVideoFolder;
+	public void setTyp(String typ) {
+		this.typ = typ;
 	}
 
 	public String getVideoPath() {
