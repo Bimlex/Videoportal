@@ -20,55 +20,83 @@
 		crossorigin="anonymous" />
 	<link href="../../css/main.css" rel="stylesheet" type="text/css" />
 	<title>Videosicht</title>
+
+
+
+
+
 </h:head>
+
 <h:body>
 	<center>
-		<h3>Videosicht</h3>
+	
+	
+		<h:form id="Video-FormularTest" >
+			<div class="centerPageElements" >
+				<h3><h:outputText value="#{videoMB.name}" /></h3>
+				
+				<br /> 
+				
 		<h:messages layout="list" styleClass="messageStyleClassVP"
 			errorClass="errorMessageVP" infoClass="infoMessageVP" />
 
-		<h:form id="Video-FormularTest">
-
+		
+			<div>
+				<video id="videoplayer" src="http://localhost:8080/#{videoMB.path}" 
+					controls="controls" preload="true"   >
+				</video>
+			</div>
+				 
 			<br />
 			<br />
-			<h:panelGrid columns="2" id="User-Grid" styleClass="panelGrid"
-				rowClasses="videoColumn,videoColumn,videoColumn,videoColumn,videoColumn,videoColumnPlaceholder">
+					<div class="centerPageElements" style="max-width: 400px;">
+						
+		 				<h:outputLabel value="Videopath: " /> 
+						<h:outputText value="#{videoMB.path}" />
+		 <!--
+						<h:outputLabel value="Videoname " />
+						<h:outputText value="#{videoMB.name}" />
+		 -->
+		 
+						<h:outputLabel value="Beschreibung: " />
+						<h:outputText value="#{videoMB.description}" />
+		
+		<!-- 			<h:outputLabel value="VideoID" />
+						<h:outputText value="#{videoMB.videoId}" />
+		
+						<h:outputLabel value="SubcategoryID " />
+						<h:outputText value="#{videoMB.subcategoryId}" />
+		
+						<h:outputLabel value="" />
+		 
+		 			<h:form>
+						<input class="btn btn-primary" type="button" value="Video Ansehen"
+							onclick="window.location.href='../../protected/public/190102005033757807255617536.mp4'" />
+					</h:form>
+		 -->
+		
+					<br /><br />
+					<h:button value="Zur&uuml;ck" outcome="backToVideoSearchAll"
+						class="btn btn-primary"
+						style="width:200px;height:40px;margin-bottom: 10px" />
 
-				<h:outputLabel value="Videopath " />
-				<h:outputText value="#{videoMB.path}" />
-
-				<h:outputLabel value="Videoname " />
-				<h:outputText value="#{videoMB.name}" />
-
-				<h:outputLabel value="Beschreibung " />
-				<h:outputText value="#{videoMB.description}" />
-
-				<h:outputLabel value="VideoID" />
-				<h:outputText value="#{videoMB.videoId}" />
-
-				<h:outputLabel value="SubcategoryID " />
-				<h:outputText value="#{videoMB.subcategoryId}" />
-
-				<h:outputLabel value="" />
-
-			</h:panelGrid>
-
-
-			<h:form>
-				<input class="btn btn-primary" type="button" value="Video Ansehen"
-					onclick="window.location.href='../../protected/public/190102005033757807255617536.mp4'" />
-			</h:form>
-
-
-			<h:button value="Zur&uuml;ck" outcome="backToVideoSearchAll"
-				class="btn btn-primary"
-				style="width:200px;height:40px;margin-bottom: 10px" />
-
-
-
+				</div>
+			</div>
 		</h:form>
 	</center>
+	
+	<script language="javascript" type="text/javascript">
+			var video = document.getElementById("videoplayer");
+			video.addEventListener("canplay", function() {
+			  setTimeout(function() {
+			    video.play();
+			  }, 1000);
+			});
+	</script>
 </h:body>
+
+
+
 </html>
 
 
