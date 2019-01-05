@@ -42,7 +42,7 @@
 
 		
 			<div>
-				<video id="videoplayer" src="http://localhost:8080/#{videoMB.path}" 
+				<video id="videoplayer" src="http://localhost:8080/vid/#{videoMB.path}"  
 					controls="controls" preload="true"   >
 				</video>
 			</div>
@@ -52,7 +52,7 @@
 					<div class="centerPageElements" style="max-width: 400px;">
 						
 		 				<h:outputLabel value="Videopath: " /> 
-						<h:outputText value="#{videoMB.path}" />
+						<h:outputText value="http://localhost:8080/vid/#{videoMB.path}" />
 		 <!--
 						<h:outputLabel value="Videoname " />
 						<h:outputText value="#{videoMB.name}" />
