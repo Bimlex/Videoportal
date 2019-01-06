@@ -238,12 +238,12 @@ public class VideoMB implements Serializable {
 
 	@NotNull
 	@Size(min = 1, max = 200)
-	@Pattern(regexp = "[A-Za-z0-9_äÄöÖüÜß ]*")
+	@Pattern(regexp = "[a-zA-Z0-9_äÄöÖüÜß.,!? ]*")
 	private String name;
 
 	@NotNull
 	@Size(min = 1, max = 300)
-	@Pattern(regexp = "[A-Za-z0-9_äÄöÖüÜß ]*")
+	@Pattern(regexp = "[a-zA-Z0-9_äÄöÖüÜß.,!? ]*")
 	private String description;
 
 	private Part fileToUpload;

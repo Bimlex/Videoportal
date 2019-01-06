@@ -57,7 +57,7 @@
 	 -->	 
 						<h:outputLabel value="Beschreibung: " />
 						<h:outputText value="#{videoMB.description}" />
-						<br />
+						<br /><br />
 		
 						<h:outputLabel value="Aufrufe: " />
 						<h:outputText value="#{videoMB.counter}" />
@@ -80,7 +80,7 @@
 			video.addEventListener("canplay", function() {
 			  setTimeout(function() {
 			    video.play();
-			  }, 1000);
+			  }, 500);
 			});
 	</script>
 </h:body>
