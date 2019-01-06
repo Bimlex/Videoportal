@@ -106,7 +106,6 @@ public class TopicMB implements Serializable{
 	
 	public void deleteTopic(Topic aTopic) {
 		
-		/*Variante 1 (funktioniert)*/
 		List<Subcategory> list = subcategoryFacade.findSubcategoriesByTopicId(aTopic.getTopicId());
 
 		if (list.isEmpty() == true) {
@@ -116,16 +115,6 @@ public class TopicMB implements Serializable{
 								  "Zuvor alle zugehörigen Unterkategorien löschen!");
 		}		
 		
-		/*Variante 2 (funktioniert nicht) Fehler = Delete-Query kann nicht ausgeführt werden*/		 
-//		List<Subcategory> list = subcategoryFacade.findSubcategoriesByTopicId(aTopic.getTopicId());
-//		
-//		if (list.isEmpty() == true) {
-//			this.topicFacade.deleteTopic(aTopic.getTopicId());
-//		} else {
-//			this.topicFacade.deleteTopic(aTopic.getTopicId());
-//			subcategoryFacade.deleteAllSubcategoriesByTopicId(aTopic.getTopicId());
-//		}
-
 	}
 	
 	public String saveTopic() {

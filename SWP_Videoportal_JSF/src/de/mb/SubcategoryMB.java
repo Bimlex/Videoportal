@@ -26,11 +26,6 @@ import de.awk.videoverwaltung.facade.ISubcategoryFacade;
 import de.awk.videoverwaltung.facade.ITopicFacade;
 import de.awk.videoverwaltung.model.Subcategory;
 
-
-
-
-
-
 @ManagedBean(name="subcategoryMB")
 @SessionScoped
 public class SubcategoryMB implements Serializable{
@@ -47,12 +42,7 @@ public class SubcategoryMB implements Serializable{
 	
 	@EJB
 	ITopicFacade topicFacade;
-	
-
-	
-//	@ManagedProperty(value="#{saveValue}")
-//	private SaveValue saveValue;
-	
+		
 	@NotNull
 	@Digits(fraction = 0, integer = 6)
 	private int subcategoryId;
@@ -142,31 +132,18 @@ public class SubcategoryMB implements Serializable{
 			switch (searchOption) {
 			case "Name":
 				this.subcategoryList = null;
-//				System.out.println("Dies ist die TopicId wenn man nach Name filtert = " + this.topicId);
-//				System.out.println("TOPICID = " + topicId + " --------------------------------- " +" SUCHFELD: " + this.searchField);
 				subcategoryList = subcategoryFacade.findSubcategoriesByNameAndTopicId(aTopicId, this.searchField);
 				break;
 			case "Description":
 				this.subcategoryList = null;
-//				System.out.println("Dies ist die TopicId wenn man nach Beschreibung filtert = " +topicId);
-//				System.out.println("TOPICID = " + topicId + " --------------------------------- " +" SUCHFELD: " + this.searchField);
 				subcategoryList = subcategoryFacade.findSubcategoriesByDescriptionAndTopicId(aTopicId, this.searchField);
 				break;
 			}
 		}
-//		System.out.println("*************** TopicId innerhalb der Methode *initialiseSubcategoryListByTopicId* "+ this.topicId);
-//		System.out.println(subcategoryList.toString());
 		return subcategoryList;
 	}
 	
-//	public String setTopicIdForFilter(int aTopicId) {
-//		
-//		this.topicId = aTopicId;
-//		System.out.println("*******TOPICID in der Methode setTopicForFilter" + aTopicId);
-//		
-//		return "showSubcategories";
-//	}
-	
+
 	
 	public String editSubcategory(String name) {
 		Subcategory aSubcategory = this.subcategoryFacade.findSubcategoryByName(name);
@@ -256,7 +233,6 @@ public class SubcategoryMB implements Serializable{
 		initialiseSubcategoryList();
 		
 		return "backToSubcategoryMenu";
-		
 	}
 	
 	private void sendInfoMessageToUser(String message) {
