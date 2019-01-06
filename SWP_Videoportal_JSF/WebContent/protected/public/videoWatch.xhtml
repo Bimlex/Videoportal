@@ -30,7 +30,6 @@
 <h:body>
 	<center>
 	
-	
 		<h:form id="Video-FormularTest" >
 			<div class="centerPageElements" >
 				<h3><h:outputText value="#{videoMB.name}" /></h3>
@@ -47,42 +46,33 @@
 				</video>
 			</div>
 				 
-			<br />
-			<br />
+				 
+			<br /><br />
+			
+			
 					<div class="centerPageElements" style="max-width: 400px;">
-						
+<!-- 						
 		 				<h:outputLabel value="Videopath: " /> 
 						<h:outputText value="http://localhost:8080/vid/#{videoMB.path}" />
-		 <!--
-						<h:outputLabel value="Videoname " />
-						<h:outputText value="#{videoMB.name}" />
-		 -->
-		 
+	 -->	 
 						<h:outputLabel value="Beschreibung: " />
 						<h:outputText value="#{videoMB.description}" />
+						<br />
 		
-		<!-- 			<h:outputLabel value="VideoID" />
-						<h:outputText value="#{videoMB.videoId}" />
+						<h:outputLabel value="Aufrufe: " />
+						<h:outputText value="#{videoMB.counter}" />
 		
-						<h:outputLabel value="SubcategoryID " />
-						<h:outputText value="#{videoMB.subcategoryId}" />
-		
-						<h:outputLabel value="" />
-		 
-		 			<h:form>
-						<input class="btn btn-primary" type="button" value="Video Ansehen"
-							onclick="window.location.href='../../protected/public/190102005033757807255617536.mp4'" />
-					</h:form>
-		 -->
-		
-					<br /><br />
-					<h:button value="Zur&uuml;ck" outcome="backToVideoSearchAll"
-						class="btn btn-primary"
-						style="width:200px;height:40px;margin-bottom: 10px" />
+						<br /><br />
+					
+						<h:button value="Zur&uuml;ck" outcome="backToVideoSearchAll"
+							class="btn btn-primary"
+							style="width:200px;height:40px;margin-bottom: 10px" />
 
-				</div>
+					</div>
+					
 			</div>
 		</h:form>
+		
 	</center>
 	
 	<script language="javascript" type="text/javascript">

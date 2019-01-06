@@ -17,7 +17,7 @@ public interface IVideoFacade {
 	
 	public abstract Video findVideoById(int aVideoId);
 
-	public abstract void updateVideo(Integer aVideoId, String aVideoname, /*String topic,*/ Integer subcategoryId, String description);
+	public abstract void updateVideo(Integer aVideoId, String aVideoname, Integer subcategoryId, String description);
 
 	// Paul
 	public abstract boolean uploadVideo(File file,Part fileToUpload, String name, String description,int subcategoryId,String output, String typ);
@@ -34,6 +34,8 @@ public interface IVideoFacade {
 	public abstract List<Video> findVideosByDescriptionAndSubcategoryId(int subcategoryId, String searchField);
 
 	public abstract List<Video> findVideosBySearchInput(String searchField);
+
+	public abstract void updateVideoCounter(int aVideoId);
 
 
 }

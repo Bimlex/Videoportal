@@ -32,13 +32,6 @@ public class VideoMB implements Serializable {
 
 	private Video video;
 
-	// private Integer videoId;
-	// private String name;
-	// private String topic;
-	// private String subcategory;
-	// private String description;
-	// private String path;
-
 	private String searchOption;
 
 	@ManagedProperty(value = "#{searchField}")
@@ -54,36 +47,28 @@ public class VideoMB implements Serializable {
 	@NotNull
 	@Digits(fraction = 0, integer = 6)
 	private Integer subcategoryId;
-
-	// public Video getVideo(){
-	// if(video == null){
-	// ExternalContext context =
-	// FacesContext.getCurrentInstance().getExternalContext();
-	// String videoname = context.getUserPrincipal().getName();
-	//
-	// video = videoFacade.findVideoByName(videoname);
-	// }
-	// return video;
-	// }
-
-	// public String setVideoIdForVideoView(int aVideoId) {
-	//
-	// this.videoId = aVideoId;
-	//
-	// return "videoWatch";
-	// }
+	
+	@NotNull
+	@Digits(fraction = 0, integer = 6)
+	private Integer counter;
+	
+	
 
 	public String setVideoIdForVideoWatch(int aVideoId) {
 		System.out.println("die gewählte videoId ist " + aVideoId);
-
+		
+		videoFacade.updateVideoCounter(aVideoId); //Counter des videos um +1 erhöhen
+		
 		Video aVideo = this.videoFacade.findVideoById(aVideoId);
-
+	
 		if (aVideo != null) {
 			this.videoId = aVideo.getVideoId();
 			this.name = aVideo.getName();
 			this.description = aVideo.getDescription();
 			this.subcategoryId = aVideo.getSubcategoryId();
 			this.path = aVideo.getPath();
+			this.counter= aVideo.getCounter();
+
 
 			System.out.println("folgendes Video wurde gewählt: VideoID ist: " + this.getVideoId() + " beschreibung:  "
 					+ this.getDescription() + " name:  " + this.getName() + " path: " + this.getPath());
@@ -91,7 +76,6 @@ public class VideoMB implements Serializable {
 			return "videoWatch";
 		}
 		return "";
-
 	}
 
 	public List<Video> initialiseVideoListBySubcategoryList() {
@@ -145,72 +129,19 @@ public class VideoMB implements Serializable {
 		return videoList;
 	}
 
-	// public List<Video> initialiseVideoListBySubcategoryId(){
-	// this.videoList = null;
-	//
-	//
-	//
-	//
-	// if (this.searchField == null) {
-	// videoList = videoFacade.findVideosBySubcategoryId(this.subcategoryId);
-	// } else if (this.searchField.equals("")) {
-	// videoList = videoFacade.findVideosBySubcategoryId(this.subcategoryId);
-	// } else {
-	// if (searchOption == null) {
-	// searchOption = "Name";
-	// }
-	//
-	// if (searchOption.equals("")) {
-	// searchOption = "Name";
-	// }
-	//
-	// switch (searchOption) {
-	// case "Name":
-	// videoList = videoFacade.findVideosByNameAndSubcategoryId(this.subcategoryId,
-	// this.searchField);
-	// break;
-	// case "Description":
-	// videoList =
-	// videoFacade.findVideosByDescriptionAndSubcategoryId(this.subcategoryId,
-	// this.searchField);
-	// break;
-	// }
-	// }
-	// System.out.println("erstes video der liste: "+ videoList.get(0)+"-----
-	// zweites: "+ videoList.get(1));
-	// return videoList;
-	// }
-	//
-
-	public void printTestNachricht() {
-		System.out.println("xkjsahdfkls--------------------------------------jhadflksajhdflsakjhfdlaksdf");
-	}
-
 	public String setSubcategoryIdForVideoSearch(int aTopicId, int aSubcategoryId) {
-
-		System.out.println("++++++++++############ gewaehlte SubcategoryId ist: " + aSubcategoryId + "\n"
-				+ "+++++++++########### ausgewaehlte topicID " + aTopicId + "\n");
 		this.subcategoryId = aSubcategoryId;
-		System.out.println("++++++++++############ gewaehlte SubcategoryId ist: " + aSubcategoryId + "\n");
+		
 		return "videoSearchVideo";
 	}
 
 	public String updateVideo() {
-
-		// if (this.videoId.isEmpty()) {
-		// sendInfoMessageToUser("Es wurde keine ID vergeben");
-		// return "";
-		// }
 
 		if (this.name.isEmpty()) {
 			sendInfoMessageToUser("Es wurde kein Videoname vergeben");
 			return "";
 		}
 
-		// if (this.topic.isEmpty()) {
-		// sendInfoMessageToUser("Es wurde kein Themenbereich vergeben");
-		// return "";
-		// }
 		if ((this.subcategoryId == null)) {
 			sendInfoMessageToUser("Es wurde kein Kategorie vergeben");
 			return "";
@@ -221,9 +152,7 @@ public class VideoMB implements Serializable {
 			return "";
 		}
 
-		videoFacade.updateVideo(this.videoId, this.name, /* this.topic, */ this.subcategoryId, this.description);
-
-		// initialiseVideoList();
+		videoFacade.updateVideo(this.videoId, this.name, this.subcategoryId, this.description);
 
 		return "backToVideoAdministration";
 
@@ -232,24 +161,14 @@ public class VideoMB implements Serializable {
 	public List<Video> initialiseVideoList() {
 		this.videoList = null;
 
-		// this.searchField ="apfel";
-
-		if (this.searchField == null || this.searchField.equals("")) {
+			if (this.searchField == null || this.searchField.equals("")) {
 			videoList = videoFacade.getAllVideos();
 		} else {
-			System.out.println("Das ist das ********* das SearchValue : " + searchField);
 			videoList = videoFacade.findVideosBySearchInput(this.searchField);
-
 		}
-		System.out.println("es wurden " + videoList.size() + " videos gefunden");
-		System.out.println("*************" + this.searchField);
-
 		return videoList;
 	}
 
-	// public void setTopic(String topic) {
-	// this.topic = topic;
-	// }
 
 	private void sendInfoMessageToUser(String message) {
 		FacesContext context = getContext();
@@ -274,35 +193,14 @@ public class VideoMB implements Serializable {
 		this.videoId = aVideo.getVideoId();
 		this.name = aVideo.getName();
 		this.description = aVideo.getDescription();
-		// this.topic = aVideo.getTopic();
 		this.subcategoryId = aVideo.getSubcategoryId();
 
-		return "bestehendesVideoAendern";
+		return "changeVideo";
 	}
 
 	public void deleteVideo(Video aVideo) {
 		this.videoFacade.deleteVideo(aVideo.getVideoId());
 	}
-
-	// public Integer getVideoId() {
-	// return videoId;
-	// }
-
-	// public String getTopic() {
-	// return topic;
-	// }
-
-	// public String getSubcategory() {
-	// return subcategory;
-	// }
-
-	// public String getDescription() {
-	// return description;
-	// }
-
-	// public String getPath() {
-	// return path;
-	// }
 
 	public List<Video> getVideoList() {
 		return videoList;
@@ -311,8 +209,23 @@ public class VideoMB implements Serializable {
 	public IVideoFacade getVideoFacade() {
 		return videoFacade;
 	}
+	
+
+	public Integer getCounter() {
+		return counter;
+	}
+
+	public void setCounter(Integer counter) {
+		this.counter = counter;
+	}
+
+
+
+
+
 
 	// Paul
+
 
 	@NotNull
 	@Digits(fraction = 0, integer = 6)
@@ -340,8 +253,6 @@ public class VideoMB implements Serializable {
 	private String typ = "mp4";
 
 	public boolean upload() throws IOException {
-		System.out.println("methide upload() gestartet");
-		// System.out.println(subcategoryFacade.findSubcategoryByName(name).getSubcategoryId());
 		if (videoFacade.uploadVideo(this.file, this.fileToUpload, this.name, this.description, this.subcategoryId,
 				this.output, this.typ))
 			return true;

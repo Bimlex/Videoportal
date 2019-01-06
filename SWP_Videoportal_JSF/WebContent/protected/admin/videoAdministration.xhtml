@@ -28,7 +28,6 @@
 				<h3>Videoadministration</h3>
 
 
-
 				<div class="form-group" style="max-width: 400px;">
 
 
@@ -40,6 +39,7 @@
 						action="#{videoMB.initialiseVideoList()}" update="videoListView"
 						value="Suche" />
 				</div>
+
 
 
 				<div class="parent">
@@ -87,67 +87,78 @@
 		</h:form>
 		<br />
 
+
 		<div
 			style="background-color: #f2f2f2; margin-left: 10px; margin-right: 10px; padding: 20px; max-width: 400px; min-width: 250px; border-radius: 5px">
-			<h:form enctype="multipart/form-data">
-				<h:panelGrid>
-					<h:inputText id="name" value="#{videoMB.name}" required="true"
-						style="max-width: 220px; display:inline" class="form-control" />
-					<br />
-
-					<h:outputLabel value="Unterkategorie " />
-					<h:selectOneMenu id="Unterkategorie"
-						value="#{videoMB.subcategoryId}" required="true"
-						style="max-width: 220px; display:inline" class="form-control">
-						<f:selectItems
-							value="#{subcategoryMB.initialiseSubcategorySelection()}"
-							var="entry" itemValue="#{entry.key}" itemLabel="#{entry.value}" />
-					</h:selectOneMenu>
-					<h:outputLabel value="" />
-					<br />
-
-					<h:inputText id="description" value="#{videoMB.description}"
-						required="true"
-						style="max-width: 220px; min-height: 200px; max-height: 400px;  display:inline"
-						class="form-control" />
-					<br />
-
-					<h:inputFile value="#{videoMB.fileToUpload}"
-						style="min-width:250px; max-width: 550px; 
-						margin-bottom:10px; display:inline-block"
-							class="btn btn-primary" required="true" />
-
-						<h6>Das Output Verzeichnis</h6>
-						<h:outputText value="#{configurationMB.configurationOutput.output}"
-							id="typ" />
-						<h6>Typ der Konvertierung Verzeichnis</h6>
-
-						<h:selectOneRadio id="TYP" value="#{videoMB.typ}">
-							<f:selectItem itemLabel="MP4" itemValue="mp4" />
-							<f:selectItem itemLabel="AVI" itemValue="avi" />
-							<f:selectItem itemLabel="MPEG4" itemValue="mpeg" />
-						</h:selectOneRadio>
+				<div>
+				<h:form enctype="multipart/form-data">
+					<h:panelGrid>
+					
+					
+						<h:outputLabel value="Titel " />
+						<h:inputText id="name" value="#{videoMB.name}" required="true"
+							style="min-width:250px; max-width: 550px; display:inline" class="form-control" />
+						<br />
+	
+	
+						<h:outputLabel value="Unterkategorie " />
+						<h:selectOneMenu id="Unterkategorie"
+							value="#{videoMB.subcategoryId}" required="true"
+							style="min-width:250px; max-width: 550px; display:inline" class="form-control">
+							<f:selectItems
+								value="#{subcategoryMB.initialiseSubcategorySelection()}"
+								var="entry" itemValue="#{entry.key}" itemLabel="#{entry.value}" />
+						</h:selectOneMenu>
 						<br />
 						
-						<h:commandButton value="Upload" action="#{videoMB.upload()}"
-							style="min-width:250px; margin-bottom:10px; display:inline-block"
-							class="btn btn-primary">
-							<f:setPropertyActionListener target="#{videoMB.output}"
-								value="#{configurationMB.configurationOutput.output}" />
-						</h:commandButton>
 						
+						<h:outputLabel value="Beschreibung " />
+						<h:inputText id="description" value="#{videoMB.description}"
+							required="true"
+							style="min-width:250px; max-width: 550px; min-height: 200px; max-height: 400px;  display:inline"
+							class="form-control" />
 						<br />
-				</h:panelGrid>
+						
+	
+						<h:inputFile value="#{videoMB.fileToUpload}"
+							style="min-width:250px; max-width: 550px; 
+							margin-bottom:10px; display:inline-block"
+								class="btn btn-primary" required="true" />
+	
+							<h6>Das Output Verzeichnis</h6>
+							<h:outputText value="#{configurationMB.configurationOutput.output}"
+								id="typ" />
+							<h6>Typ der Konvertierung Verzeichnis</h6>
+	
+							<h:selectOneRadio id="TYP" value="#{videoMB.typ}">
+								<f:selectItem itemLabel="MP4" itemValue="mp4" />
+								<f:selectItem itemLabel="AVI" itemValue="avi" />
+								<f:selectItem itemLabel="MPEG4" itemValue="mpeg" />
+							</h:selectOneRadio>
+							<br />
+							
+							
+							<h:commandButton value="Upload" action="#{videoMB.upload()}"
+								style="min-width:250px; max-width: 550px; margin-bottom:10px; display:inline-block"
+								class="btn btn-primary">
+								<f:setPropertyActionListener target="#{videoMB.output}"
+									value="#{configurationMB.configurationOutput.output}" />
+							</h:commandButton>
+							
+							<br />
+					</h:panelGrid>
+				</h:form>
+			</div>
+
+			<h:form>
+				<h:button value="Zur&uuml;ck zur Videoverwaltung"
+					outcome="backToVideoMenu"
+					style="min-width:250px; max-width: 550px; 
+							margin-bottom:10px; display:inline-block"
+					class="btn btn-primary" />
 			</h:form>
 		</div>
-
-		<h:form>
-			<h:button value="Zur&uuml;ck zur Videoverwaltung"
-				outcome="zurueckZurVideoverwaltung"
-				style="min-width:250px; max-width: 550px; 
-						margin-bottom:10px; display:inline-block"
-				class="btn btn-primary" />
-		</h:form>
+		
 	</center>
 
 	<script language="javascript" type="text/javascript">

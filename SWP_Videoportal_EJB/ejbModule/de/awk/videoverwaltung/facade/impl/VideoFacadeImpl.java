@@ -31,11 +31,10 @@ public class VideoFacadeImpl implements IVideoFacade {
 	Converter converter = new Converter();
 
 	@Override
-	public void updateVideo(Integer aVideoId, String aVideoname, /*String topic,*/ Integer subcategoryId, String description) {
+	public void updateVideo(Integer aVideoId, String aVideoname, Integer subcategoryId, String description) {
 		Video aVideo = this.findVideoById(aVideoId);
 		aVideo.setVideoId(aVideoId);
 		aVideo.setName(aVideoname);
-//		aVideo.setTopic(topic);
 		aVideo.setSubcategoryId(subcategoryId);
 		aVideo.setDescription(description);
 		videoDAO.save(aVideo);
@@ -108,5 +107,12 @@ public class VideoFacadeImpl implements IVideoFacade {
 	public List<Video> findVideosBySearchInput(String searchField) {
 		return videoDAO.findVideosBySearchInput(searchField);
 	}
+
+	@Override
+	public void updateVideoCounter(int aVideoId) {
+		Video aVideo = this.findVideoById(aVideoId);
+		aVideo.setCounter(aVideo.getCounter()+1);
+		videoDAO.save(aVideo);
+		}
 
 }

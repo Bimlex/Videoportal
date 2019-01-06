@@ -21,36 +21,38 @@
 	<link href="../../css/main.css" rel="stylesheet" type="text/css" />
 	<title>Videoverwaltung</title>	
 </h:head>
+
 <h:body>
 	<center>
 		<h3>Videoverwaltung</h3>
-		<h:form>
-				
-			<br/><br/>
-			
-			<div
-			style="background-color: #f2f2f2; margin-left: 10px; margin-right: 10px; padding: 20px; max-width: 400px; min-width: 250px; border-radius: 5px">
-			
-			<h:panelGrid columns="1"
-			styleClass="panelGrid"
-			rowClasses="panelFirstLine, panelNextLine">
-				
-				
-				<h:commandButton action="videoAdministration" value=" Video-Administration" style="min-width:250px; max-width: 550px; 
-				margin-bottom:10px; display:inline-block" class="btn btn-primary"/>	
-				
-				<h:commandButton action="videoSearchAll" value="Videos" style="min-width:250px; max-width: 550px; 
-				margin-bottom:10px; display:inline-block" class="btn btn-primary"/>	
-				
-				<h:commandButton value="Zur&uuml;ck zur Startseite" action="zurueckZurStartseite" 
-				style="min-width:250px; max-width: 550px; margin-bottom:10px; display:inline-block" class="btn btn-secondary"/>
+			<h:form>
 					
-			</h:panelGrid>
-			</div>
-		</h:form>
-		
-			
+				<br/><br/>
+				
+				<div
+				style="background-color: #f2f2f2; margin-left: 10px; margin-right: 10px; padding: 20px; max-width: 400px; min-width: 250px; border-radius: 5px">
+				
+					<h:panelGrid columns="1"
+					styleClass="panelGrid"
+					rowClasses="panelFirstLine, panelNextLine">
+						
+						
+						<h:commandButton action="videoAdministration" value="Video-Administration" style="min-width:250px; max-width: 550px; 
+						margin-bottom:10px; display:inline-block" class="btn btn-primary"/>	
+						
+						<h:commandButton action="videoSearchAll" value="Videos" style="min-width:250px; max-width: 550px; 
+						margin-bottom:10px; display:inline-block" class="btn btn-primary"/>	
+						
+						<h:commandButton value="Zur&uuml;ck zur Startseite" action="backToStartPage" 
+						style="min-width:250px; max-width: 550px; margin-bottom:10px; display:inline-block" class="btn btn-secondary"/>
+							
+					</h:panelGrid>
+					
+				</div>
+			</h:form>
 	</center>
 </h:body>	
+
+
 
 </html>
