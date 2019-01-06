@@ -19,9 +19,8 @@ public class ConfigDAO extends GenericDAO<Configuration> {
 		System.out.println("We get a folder for output");
 
 		this.getEm().clear();
-		// Wird u.a. benutzt um User zu loeschen
 		Map<String, Object> parameters = new HashMap<String, Object>();
-		parameters.put("video_id", 1);
+		parameters.put("id", 1);
 		return super.findOneResult(Configuration.FIND_OUTPUT_BY_ID, parameters);
 	}
 }

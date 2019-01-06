@@ -86,6 +86,8 @@ public class Converter {
 		setVideoPath(full_path_of_output_video + typ);
 		String command = "ffmpeg -i \"" + path + "\" -y \"" + videoPath + "\" -loglevel quiet";
 		System.out.println(command);
+		setVideoPath(output + "\\" + id + typ);
+		System.out.println(videoPath);
 		try {
 			executeProcess(command);
 			return true;
