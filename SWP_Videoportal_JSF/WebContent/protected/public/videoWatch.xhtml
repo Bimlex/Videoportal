@@ -29,68 +29,69 @@
 
 <h:body>
 	<center>
-	
-		<h:form id="Video-FormularTest" >
-			<div class="centerPageElements" >
-				<h3><h:outputText value="#{videoMB.name}" /></h3>
+
+		<h:form id="Video-FormularTest">
+			<div class="centerPageElements">
+				<h3>
+					<h:outputText value="#{videoMB.name}" />
+				</h3>
+
+				<br />
+
+				<h:messages layout="list" styleClass="messageStyleClassVP"
+					errorClass="errorMessageVP" infoClass="infoMessageVP" />
+			 
+			 
+				<div>
+					<video id="videoplayer"
+						src="http://usrv01.zemit.wi.hs-osnabrueck.de:8080/vid/#{videoMB.path}"
+						controls="controls" preload="true" style="width:70%; height:auto"> </video>
+				</div>
 				
-				<br /> 
-				
-		<h:messages layout="list" styleClass="messageStyleClassVP"
-			errorClass="errorMessageVP" infoClass="infoMessageVP" />
+				<br />
+				<br />
 
-		
-			<div>
-				<video id="videoplayer" src="http://localhost:8080/vid/#{videoMB.path}"  
-					controls="controls" preload="true"   >
-				</video>
-			</div>
-				 
-				 
-			<br /><br />
-			
-			
-					<div class="centerPageElements" style="max-width: 400px;">
-<!-- 						
-		 				<h:outputLabel value="Videopath: " /> 
-						<h:outputText value="http://localhost:8080/vid/#{videoMB.path}" />
-	 -->	 
-						<h:outputLabel value="Videobeschreibung: " />
-						<h:outputText value="#{videoMB.description}" />
-						<br /><br />
-		
-						<h:outputLabel value="Aufrufe: " />
-						<h:outputText value="#{videoMB.counter}" />
-						<br /><br />
-						
-						<h:outputLabel value="Unterkategorie: " />
-						<h:outputText value="#{videoMB.getSubcategoryName()}"/>
-						<br />
-						<h:outputLabel value="Unterkategoriebeschreibung: " />
-						<h:outputText value="#{videoMB.getSubcategoryDescription()}"/>
-						<br /><br />
 
-						<h:outputLabel value="Themenbereich: " />
-						<h:outputText value="#{videoMB.getTopicName()}"/>
-						<br />
-						
-						<h:outputLabel value="Themenbeschreibung: " />
-						<h:outputText value="#{videoMB.getTopicDescription()}"/>
-						<br />						
-		
-						<br /><br />
-					
-						<h:button value="Zur&uuml;ck" outcome="backToVideoSearchAll"
-							class="btn btn-primary"
-							style="width:200px;height:40px;margin-bottom: 10px" />
+				<div class="centerPageElements" style="max-width: 400px;">
 
-					</div>
-					
+					<h:outputLabel value="Videobeschreibung: " />
+					<h:outputText value="#{videoMB.description}" />
+					<br />
+					<br />
+
+					<h:outputLabel value="Aufrufe: " />
+					<h:outputText value="#{videoMB.counter}" />
+					<br />
+					<br />
+
+					<h:outputLabel value="Unterkategorie: " />
+					<h:outputText value="#{videoMB.getSubcategoryName()}" />
+					<br />
+					<h:outputLabel value="Unterkategoriebeschreibung: " />
+					<h:outputText value="#{videoMB.getSubcategoryDescription()}" />
+					<br />
+					<br />
+
+					<h:outputLabel value="Themenbereich: " />
+					<h:outputText value="#{videoMB.getTopicName()}" />
+					<br />
+
+					<h:outputLabel value="Themenbeschreibung: " />
+					<h:outputText value="#{videoMB.getTopicDescription()}" />
+					<br /> <br />
+					<br />
+
+					<h:button value="Zur&uuml;ck" outcome="backToVideoSearchAll"
+						class="btn btn-primary"
+						style="width:200px;height:40px;margin-bottom: 10px" />
+
+				</div>
+
 			</div>
 		</h:form>
-		
+
 	</center>
-	
+
 	<script language="javascript" type="text/javascript">
 			var video = document.getElementById("videoplayer");
 			video.addEventListener("canplay", function() {

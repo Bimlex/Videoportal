@@ -27,7 +27,7 @@ public class Directory {
 		// Get the user directory and print it.
 
 		public String output_folder(String folderName) {
-		String home = System.getProperty("user.home");
+		String home = System.getProperty("user.home") + "/Videoportal";
 		String fileName = home + "\\"+folderName+"\\";
 		Path path = Paths.get(fileName);
 
