@@ -18,6 +18,7 @@ import javax.validation.constraints.Size;
 
 import de.awk.userManagement.model.User;
 import de.awk.videoverwaltung.facade.ISubcategoryFacade;
+import de.awk.videoverwaltung.facade.ITopicFacade;
 import de.awk.videoverwaltung.facade.IVideoFacade;
 import de.awk.videoverwaltung.model.Video;
 
@@ -43,6 +44,9 @@ public class VideoMB implements Serializable {
 
 	@EJB
 	private ISubcategoryFacade subcategoryFacade;
+	
+	@EJB
+	private ITopicFacade topicFacade;
 
 	@NotNull
 	@Digits(fraction = 0, integer = 6)
@@ -73,6 +77,8 @@ public class VideoMB implements Serializable {
 			System.out.println("folgendes Video wurde gewählt: VideoID ist: " + this.getVideoId() + " beschreibung:  "
 					+ this.getDescription() + " name:  " + this.getName() + " path: " + this.getPath());
 
+//			SubcategoryMB.findSubcategoryBySubcategoryId(subcategoryId);
+			
 			return "videoWatch";
 		}
 		return "";
@@ -347,6 +353,26 @@ public class VideoMB implements Serializable {
 	public void setSubcategoryId(Integer subcategoryId) {
 		this.subcategoryId = subcategoryId;
 	}
+	
+	public  String getSubcategoryName() {
+		return subcategoryFacade.findSubcategoryBySubcategoryId(this.subcategoryId).getName();
+	}
+	
+	public  String getSubcategoryDescription() {
+		return subcategoryFacade.findSubcategoryBySubcategoryId(this.subcategoryId).getDescription();
+	}
+
+	public  String getTopicName() {
+		return 	topicFacade.findTopicById(
+				subcategoryFacade.findSubcategoryBySubcategoryId(this.subcategoryId).getTopicId()).getName();
+	}
+	
+	
+	public  String getTopicDescription() {
+		return 	topicFacade.findTopicById(
+				subcategoryFacade.findSubcategoryBySubcategoryId(this.subcategoryId).getTopicId()).getDescription();
+	}
+
 
 	public String getTyp() {
 		return typ;

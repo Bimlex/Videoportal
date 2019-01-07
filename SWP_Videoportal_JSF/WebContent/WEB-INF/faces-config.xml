@@ -41,10 +41,6 @@
    <to-view-id>/protected/admin/topicMenu.xhtml</to-view-id>
   </navigation-case>
   <navigation-case>
-   <from-outcome>subcategoryMenu</from-outcome>
-   <to-view-id>/protected/admin/subcategoryMenu.xhtml</to-view-id>
-  </navigation-case>
-  <navigation-case>
    <from-outcome>logout</from-outcome>
    <to-view-id>/logout.xhtml</to-view-id>
   </navigation-case>
@@ -73,6 +69,10 @@
   <navigation-case>
    <from-outcome>backToStartPage</from-outcome>
    <to-view-id>/protected/public/startseite.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>backToVideoMenu</from-outcome>
+   <to-view-id>/protected/admin/videoMenu.xhtml</to-view-id>
   </navigation-case>
  </navigation-rule>
  <navigation-rule>

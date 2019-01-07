@@ -55,12 +55,28 @@
 		 				<h:outputLabel value="Videopath: " /> 
 						<h:outputText value="http://localhost:8080/vid/#{videoMB.path}" />
 	 -->	 
-						<h:outputLabel value="Beschreibung: " />
+						<h:outputLabel value="Videobeschreibung: " />
 						<h:outputText value="#{videoMB.description}" />
 						<br /><br />
 		
 						<h:outputLabel value="Aufrufe: " />
 						<h:outputText value="#{videoMB.counter}" />
+						<br /><br />
+						
+						<h:outputLabel value="Unterkategorie: " />
+						<h:outputText value="#{videoMB.getSubcategoryName()}"/>
+						<br />
+						<h:outputLabel value="Unterkategoriebeschreibung: " />
+						<h:outputText value="#{videoMB.getSubcategoryDescription()}"/>
+						<br /><br />
+
+						<h:outputLabel value="Themenbereich: " />
+						<h:outputText value="#{videoMB.getTopicName()}"/>
+						<br />
+						
+						<h:outputLabel value="Themenbeschreibung: " />
+						<h:outputText value="#{videoMB.getTopicDescription()}"/>
+						<br />						
 		
 						<br /><br />
 					

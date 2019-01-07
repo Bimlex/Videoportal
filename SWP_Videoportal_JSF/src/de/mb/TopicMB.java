@@ -1,7 +1,12 @@
 package de.mb;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.Map.Entry;
 
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
@@ -54,6 +59,36 @@ public class TopicMB implements Serializable{
 	private HtmlDataTable dataTableTopic;
 	private String searchField;
 	private String searchOption;
+	
+	
+	
+	private  Map <Integer,String> topicSelection = new HashMap<Integer, String>();
+
+	
+	public Set<Entry<Integer, String>> initialiseTopicSelection() throws Exception  {
+			List<Topic> rs= new ArrayList<Topic>(this.topicFacade.getAllTopics());
+			
+			for(Topic i :rs) {
+			
+				topicSelection.put(i.getTopicId(),i.getName());
+
+		}
+		return topicSelection.entrySet();
+	}
+	
+	public Topic findTopicByTopicId(Integer topicId) {
+		System.out.println(topicId);
+		return this.topicFacade.findTopicById(topicId);
+	}
+		
+		
+	public Map<Integer, String> getTopicSelection() {
+		return topicSelection;
+	}
+
+	public void setTopicSelection(Map<Integer, String> topicSelection) {
+		this.topicSelection = topicSelection;
+	}
 	
 	
 	public String selectTopicId() {

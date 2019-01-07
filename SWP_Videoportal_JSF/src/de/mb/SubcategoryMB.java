@@ -80,6 +80,11 @@ public class SubcategoryMB implements Serializable{
 		return subcategorySelection.entrySet();
 	}
 	
+	public Subcategory findSubcategoryBySubcategoryId(Integer subcategoryId) {
+		System.out.println(subcategoryId);
+		return this.subcategoryFacade.findSubcategoryBySubcategoryId(subcategoryId);
+	}
+		
 		
 	public Map<Integer, String> getSubcategorySelection() {
 		return subcategorySelection;
